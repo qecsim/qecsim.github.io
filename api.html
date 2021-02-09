@@ -1,0 +1,349 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>API &mdash; qecsim 1.0b8 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="app: application functions" href="api/app.html" />
+    <link rel="prev" title="qecsim demos" href="demos/demo_toric_plot.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> qecsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0b8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+        
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demos.html">Demos</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/app.html">app: application functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/cli.html">cli: command-line interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/error.html">error: error classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/graphtools.html">graphtools: graph tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/model.html">model: abstract base classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/basic.html">models.basic: basic stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/color.html">models.color: color stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/generic.html">models.generic: generic error models and decoders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/planar.html">models.planar: planar stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/rotatedplanar.html">models.rotatedplanar: rotated planar stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/rotatedtoric.html">models.rotatedtoric: rotated toric stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/toric.html">models.toric: toric stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/paulitools.html">paulitools: pauli and binary symplectic tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/tensortools.html">tensortools: tensor tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/util.html">util: utilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="links.html">Links</a></li>
+</ul>
+
+            
+          
+        <a href="genindex.html">Index</a>
+        <a href="py-modindex.html">Module Index</a>
+    
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">qecsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="api">
+<h1>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/app.html">app: application functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/app.html#module-qecsim.app"><code class="docutils literal notranslate"><span class="pre">qecsim.app</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/cli.html">cli: command-line interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/cli.html#module-qecsim.cli"><code class="docutils literal notranslate"><span class="pre">qecsim.cli</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/error.html">error: error classes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/error.html#module-qecsim.error"><code class="docutils literal notranslate"><span class="pre">qecsim.error</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/error.html#qecsim-error-qecsimerror"><code class="docutils literal notranslate"><span class="pre">qecsim.error.QecsimError</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/graphtools.html">graphtools: graph tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/graphtools.html#module-qecsim.graphtools"><code class="docutils literal notranslate"><span class="pre">qecsim.graphtools</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/graphtools.html#module-qecsim.graphtools.blossom5"><code class="docutils literal notranslate"><span class="pre">qecsim.graphtools.blossom5</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/model.html">model: abstract base classes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/model.html#module-qecsim.model"><code class="docutils literal notranslate"><span class="pre">qecsim.model</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/model.html#qecsim-model-stabilizercode"><code class="docutils literal notranslate"><span class="pre">qecsim.model.StabilizerCode</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/model.html#qecsim-model-errormodel"><code class="docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/model.html#qecsim-model-decoder"><code class="docutils literal notranslate"><span class="pre">qecsim.model.Decoder</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/model.html#qecsim-model-decoderftp"><code class="docutils literal notranslate"><span class="pre">qecsim.model.DecoderFTP</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/model.html#qecsim-model-decoderesult"><code class="docutils literal notranslate"><span class="pre">qecsim.model.DecodeResult</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/model.html#qecsim-model-cli-description"><code class="docutils literal notranslate"><span class="pre">qecsim.model.cli_description</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/models/basic.html">models.basic: basic stabilizer codes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/models/basic.html#module-qecsim.models.basic"><code class="docutils literal notranslate"><span class="pre">qecsim.models.basic</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/basic.html#qecsim-models-basic-basiccode"><code class="docutils literal notranslate"><span class="pre">qecsim.models.basic.BasicCode</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/basic.html#qecsim-models-basic-fivequbitcode"><code class="docutils literal notranslate"><span class="pre">qecsim.models.basic.FiveQubitCode</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/basic.html#qecsim-models-basic-steanecode"><code class="docutils literal notranslate"><span class="pre">qecsim.models.basic.SteaneCode</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/models/color.html">models.color: color stabilizer codes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/models/color.html#module-qecsim.models.color"><code class="docutils literal notranslate"><span class="pre">qecsim.models.color</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/color.html#qecsim-models-color-color666code"><code class="docutils literal notranslate"><span class="pre">qecsim.models.color.Color666Code</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/color.html#qecsim-models-color-color666pauli"><code class="docutils literal notranslate"><span class="pre">qecsim.models.color.Color666Pauli</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/color.html#qecsim-models-color-color666mpsdecoder"><code class="docutils literal notranslate"><span class="pre">qecsim.models.color.Color666MPSDecoder</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/models/generic.html">models.generic: generic error models and decoders</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/models/generic.html#module-qecsim.models.generic"><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/generic.html#qecsim-models-generic-simpleerrormodel"><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.SimpleErrorModel</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/generic.html#qecsim-models-generic-biaseddepolarizingerrormodel"><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.BiasedDepolarizingErrorModel</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/generic.html#qecsim-models-generic-biasedyxerrormodel"><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.BiasedYXErrorModel</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/generic.html#qecsim-models-generic-bitfliperrormodel"><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.BitFlipErrorModel</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/generic.html#qecsim-models-generic-bitphasefliperrormodel"><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.BitPhaseFlipErrorModel</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/generic.html#qecsim-models-generic-centersliceerrormodel"><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.CenterSliceErrorModel</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/generic.html#qecsim-models-generic-depolarizingerrormodel"><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.DepolarizingErrorModel</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/generic.html#qecsim-models-generic-fileerrormodel"><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.FileErrorModel</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/generic.html#qecsim-models-generic-phasefliperrormodel"><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.PhaseFlipErrorModel</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/generic.html#qecsim-models-generic-naivedecoder"><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.NaiveDecoder</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/models/planar.html">models.planar: planar stabilizer codes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/models/planar.html#module-qecsim.models.planar"><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/planar.html#qecsim-models-planar-planarcode"><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarCode</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/planar.html#qecsim-models-planar-planarpauli"><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarPauli</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/planar.html#qecsim-models-planar-planarcmwpmdecoder"><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarCMWPMDecoder</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/planar.html#qecsim-models-planar-planarmpsdecoder"><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarMPSDecoder</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/planar.html#qecsim-models-planar-planarmwpmdecoder"><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarMWPMDecoder</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/planar.html#qecsim-models-planar-planarrmpsdecoder"><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarRMPSDecoder</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/planar.html#qecsim-models-planar-planarydecoder"><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarYDecoder</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/models/rotatedplanar.html">models.rotatedplanar: rotated planar stabilizer codes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/models/rotatedplanar.html#module-qecsim.models.rotatedplanar"><code class="docutils literal notranslate"><span class="pre">qecsim.models.rotatedplanar</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/rotatedplanar.html#qecsim-models-rotatedplanar-rotatedplanarcode"><code class="docutils literal notranslate"><span class="pre">qecsim.models.rotatedplanar.RotatedPlanarCode</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/rotatedplanar.html#qecsim-models-rotatedplanar-rotatedplanarpauli"><code class="docutils literal notranslate"><span class="pre">qecsim.models.rotatedplanar.RotatedPlanarPauli</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/rotatedplanar.html#qecsim-models-rotatedplanar-rotatedplanarmpsdecoder"><code class="docutils literal notranslate"><span class="pre">qecsim.models.rotatedplanar.RotatedPlanarMPSDecoder</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/rotatedplanar.html#qecsim-models-rotatedplanar-rotatedplanarrmpsdecoder"><code class="docutils literal notranslate"><span class="pre">qecsim.models.rotatedplanar.RotatedPlanarRMPSDecoder</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/rotatedplanar.html#qecsim-models-rotatedplanar-rotatedplanarsmwpmdecoder"><code class="docutils literal notranslate"><span class="pre">qecsim.models.rotatedplanar.RotatedPlanarSMWPMDecoder</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/models/rotatedtoric.html">models.rotatedtoric: rotated toric stabilizer codes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/models/rotatedtoric.html#module-qecsim.models.rotatedtoric"><code class="docutils literal notranslate"><span class="pre">qecsim.models.rotatedtoric</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/rotatedtoric.html#qecsim-models-rotatedtoric-rotatedtoriccode"><code class="docutils literal notranslate"><span class="pre">qecsim.models.rotatedtoric.RotatedToricCode</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/rotatedtoric.html#qecsim-models-rotatedtoric-rotatedtoricpauli"><code class="docutils literal notranslate"><span class="pre">qecsim.models.rotatedtoric.RotatedToricPauli</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/rotatedtoric.html#qecsim-models-rotatedtoric-rotatedtoricsmwpmdecoder"><code class="docutils literal notranslate"><span class="pre">qecsim.models.rotatedtoric.RotatedToricSMWPMDecoder</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/models/toric.html">models.toric: toric stabilizer codes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/models/toric.html#module-qecsim.models.toric"><code class="docutils literal notranslate"><span class="pre">qecsim.models.toric</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/toric.html#qecsim-models-toric-toriccode"><code class="docutils literal notranslate"><span class="pre">qecsim.models.toric.ToricCode</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/toric.html#qecsim-models-toric-toricpauli"><code class="docutils literal notranslate"><span class="pre">qecsim.models.toric.ToricPauli</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/toric.html#qecsim-models-toric-toricmwpmdecoder"><code class="docutils literal notranslate"><span class="pre">qecsim.models.toric.ToricMWPMDecoder</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/paulitools.html">paulitools: pauli and binary symplectic tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/paulitools.html#module-qecsim.paulitools"><code class="docutils literal notranslate"><span class="pre">qecsim.paulitools</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/tensortools.html">tensortools: tensor tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/tensortools.html#module-qecsim.tensortools"><code class="docutils literal notranslate"><span class="pre">qecsim.tensortools</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/tensortools.html#module-qecsim.tensortools.tsr"><code class="docutils literal notranslate"><span class="pre">qecsim.tensortools.tsr</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/tensortools.html#module-qecsim.tensortools.mps"><code class="docutils literal notranslate"><span class="pre">qecsim.tensortools.mps</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/tensortools.html#module-qecsim.tensortools.mps2d"><code class="docutils literal notranslate"><span class="pre">qecsim.tensortools.mps2d</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/util.html">util: utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/util.html#module-qecsim.util"><code class="docutils literal notranslate"><span class="pre">qecsim.util</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="api/app.html" class="btn btn-neutral float-right" title="app: application functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="demos/demo_toric_plot.html" class="btn btn-neutral float-left" title="qecsim demos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2016 - 2021, David K. Tuckett.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

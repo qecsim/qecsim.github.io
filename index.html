@@ -1,1 +1,315 @@
-Hello World
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>qecsim - Quantum Error Correction Simulator &mdash; qecsim 1.0b8 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Overview" href="overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> qecsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0b8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+        
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demos.html">Demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="links.html">Links</a></li>
+</ul>
+
+            
+          
+        <a href="genindex.html">Index</a>
+        <a href="py-modindex.html">Module Index</a>
+    
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">qecsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>qecsim - Quantum Error Correction Simulator</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="qecsim-quantum-error-correction-simulator">
+<h1>qecsim - Quantum Error Correction Simulator<a class="headerlink" href="#qecsim-quantum-error-correction-simulator" title="Permalink to this headline">¶</a></h1>
+<p>qecsim is a Python 3 package for simulating quantum error correction using stabilizer codes.</p>
+<p>The <em>Overview</em> section describes how qecsim works, the <em>Installation</em> and <em>Usage</em> sections explain how to install, use
+and extend qecsim, and the <em>Demos</em> section shows qecsim in action. See also the <em>Citing</em> section for details on citing
+qecsim and its dependencies.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 70%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference external" href="https://equs.org/"><img alt="EQUS logo" src="_images/equs_logo_inline_colour.png" style="width: 200px;" /></a></p></td>
+<td><div class="line-block">
+<div class="line">Supported by the Australian Research Council Centre of Excellence</div>
+<div class="line">for Engineered Quantum Systems (EQUS, CE170100009)</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#components">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#implementations">Implementations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#package">Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#logging-configuration-optional">Logging configuration (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#fast-matching-library-optional">Fast matching library (optional)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#command-line">Command-line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#library">Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#extension">Extension</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="demos.html">Demos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="demos/demo_basic.html">Basic code run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demos/demo_basic_plot.html">Basic code plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demos/demo_color666.html">Color 6.6.6 code run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demos/demo_color666_plot.html">Color 6.6.6 code plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demos/demo_planar.html">Planar code run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demos/demo_planar_plot.html">Planar code plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demos/demo_planar_correlated.html">Planar correlated error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demos/demo_rotatedplanar.html">Rotated planar code run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demos/demo_rotatedplanar_plot.html">Rotated planar code plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demos/demo_toric.html">Toric code run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demos/demo_toric_plot.html">Toric code plot</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/app.html">app: application functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/cli.html">cli: command-line interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/error.html">error: error classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/graphtools.html">graphtools: graph tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/model.html">model: abstract base classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/basic.html">models.basic: basic stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/color.html">models.color: color stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/generic.html">models.generic: generic error models and decoders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/planar.html">models.planar: planar stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/rotatedplanar.html">models.rotatedplanar: rotated planar stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/rotatedtoric.html">models.rotatedtoric: rotated toric stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models/toric.html">models.toric: toric stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/paulitools.html">paulitools: pauli and binary symplectic tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/tensortools.html">tensortools: tensor tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/util.html">util: utilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Changes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id1">1.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="citing.html#citing-qecsim">Citing qecsim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="citing.html#citing-dependencies">Citing dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="links.html">Links</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="indices">
+<h2>Indices<a class="headerlink" href="#indices" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="overview.html" class="btn btn-neutral float-right" title="Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2016 - 2021, David K. Tuckett.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

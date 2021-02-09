@@ -1,0 +1,699 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>tensortools: tensor tools &mdash; qecsim 1.0b8 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="util: utilities" href="util.html" />
+    <link rel="prev" title="paulitools: pauli and binary symplectic tools" href="paulitools.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> qecsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0b8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+        
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demos.html">Demos</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="app.html">app: application functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">cli: command-line interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error.html">error: error classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphtools.html">graphtools: graph tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">model: abstract base classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models/basic.html">models.basic: basic stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models/color.html">models.color: color stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models/generic.html">models.generic: generic error models and decoders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models/planar.html">models.planar: planar stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models/rotatedplanar.html">models.rotatedplanar: rotated planar stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models/rotatedtoric.html">models.rotatedtoric: rotated toric stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models/toric.html">models.toric: toric stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="paulitools.html">paulitools: pauli and binary symplectic tools</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">tensortools: tensor tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-qecsim.tensortools"><code class="docutils literal notranslate"><span class="pre">qecsim.tensortools</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-qecsim.tensortools.tsr"><code class="docutils literal notranslate"><span class="pre">qecsim.tensortools.tsr</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-qecsim.tensortools.mps"><code class="docutils literal notranslate"><span class="pre">qecsim.tensortools.mps</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-qecsim.tensortools.mps2d"><code class="docutils literal notranslate"><span class="pre">qecsim.tensortools.mps2d</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="util.html">util: utilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citing.html">Citing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../links.html">Links</a></li>
+</ul>
+
+            
+          
+        <a href="../genindex.html">Index</a>
+        <a href="../py-modindex.html">Module Index</a>
+    
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">qecsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../api.html">API</a> &raquo;</li>
+        
+      <li>tensortools: tensor tools</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tensortools-tensor-tools">
+<h1>tensortools: tensor tools<a class="headerlink" href="#tensortools-tensor-tools" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-qecsim.tensortools">
+<span id="qecsim-tensortools"></span><h2><code class="docutils literal notranslate"><span class="pre">qecsim.tensortools</span></code><a class="headerlink" href="#module-qecsim.tensortools" title="Permalink to this headline">¶</a></h2>
+<p>This module contains sub-modules for tensors, matrix product states/operators (MPS/MPO) and two-dimensional lattices.</p>
+</div>
+<div class="section" id="module-qecsim.tensortools.tsr">
+<span id="qecsim-tensortools-tsr"></span><h2><code class="docutils literal notranslate"><span class="pre">qecsim.tensortools.tsr</span></code><a class="headerlink" href="#module-qecsim.tensortools.tsr" title="Permalink to this headline">¶</a></h2>
+<p>This module contains functions for tensors</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>The functions are for tensors defined as numpy.array objects.</p></li>
+</ul>
+<dl class="py function">
+<dt id="qecsim.tensortools.tsr.as_scalar">
+<code class="sig-prename descclassname">qecsim.tensortools.tsr.</code><code class="sig-name descname">as_scalar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tsr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.tensortools.tsr.as_scalar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return tensor as scalar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tsr</strong> (<em>numpy.array</em><em> (</em><em>4d</em><em>)</em>) – Tensor</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Scalar</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.number</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if tensor is not a scalar.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="qecsim.tensortools.tsr.delta">
+<code class="sig-prename descclassname">qecsim.tensortools.tsr.</code><code class="sig-name descname">delta</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">shape</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.tensortools.tsr.delta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return delta tensor of given shape, i.e. element values of 1 when all non-dummy indices are equal, 0 otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>shape</strong> (<em>tuple of int</em>) – Shape of tensor.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Delta tensor</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-qecsim.tensortools.mps">
+<span id="qecsim-tensortools-mps"></span><h2><code class="docutils literal notranslate"><span class="pre">qecsim.tensortools.mps</span></code><a class="headerlink" href="#module-qecsim.tensortools.mps" title="Permalink to this headline">¶</a></h2>
+<p>This module contains functions for Matrix Product States (MPS) and Matrix Product Operators (MPO)</p>
+<p>Notes:</p>
+<ul>
+<li><p>An MPS/MPO is represented by a lists of tensors represented by numpy arrays.</p></li>
+<li><p>Most functions support sparse MPS/MPO with None objects in place of tensors but some require a single contiguous list
+of tensors with None only supported at the start and/or end of the MPS/MPO, see function documentation for details.</p></li>
+<li><p>All tensors must have 4 indices in the following order (N, E, S, W) where N and S are North and South link indices and
+E and W are East and West physical indices. Irrelevant indices must have dimension 1 to be treated as dummy indices.</p></li>
+<li><p>Equivalently, tensors can be thought of as having 4 indices in the following order (L, U, R, D) where L and R are Left
+and Right link indices and U and D are Up and Down physical indices.</p></li>
+<li><p>For example, if the tensor network has physical indices of dimension p and link indices of dimension l:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A bra MPS is a list of numpy.array with shapes:
+(1, p, l, 1), (l, p, l, 1), …, (l, p, l, 1), (l, p, 1, 1)</p></li>
+<li><p>An MPO is a list of numpy.array with shapes:
+(1, p, l, p), (l, p, l, p), …, (l, p, l, p), (l, p, 1, p)</p></li>
+<li><p>A ket MPS is a list of numpy.array with shapes:
+(1, 1, l, p), (l, 1, l, p), …, (l, 1, l, p), (l, 1, 1, p)</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>For more details on matrix product states and the functions in this module, see Schollwoeck, U. (2011) “The
+density-matrix renormalization group in the age of matrix product states” <a class="reference external" href="https://arxiv.org/abs/1008.3477">https://arxiv.org/abs/1008.3477</a></p>
+<dl class="py function">
+<dt id="qecsim.tensortools.mps.bond_dimension">
+<code class="sig-prename descclassname">qecsim.tensortools.mps.</code><code class="sig-name descname">bond_dimension</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mps</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.tensortools.mps.bond_dimension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an MPS/MPO as a list of tensors with indices (N, E, S, W), return the maximum dimension of the N indices.</p>
+<p>(Equivalently, given an MPS/MPO as a list of tensors with indices (L, U, R, D), return the maximum dimension of the
+L indices.)</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>None objects in the MPS/MPO are considered to have dimension 0.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mps</strong> (<em>list of numpy.array</em><em> (</em><em>4d</em><em>)</em>) – MPS/MPO</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Bond dimension of MPS/MPO.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="qecsim.tensortools.mps.contract_ladder">
+<code class="sig-prename descclassname">qecsim.tensortools.mps.</code><code class="sig-name descname">contract_ladder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mps</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.tensortools.mps.contract_ladder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an MPS/MPO as a lists of tensors with indices (N, E, S, W), return the tensor evaluated by contracting the
+MPS/MPO by summing over the S index of the first tensor and the N index of each subsequent tensor.</p>
+<p>(Equivalently, given an MPS/MPO as a lists of tensors with indices (L, U, R, D), return the tensor evaluated by
+contracting the MPS/MPO by summing over the R index of the first tensor and the L index of each subsequent tensor.)</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Sparse MPS/MPO with None objects are supported provided that they contain a single contiguous list of tensors;
+None objects at the start and/or end are ignored.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mps</strong> (<em>list of numpy.array</em><em> (</em><em>4d</em><em>)</em>) – MPS/MPO.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Contracted tensor.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array (4d)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="qecsim.tensortools.mps.contract_pairwise">
+<code class="sig-prename descclassname">qecsim.tensortools.mps.</code><code class="sig-name descname">contract_pairwise</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">left_mps</span></em>, <em class="sig-param"><span class="n">right_mps</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.tensortools.mps.contract_pairwise" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given two MPS/MPO as equal length lists of tensors with indices (N, E, S, W), return a single MPS/MPO evaluated by
+contracting the tensors of the left MPS/MPO and right MPS/MPO pairwise summing over the E index of each left tensor
+and the W index of the corresponding right tensor.</p>
+<p>(Equivalently, given two MPS/MPO as equal length lists of tensors with indices (L, U, R, D), return a single MPS/MPO
+evaluated by contracting the tensors of the left MPS/MPO and right MPS/MPO pairwise summing over the U index of each
+left tensor and the D index of the corresponding right tensor.)</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Sparse MPS/MPO with None objects are supported by simply copying the corresponding object (tensor or None) from
+the other MPS/MPO to the resultant contracted MPS/MPO.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>left_mps</strong> (<em>list of numpy.array</em><em> (</em><em>4d</em><em>)</em>) – Left MPS/MPO.</p></li>
+<li><p><strong>right_mps</strong> (<em>list of numpy.array</em><em> (</em><em>4d</em><em>)</em>) – Right MPS/MPO.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Pairwise contracted MPS/MPO.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of numpy.array (4d)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="qecsim.tensortools.mps.inner_product">
+<code class="sig-prename descclassname">qecsim.tensortools.mps.</code><code class="sig-name descname">inner_product</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bra_mps</span></em>, <em class="sig-param"><span class="n">ket_mps</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.tensortools.mps.inner_product" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given bra and ket MPS as equal length lists of tensors with indices (N, E, S, W), return the inner product evaluated
+by pairwise contracting (see <a class="reference internal" href="#qecsim.tensortools.mps.contract_pairwise" title="qecsim.tensortools.mps.contract_pairwise"><code class="xref py py-func docutils literal notranslate"><span class="pre">contract_pairwise()</span></code></a>) the bra and ket MPS, ladder contracting the resultant MPS
+(see <a class="reference internal" href="#qecsim.tensortools.mps.contract_ladder" title="qecsim.tensortools.mps.contract_ladder"><code class="xref py py-func docutils literal notranslate"><span class="pre">contract_ladder()</span></code></a>), and extracting final contracted tensor as a scalar.</p>
+<p>(Equivalently, given bra and ket MPS as equal length lists of tensors with indices (L, U, R, D), return the inner
+product evaluated by pairwise contracting (see <a class="reference internal" href="#qecsim.tensortools.mps.contract_pairwise" title="qecsim.tensortools.mps.contract_pairwise"><code class="xref py py-func docutils literal notranslate"><span class="pre">contract_pairwise()</span></code></a>) the bra and ket MPS and ladder contracting
+the resultant MPS (see <a class="reference internal" href="#qecsim.tensortools.mps.contract_ladder" title="qecsim.tensortools.mps.contract_ladder"><code class="xref py py-func docutils literal notranslate"><span class="pre">contract_ladder()</span></code></a>), and extracting final contracted tensor as a scalar).</p>
+<p>Notes:</p>
+<ul>
+<li><p>Sparse MPS with None objects are supported, as described in <a class="reference internal" href="#qecsim.tensortools.mps.contract_pairwise" title="qecsim.tensortools.mps.contract_pairwise"><code class="xref py py-func docutils literal notranslate"><span class="pre">contract_pairwise()</span></code></a>, but the pairwise-contracted
+MPS must contain a single contiguous list of tensors, as described in <a class="reference internal" href="#qecsim.tensortools.mps.contract_ladder" title="qecsim.tensortools.mps.contract_ladder"><code class="xref py py-func docutils literal notranslate"><span class="pre">contract_ladder()</span></code></a>.</p></li>
+<li><p>The bra MPS must have dummy (dimension 1) indices in the N and W positions of the first tensor, W position of
+subsequent tensors, and S and W positions of the last tensor.</p>
+<p>(Equivalently, the bra MPS must have dummy (dimension 1) indices in the L and D positions of the first tensor, D
+position of subsequent tensors, and R and D positions of the last tensor.)</p>
+</li>
+<li><p>The ket MPS must have dummy (dimension 1) indices in the N and E positions of the first tensor, E position of
+subsequent tensors, and S and E positions of the last tensor.</p>
+<p>(Equivalently, the ket MPS must have dummy (dimension 1) indices in the L and U positions of the first tensor, U
+position of subsequent tensors, and R and U positions of the last tensor.)</p>
+</li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bra_mps</strong> (<em>list of numpy.array</em><em> (</em><em>4d</em><em>)</em>) – Bra MPS.</p></li>
+<li><p><strong>ket_mps</strong> (<em>list of numpy.array</em><em> (</em><em>4d</em><em>)</em>) – Ket MPS.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Inner product.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.number</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – if pairwise-contracted MPS does not contain a single contiguous list of tensors.</p></li>
+<li><p><strong>ValueError</strong> – if final contraction is not a scalar.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="qecsim.tensortools.mps.left_canonical_form">
+<code class="sig-prename descclassname">qecsim.tensortools.mps.</code><code class="sig-name descname">left_canonical_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mps</span></em>, <em class="sig-param"><span class="n">chi</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tol</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">qr</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">normalise</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">mask</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.tensortools.mps.left_canonical_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an MPS/MPO as a list of tensors, return the MPS/MPO in left canonical form evaluated by QR decomposition or
+SVD of each tensor in turn, retaining the unitary matrix and contracting the other matrices of the decomposition
+into the next tensor.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Sparse MPS/MPO with None objects are supported provided that they contain a single contiguous list of tensors;
+None objects at the start and/or end are ignored.</p></li>
+<li><p>The QR algorithm is faster than the default SVD algorithm but is incompatible with defined chi and tol parameters.</p></li>
+<li><p>If chi is defined, it specifies the number of singular values retained in the SVD of each tensor. This effectively
+truncates the bond dimension of the MPS/MPO to chi.</p></li>
+<li><p>If tol is defined, only the singular values in the SVD of each tensor that, when normalised, are strictly larger
+than tol will be retained. This effectively defines a tolerance below which normalised singular values are
+considered to be zero.</p></li>
+<li><p>If normalise is False, the returned MPS/MPO will not be normalised and the only return value.</p></li>
+<li><p>If normalise is True, the returned MPS/MPO will be normalised and the returned normalisation factor set
+accordingly. However, if the norm is zero then the returned MPS/MPO will consist of zero tensors like those in the
+given MPS/MPO but with bond dimension 1, and the normalisation factor will be 0.0.</p></li>
+<li><p>If mask is specified and the element corresponding to a given tensor is falsy, the tensor will be decomposed using
+the QR algorithm and truncation based on chi or tol will be skipped.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mps</strong> (<em>list of numpy.array</em><em> (</em><em>4d</em><em>)</em>) – MPS/MPO</p></li>
+<li><p><strong>chi</strong> (<em>int</em><em> or </em><em>None</em>) – Truncated bond dimension. (default=None, unrestricted=None)</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em> or </em><em>None</em>) – Tolerance for treating normalised singular values as zero. (default=None, unrestricted=None)</p></li>
+<li><p><strong>qr</strong> (<em>bool</em>) – Use QR decomposition instead of SVD. (Incompatible with chi and tol parameters) (default=False)</p></li>
+<li><p><strong>normalise</strong> (<em>bool</em>) – Normalise resultant MPS/MPO. (default=False)</p></li>
+<li><p><strong>mask</strong> (<em>list of bool</em><em> or </em><em>None</em>) – Mask of same length as mps. True indicates tensor may be truncated. (default=None resolves to all True)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>MPS/MPO in left canonical form
+(if normalise=True: MPS/MPO in left canonical form, Norm of MPS/MPO)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of numpy.array (4d)
+(if normalise=True: 2-tuple of list of numpy.array (4d), mpmath.mpf)</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if MPS/MPO does not contain a single contiguous list of tensors.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="qecsim.tensortools.mps.reverse">
+<code class="sig-prename descclassname">qecsim.tensortools.mps.</code><code class="sig-name descname">reverse</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mps</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.tensortools.mps.reverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an MPS/MPO as a list of tensors with indices (N, E, S, W), return the reversed list with N and S indices
+swapped for each tensor, i.e. (N, E, S, W) -&gt; (S, E, N, W).</p>
+<p>(Equivalently, given an MPS/MPO as a list of tensors with indices (L, U, R, D), return the reversed list with L and
+R indices swapped for each tensor, i.e. (L, U, R, D) -&gt; (R, U, L, D).)</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>None objects in the MPS/MPO are copied to the reversed list unchanged.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mps</strong> (<em>list of numpy.array</em><em> (</em><em>4d</em><em>)</em>) – MPS/MPO</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Reversed MPS/MPO</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of numpy.array (4d)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="qecsim.tensortools.mps.right_canonical_form">
+<code class="sig-prename descclassname">qecsim.tensortools.mps.</code><code class="sig-name descname">right_canonical_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mps</span></em>, <em class="sig-param"><span class="n">chi</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tol</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">qr</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">normalise</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">mask</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.tensortools.mps.right_canonical_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an MPS/MPO as a list of tensors, return the MPS/MPO in right canonical form evaluated by reversing the MPS/MPO
+(see <a class="reference internal" href="#qecsim.tensortools.mps.reverse" title="qecsim.tensortools.mps.reverse"><code class="xref py py-func docutils literal notranslate"><span class="pre">reverse()</span></code></a>), converting the reversed MPS to left canonical form (see <a class="reference internal" href="#qecsim.tensortools.mps.left_canonical_form" title="qecsim.tensortools.mps.left_canonical_form"><code class="xref py py-func docutils literal notranslate"><span class="pre">left_canonical_form()</span></code></a>), and
+reversing the resultant MPS.</p>
+<p>Notes: see <a class="reference internal" href="#qecsim.tensortools.mps.left_canonical_form" title="qecsim.tensortools.mps.left_canonical_form"><code class="xref py py-func docutils literal notranslate"><span class="pre">left_canonical_form()</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mps</strong> (<em>list of numpy.array</em><em> (</em><em>4d</em><em>)</em>) – MPS/MPO</p></li>
+<li><p><strong>chi</strong> (<em>int</em><em> or </em><em>None</em>) – Truncated bond dimension. (default=None, unrestricted=None)</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em> or </em><em>None</em>) – Tolerance for treating normalised singular values as zero. (default=None, unrestricted=None)</p></li>
+<li><p><strong>qr</strong> (<em>bool</em>) – Use QR decomposition instead of SVD. (Incompatible with chi and tol parameters) (default=False)</p></li>
+<li><p><strong>normalise</strong> (<em>bool</em>) – Normalise resultant MPS/MPO. (default=False)</p></li>
+<li><p><strong>mask</strong> (<em>list of bool</em><em> or </em><em>None</em>) – Mask of same length as mps. True indicates tensor may be truncated. (default=None resolves to all True)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>MPS/MPO in right canonical form
+(if normalise=True: MPS/MPO in right canonical form, Norm of MPS/MPO)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of numpy.array (4d)
+(if normalise=True: 2-tuple of list of numpy.array (4d), float)</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if MPS/MPO does not contain a single contiguous list of tensors.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="qecsim.tensortools.mps.truncate">
+<code class="sig-prename descclassname">qecsim.tensortools.mps.</code><code class="sig-name descname">truncate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mps</span></em>, <em class="sig-param"><span class="n">chi</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tol</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">mask</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.tensortools.mps.truncate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an MPS/MPO as a list of tensors, return the MPS/MPO with truncated bond dimension.</p>
+<p>The evaluation is as follows:</p>
+<ol class="arabic simple">
+<li><p>Put the MPS/MPO into left canonical form (see <a class="reference internal" href="#qecsim.tensortools.mps.left_canonical_form" title="qecsim.tensortools.mps.left_canonical_form"><code class="xref py py-func docutils literal notranslate"><span class="pre">left_canonical_form()</span></code></a>) without truncation</p></li>
+<li><p>Normalise the final tensor of the MPS/MPO and set the norm.</p></li>
+<li><p>Put the resultant MPS/MPO into right canonical form (see <a class="reference internal" href="#qecsim.tensortools.mps.right_canonical_form" title="qecsim.tensortools.mps.right_canonical_form"><code class="xref py py-func docutils literal notranslate"><span class="pre">right_canonical_form()</span></code></a>) truncating to chi singular
+values for each tensor.</p></li>
+<li><p>Return the resultant MPS/MPO in right canonical form with the norm from step 2.</p></li>
+</ol>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Sparse MPS/MPO with None objects are supported provided that they contain a single contiguous list of tensors;
+None objects at the start and/or end are ignored.</p></li>
+<li><p>If tol is unspecified and the current bond dimension (see <a class="reference internal" href="#qecsim.tensortools.mps.bond_dimension" title="qecsim.tensortools.mps.bond_dimension"><code class="xref py py-func docutils literal notranslate"><span class="pre">bond_dimension()</span></code></a>) is less than or equal to chi or
+the mask is all falsy, the MPS/MPO is returned unmodified and the norm is returned as 1.0.</p></li>
+<li><p>If the final tensor of the MPS/MPO cannot be normalised, the norm is returned as 1.0.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mps</strong> (<em>list of numpy.array</em><em> (</em><em>4d</em><em>)</em>) – MPS/MPO</p></li>
+<li><p><strong>chi</strong> (<em>int</em><em> or </em><em>None</em>) – Truncated bond dimension. (default=None, unrestricted=None)</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em> or </em><em>None</em>) – Tolerance for treating normalised singular values as zero. (default=None, unrestricted=None)</p></li>
+<li><p><strong>mask</strong> (<em>list of bool</em><em> or </em><em>None</em>) – Mask of same length as mps. True indicates tensor may be truncated. (default=None resolves to all True)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>MPS/MPO with truncated bond dimension, norm from putting into left canonical form.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of numpy.array (4d), float</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if MPS/MPO does not contain a single contiguous list of tensors.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="qecsim.tensortools.mps.zeros_like">
+<code class="sig-prename descclassname">qecsim.tensortools.mps.</code><code class="sig-name descname">zeros_like</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mps</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.tensortools.mps.zeros_like" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an MPS/MPO as a lists of tensors with indices (N, E, S, W), return an MPS/MPO consisting of zero tensors with
+virtual indices (N, S) of dimension 1 and physical indices (E, W) of the same dimensions as those of the
+corresponding tensor in the given MPS/MPO.</p>
+<p>(Equivalently, given an MPS/MPO as a lists of tensors with indices (L, U, R, D), return an MPS/MPO consisting of
+zero tensors with virtual indices (L, R) of dimension 1 and physical indices (U, D) of the same dimensions as those
+of the corresponding tensor in the given MPS/MPO.)</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Sparse MPS/MPO with None objects are supported by simply inserting None objects in the zeros MPS/MPO in the
+corresponding position in the list.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mps</strong> (<em>list of numpy.array</em><em> (</em><em>4d</em><em>)</em>) – MPS/MPO.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Zeros MPS/MPO.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of numpy.array (4d)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-qecsim.tensortools.mps2d">
+<span id="qecsim-tensortools-mps2d"></span><h2><code class="docutils literal notranslate"><span class="pre">qecsim.tensortools.mps2d</span></code><a class="headerlink" href="#module-qecsim.tensortools.mps2d" title="Permalink to this headline">¶</a></h2>
+<p>This module contains functions for two-dimensional lattice tensor networks</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>The functions are for 2-D tensor networks where each row or column is an MPS/MPO.</p></li>
+</ul>
+<dl class="py function">
+<dt id="qecsim.tensortools.mps2d.contract">
+<code class="sig-prename descclassname">qecsim.tensortools.mps2d.</code><code class="sig-name descname">contract</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tn</span></em>, <em class="sig-param"><span class="n">chi</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tol</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">stop</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">step</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">mask</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.tensortools.mps2d.contract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return column-by-column contraction of tensor network where each column as an MPS/MPO.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Sparse MPS/MPO with None objects are supported provided that they contain a single contiguous list of tensors;
+None objects at the start and/or end are ignored.</p></li>
+<li><p>The contraction is performed as a series of <a class="reference internal" href="#qecsim.tensortools.mps.contract_pairwise" title="qecsim.tensortools.mps.contract_pairwise"><code class="xref py py-func docutils literal notranslate"><span class="pre">qecsim.tensortools.mps.contract_pairwise()</span></code></a> /
+<a class="reference internal" href="#qecsim.tensortools.mps.truncate" title="qecsim.tensortools.mps.truncate"><code class="xref py py-func docutils literal notranslate"><span class="pre">qecsim.tensortools.mps.truncate()</span></code></a> operations followed by a <a class="reference internal" href="#qecsim.tensortools.mps.inner_product" title="qecsim.tensortools.mps.inner_product"><code class="xref py py-func docutils literal notranslate"><span class="pre">qecsim.tensortools.mps.inner_product()</span></code></a>
+operation on the final pair of columns without truncation.</p></li>
+<li><p>In case of a full contraction, the network is assumed to contract to a scalar.</p></li>
+<li><p>In case of a partial contraction, the final column is truncated but not contracted to a scalar.</p></li>
+<li><p>In case of a partial contraction, to avoid underflow, a multiplier is returned that is only the cumulative norm
+from the truncation operations. Therefore, it should not be assumed that the returned value is fully normalised;
+rather the true value is given by the product of the returned value and multiplier.</p></li>
+<li><p>In case of a partial contraction where the range of columns is empty, None is returned with multiplier 1.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tn</strong> (<em>numpy.array</em><em> (</em><em>2d</em><em>) </em><em>of numpy.array</em><em> (</em><em>4d</em><em>)</em>) – Tensor network whose columns are MPS/MPO.</p></li>
+<li><p><strong>chi</strong> (<em>int</em><em> or </em><em>None</em>) – Truncated bond dimension. (default=None, unrestricted=None)</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em> or </em><em>None</em>) – Tolerance for treating normalised singular values as zero. (default=None, unrestricted=None)</p></li>
+<li><p><strong>start</strong> (<em>int</em><em> or </em><em>None</em>) – Start column index (default=None resolves to 0)</p></li>
+<li><p><strong>stop</strong> (<em>int</em><em> or </em><em>None</em>) – Stop column index (exclusive) (default=None resolves to number of columns)</p></li>
+<li><p><strong>step</strong> (<em>int</em><em> or </em><em>None</em>) – Step (default=None resolves to 1)</p></li>
+<li><p><strong>mask</strong> (<em>numpy.array</em><em> (</em><em>2d</em><em>) </em><em>of bool</em><em> or </em><em>None</em>) – Mask of same shape as tn. True indicates tensor may be truncated. (default=None resolves to all True)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Contraction value
+(if partial contraction: Partially contracted tensor network as MPS/MPO, Multiplier)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>mpmath.mpf
+(if partial contraction: numpy.array (1d) of numpy.array (4d), mpmath.mpf)</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – if pairwise-contracted MPS/MPOs do not contain a single contiguous list of tensors.</p></li>
+<li><p><strong>ValueError</strong> – if full contraction and final contraction value is not a scalar.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="qecsim.tensortools.mps2d.transpose">
+<code class="sig-prename descclassname">qecsim.tensortools.mps2d.</code><code class="sig-name descname">transpose</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tn</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.tensortools.mps2d.transpose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return transposed network of tensors.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Both the network and each tensor is transposed, so that contracting the transposed network column-by-column is
+equivalent to contracting the original network row-by-row.</p></li>
+<li><p>Sparse tensor networks with None objects are supported; None objects are unchanged.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tn</strong> (<em>numpy.array</em><em> (</em><em>2d</em><em>) </em><em>of numpy.array</em><em> (</em><em>4d</em><em>)</em>) – Tensor network whose columns are MPS/MPO.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Transposed tensor network.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array (2d) of numpy.array (4d)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="util.html" class="btn btn-neutral float-right" title="util: utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="paulitools.html" class="btn btn-neutral float-left" title="paulitools: pauli and binary symplectic tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2016 - 2021, David K. Tuckett.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

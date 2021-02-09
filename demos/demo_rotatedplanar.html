@@ -1,0 +1,440 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>qecsim demos &mdash; qecsim 1.0b8 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="qecsim demos" href="demo_rotatedplanar_plot.html" />
+    <link rel="prev" title="qecsim demos" href="demo_planar_correlated.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> qecsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0b8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+        
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../demos.html">Demos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="demo_basic.html">Basic code run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo_basic_plot.html">Basic code plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo_color666.html">Color 6.6.6 code run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo_color666_plot.html">Color 6.6.6 code plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo_planar.html">Planar code run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo_planar_plot.html">Planar code plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo_planar_correlated.html">Planar correlated error</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Rotated planar code run</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simulating-error-correction-with-a-rotated-planar-stabilizer-code">Simulating error correction with a rotated planar stabilizer code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="demo_rotatedplanar_plot.html">Rotated planar code plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo_toric.html">Toric code run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo_toric_plot.html">Toric code plot</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citing.html">Citing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../links.html">Links</a></li>
+</ul>
+
+            
+          
+        <a href="../genindex.html">Index</a>
+        <a href="../py-modindex.html">Module Index</a>
+    
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">qecsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../demos.html">Demos</a> &raquo;</li>
+        
+      <li>qecsim demos</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="qecsim-demos">
+<h1>qecsim demos<a class="headerlink" href="#qecsim-demos" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="simulating-error-correction-with-a-rotated-planar-stabilizer-code">
+<h2>Simulating error correction with a rotated planar stabilizer code<a class="headerlink" href="#simulating-error-correction-with-a-rotated-planar-stabilizer-code" title="Permalink to this headline">¶</a></h2>
+<p>This demo shows verbosely how to simulate one error correction run.</p>
+<div class="line-block">
+<div class="line">For normal use, the code in this demo is encapsulated in the function:</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">qecsim.app.run_once(code,</span> <span class="pre">error_model,</span> <span class="pre">decoder,</span> <span class="pre">error_probability)</span></code>,</div>
+<div class="line">and the simulation of many error correction runs is encapsulated in
+the function:</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">qecsim.app.run(code,</span> <span class="pre">error_model,</span> <span class="pre">decoder,</span> <span class="pre">error_probability,</span> <span class="pre">max_runs,</span> <span class="pre">max_failures)</span></code>.</div>
+</div>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Operators can be visualised in binary symplectic form (bsf) or Pauli
+form, e.g. <code class="docutils literal notranslate"><span class="pre">[1</span> <span class="pre">1</span> <span class="pre">0|0</span> <span class="pre">1</span> <span class="pre">0]</span> <span class="pre">=</span> <span class="pre">XYI</span></code>.</p></li>
+<li><p>The binary symplectic product is denoted by <span class="math notranslate nohighlight">\(\odot\)</span> and defined
+as <span class="math notranslate nohighlight">\(A \odot B \equiv A \Lambda B \bmod 2\)</span> where
+<span class="math notranslate nohighlight">\(\Lambda = \left[\begin{matrix} 0 &amp; I \\ I &amp; 0 \end{matrix}\right]\)</span>.</p></li>
+<li><p>Binary addition is denoted by <span class="math notranslate nohighlight">\(\oplus\)</span> and defined as addition
+modulo 2, or equivalently exclusive-or.</p></li>
+</ul>
+<div class="section" id="initialise-the-models">
+<h3>Initialise the models<a class="headerlink" href="#initialise-the-models" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> qsu.ipynb  # color-printing functions
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">qecsim</span> <span class="kn">import</span> <span class="n">paulitools</span> <span class="k">as</span> <span class="n">pt</span>
+<span class="kn">from</span> <span class="nn">qecsim.models.generic</span> <span class="kn">import</span> <span class="n">DepolarizingErrorModel</span>
+<span class="kn">from</span> <span class="nn">qecsim.models.rotatedplanar</span> <span class="kn">import</span> <span class="n">RotatedPlanarCode</span><span class="p">,</span> <span class="n">RotatedPlanarMPSDecoder</span>
+
+<span class="c1"># initialise models</span>
+<span class="n">my_code</span> <span class="o">=</span> <span class="n">RotatedPlanarCode</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">my_error_model</span> <span class="o">=</span> <span class="n">DepolarizingErrorModel</span><span class="p">()</span>
+<span class="n">my_decoder</span> <span class="o">=</span> <span class="n">RotatedPlanarMPSDecoder</span><span class="p">(</span><span class="n">chi</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="c1"># print models</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_code</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_error_model</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_decoder</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RotatedPlanarCode</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">DepolarizingErrorModel</span><span class="p">()</span>
+<span class="n">RotatedPlanarMPSDecoder</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="generate-a-random-error">
+<h3>Generate a random error<a class="headerlink" href="#generate-a-random-error" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set physical error probability to 10%</span>
+<span class="n">error_probability</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="c1"># seed random number generator for repeatability</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># error: random error based on error probability</span>
+<span class="n">error</span> <span class="o">=</span> <span class="n">my_error_model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">my_code</span><span class="p">,</span> <span class="n">error_probability</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
+<span class="n">qsu</span><span class="o">.</span><span class="n">print_pauli</span><span class="p">(</span><span class="s1">&#39;error:</span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">my_code</span><span class="o">.</span><span class="n">new_pauli</span><span class="p">(</span><span class="n">error</span><span class="p">)))</span>
+</pre></div>
+</div>
+<div class="highlight"><pre style="line-height:1!important;">error:
+  ┌───┐   ┌───┐   ┌───┐
+  ·───·───·───·───·───·───·─┐
+  │░░░│   │░░░│   │░░░│   │░│
+┌─·───·───·───·───·───·───·─┘
+│░│   │░░░│   │░░░│   │░░░│
+└─·───·───·───·───·───·───·─┐
+  │░░░│   │░░░│   │░░░│   │░│
+┌─·───·───<span style="color:blue; font-weight:bold">Z</span>───·───·───·───·─┘
+│░│   │░░░│   │░░░│   │░░░│
+└─·───<span style="color:magenta; font-weight:bold">Y</span>───·───·───·───<span style="color:red; font-weight:bold">X</span>───·─┐
+  │░░░│   │░░░│   │░░░│   │░│
+┌─·───·───<span style="color:magenta; font-weight:bold">Y</span>───·───·───·───·─┘
+│░│   │░░░│   │░░░│   │░░░│
+└─<span style="color:magenta; font-weight:bold">Y</span>───·───·───·───·───·───·
+      └───┘   └───┘   └───┘  </pre></div></div>
+<div class="section" id="evaluate-the-syndrome">
+<h3>Evaluate the syndrome<a class="headerlink" href="#evaluate-the-syndrome" title="Permalink to this headline">¶</a></h3>
+<p>The syndrome is a binary array indicating the stabilizers with which the
+error does not commute. It is calculated as
+<span class="math notranslate nohighlight">\(syndrome = error \odot stabilisers^T\)</span>.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># syndrome: stabilizers that do not commute with the error</span>
+<span class="n">syndrome</span> <span class="o">=</span> <span class="n">pt</span><span class="o">.</span><span class="n">bsp</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">my_code</span><span class="o">.</span><span class="n">stabilizers</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="n">qsu</span><span class="o">.</span><span class="n">print_pauli</span><span class="p">(</span><span class="s1">&#39;syndrome:</span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">my_code</span><span class="o">.</span><span class="n">ascii_art</span><span class="p">(</span><span class="n">syndrome</span><span class="p">)))</span>
+</pre></div>
+</div>
+<div class="highlight"><pre style="line-height:1!important;">syndrome:
+  ┌───┐   ┌───┐   ┌───┐
+  ·───·───·───·───·───·───·─┐
+  │░░░│   │░░░│   │░░░│   │░│
+┌─·───·───·───·───·───·───·─┘
+│░│   │░░░│   │░░░│   │░░░│
+└─·───·───·───·───·───·───·─┐
+  │░░░│   │░<span style="color:red; font-weight:bold">X</span>░│   │░░░│   │░│
+┌─·───·───·───·───·───·───·─┘
+│░│ <span style="color:blue; font-weight:bold">Z</span> │░░░│   │░░░│ <span style="color:blue; font-weight:bold">Z</span> │░░░│
+└─·───·───·───·───·───·───·─┐
+  │░<span style="color:red; font-weight:bold">X</span>░│   │░<span style="color:red; font-weight:bold">X</span>░│   │░░░│ <span style="color:blue; font-weight:bold">Z</span> │░│
+┌─·───·───·───·───·───·───·─┘
+<span style="color:red; font-weight:bold">X</span>░│ <span style="color:blue; font-weight:bold">Z</span> │░<span style="color:red; font-weight:bold">X</span>░│ <span style="color:blue; font-weight:bold">Z</span> │░░░│   │░░░│
+└─·───·───·───·───·───·───·
+      └───┘   └───┘   └───┘  </pre></div></div>
+<div class="section" id="find-a-recovery-operation">
+<h3>Find a recovery operation<a class="headerlink" href="#find-a-recovery-operation" title="Permalink to this headline">¶</a></h3>
+<p>In this case, the recovery operation is found by contracting a tensor
+network defined to have the value of the coset :</p>
+<ul class="simple">
+<li><p>Create a sample recovery operation by applying strings of Paulis
+between syndrome plaquettes and appropriate boundaries.</p></li>
+<li><p>Define tensor networks corresponding to the probability of each left
+coset of the generator group with the sample recovery and logical
+Pauli operations.</p></li>
+<li><p>Contract each tensor network (approximately) to evaluate the coset
+probabilities.</p></li>
+<li><p>Return any recovery from the most probable coset.</p></li>
+</ul>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># recovery: best match recovery operation based on decoder</span>
+<span class="n">recovery</span> <span class="o">=</span> <span class="n">my_decoder</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">my_code</span><span class="p">,</span> <span class="n">syndrome</span><span class="p">)</span>
+<span class="n">qsu</span><span class="o">.</span><span class="n">print_pauli</span><span class="p">(</span><span class="s1">&#39;recovery:</span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">my_code</span><span class="o">.</span><span class="n">new_pauli</span><span class="p">(</span><span class="n">recovery</span><span class="p">)))</span>
+</pre></div>
+</div>
+<div class="highlight"><pre style="line-height:1!important;">recovery:
+  ┌───┐   ┌───┐   ┌───┐
+  ·───·───·───·───·───·───·─┐
+  │░░░│   │░░░│   │░░░│   │░│
+┌─·───·───·───·───·───·───·─┘
+│░│   │░░░│   │░░░│   │░░░│
+└─·───·───·───·───·───·───·─┐
+  │░░░│   │░░░│   │░░░│   │░│
+┌─·───·───<span style="color:blue; font-weight:bold">Z</span>───·───·───·───·─┘
+│░│   │░░░│   │░░░│   │░░░│
+└─·───<span style="color:red; font-weight:bold">X</span>───<span style="color:magenta; font-weight:bold">Y</span>───<span style="color:red; font-weight:bold">X</span>───<span style="color:red; font-weight:bold">X</span>───·───·─┐
+  │░░░│   │░░░│   │░░░│   │░│
+┌─<span style="color:magenta; font-weight:bold">Y</span>───<span style="color:red; font-weight:bold">X</span>───<span style="color:red; font-weight:bold">X</span>───<span style="color:red; font-weight:bold">X</span>───<span style="color:red; font-weight:bold">X</span>───<span style="color:red; font-weight:bold">X</span>───·─┘
+│░│   │░░░│   │░░░│   │░░░│
+└─·───<span style="color:magenta; font-weight:bold">Y</span>───<span style="color:red; font-weight:bold">X</span>───·───·───·───·
+      └───┘   └───┘   └───┘  </pre></div><p>As a sanity check, we expect <span class="math notranslate nohighlight">\(recovery \oplus error\)</span> to commute
+with all stabilizers,
+i.e. <span class="math notranslate nohighlight">\((recovery \oplus error) \odot stabilisers^T = 0\)</span>.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check recovery ^ error commutes with stabilizers (by construction)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">bsp</span><span class="p">(</span><span class="n">recovery</span> <span class="o">^</span> <span class="n">error</span><span class="p">,</span> <span class="n">my_code</span><span class="o">.</span><span class="n">stabilizers</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+ <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="visualise-recovery-oplus-error">
+<h3>Visualise <span class="math notranslate nohighlight">\(recovery \oplus error\)</span><a class="headerlink" href="#visualise-recovery-oplus-error" title="Permalink to this headline">¶</a></h3>
+<p>Just out of curiosity, we can see what <span class="math notranslate nohighlight">\(recovery \oplus error\)</span>
+looks like. If successful, it should be a product of stabilizer
+plaquette operators.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print recovery ^ error (out of curiosity)</span>
+<span class="n">qsu</span><span class="o">.</span><span class="n">print_pauli</span><span class="p">(</span><span class="s1">&#39;recovery ^ error:</span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">my_code</span><span class="o">.</span><span class="n">new_pauli</span><span class="p">(</span><span class="n">recovery</span> <span class="o">^</span> <span class="n">error</span><span class="p">)))</span>
+</pre></div>
+</div>
+<div class="highlight"><pre style="line-height:1!important;">recovery ^ error:
+  ┌───┐   ┌───┐   ┌───┐
+  ·───·───·───·───·───·───·─┐
+  │░░░│   │░░░│   │░░░│   │░│
+┌─·───·───·───·───·───·───·─┘
+│░│   │░░░│   │░░░│   │░░░│
+└─·───·───·───·───·───·───·─┐
+  │░░░│   │░░░│   │░░░│   │░│
+┌─·───·───·───·───·───·───·─┘
+│░│   │░░░│   │░░░│   │░░░│
+└─·───<span style="color:blue; font-weight:bold">Z</span>───<span style="color:magenta; font-weight:bold">Y</span>───<span style="color:red; font-weight:bold">X</span>───<span style="color:red; font-weight:bold">X</span>───<span style="color:red; font-weight:bold">X</span>───·─┐
+  │░░░│   │░░░│   │░░░│   │░│
+┌─<span style="color:magenta; font-weight:bold">Y</span>───<span style="color:red; font-weight:bold">X</span>───<span style="color:blue; font-weight:bold">Z</span>───<span style="color:red; font-weight:bold">X</span>───<span style="color:red; font-weight:bold">X</span>───<span style="color:red; font-weight:bold">X</span>───·─┘
+│░│   │░░░│   │░░░│   │░░░│
+└─<span style="color:magenta; font-weight:bold">Y</span>───<span style="color:magenta; font-weight:bold">Y</span>───<span style="color:red; font-weight:bold">X</span>───·───·───·───·
+      └───┘   └───┘   └───┘  </pre></div></div>
+<div class="section" id="test-if-the-recovery-operation-is-successful">
+<h3>Test if the recovery operation is successful<a class="headerlink" href="#test-if-the-recovery-operation-is-successful" title="Permalink to this headline">¶</a></h3>
+<p>The recovery operation is successful iff <span class="math notranslate nohighlight">\(recovery \oplus error\)</span>
+commutes with all logical operators,
+i.e. <span class="math notranslate nohighlight">\((recovery \oplus error) \odot logicals^T = 0.\)</span></p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># success iff recovery ^ error commutes with logicals</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">bsp</span><span class="p">(</span><span class="n">recovery</span> <span class="o">^</span> <span class="n">error</span><span class="p">,</span> <span class="n">my_code</span><span class="o">.</span><span class="n">logicals</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">0</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Note: The decoder is not guaranteed to find a successful recovery
+operation. The rotated planar 7 x 7 code has distance <span class="math notranslate nohighlight">\(d = 7\)</span> so
+we can only guarantee to correct errors up to weight
+<span class="math notranslate nohighlight">\((d - 1)/2=3\)</span>.</p>
+</div>
+<div class="section" id="equivalent-code-in-single-call">
+<h3>Equivalent code in single call<a class="headerlink" href="#equivalent-code-in-single-call" title="Permalink to this headline">¶</a></h3>
+<p>The above demo is equivalent to the following code.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># repeat demo in single call</span>
+<span class="kn">from</span> <span class="nn">qecsim</span> <span class="kn">import</span> <span class="n">app</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">run_once</span><span class="p">(</span><span class="n">my_code</span><span class="p">,</span> <span class="n">my_error_model</span><span class="p">,</span> <span class="n">my_decoder</span><span class="p">,</span> <span class="n">error_probability</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;error_weight&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="demo_rotatedplanar_plot.html" class="btn btn-neutral float-right" title="qecsim demos" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="demo_planar_correlated.html" class="btn btn-neutral float-left" title="qecsim demos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2016 - 2021, David K. Tuckett.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

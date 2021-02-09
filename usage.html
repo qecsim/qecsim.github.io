@@ -1,0 +1,422 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Usage &mdash; qecsim 1.0b8 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Demos" href="demos.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> qecsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0b8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+        
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#command-line">Command-line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#library">Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extension">Extension</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="demos.html">Demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="links.html">Links</a></li>
+</ul>
+
+            
+          
+        <a href="genindex.html">Index</a>
+        <a href="py-modindex.html">Module Index</a>
+    
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">qecsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Usage</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<p>qecsim provides access to all features via a command-line interface. It can also be used as a library via the
+fully-documented API. It includes many common codes, error models and decoders and can be extended with additional
+components.</p>
+<div class="section" id="command-line">
+<h2>Command-line<a class="headerlink" href="#command-line" title="Permalink to this headline">¶</a></h2>
+<p>qecsim can be accessed via the command line in two ways:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ qecsim                    <span class="c1"># console script</span>
+$ python3 -O -m qecsim      <span class="c1"># module script with Python options e.g -O for optimize</span>
+</pre></div>
+</div>
+<p>The default command provides version and general help options:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>qecsim --help
+<span class="go">Usage: qecsim [OPTIONS] COMMAND [ARGS]...</span>
+
+<span class="go">  qecsim - quantum error correction simulator using stabilizer codes.</span>
+
+<span class="go">  See qecsim COMMAND --help for command-specific help.</span>
+
+<span class="go">Options:</span>
+<span class="go">  --version  Show the version and exit.</span>
+<span class="go">  --help     Show this message and exit.</span>
+
+<span class="go">Commands:</span>
+<span class="go">  merge    Merge simulation data files.</span>
+<span class="go">  run      Simulate quantum error correction.</span>
+<span class="go">  run-ftp  Simulate fault-tolerant (time-periodic) quantum error correction.</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">merge</span></code> command merges simulation data according to <a class="reference internal" href="api/app.html#qecsim.app.merge" title="qecsim.app.merge"><code class="xref py py-func docutils literal notranslate"><span class="pre">qecsim.app.merge()</span></code></a>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>qecsim merge --help
+<span class="go">Usage: qecsim merge [OPTIONS] DATA_FILE...</span>
+
+<span class="go">  Merge simulation data files.</span>
+
+<span class="go">  Arguments:</span>
+
+<span class="go">   DATA_FILE...          One or more data files</span>
+
+<span class="go">  Examples:</span>
+
+<span class="go">   qecsim merge &quot;data1.json&quot; &quot;data2.json&quot; &quot;data3.json&quot;</span>
+
+<span class="go">   qecsim merge -o&quot;merged.json&quot; data*.json</span>
+
+<span class="go">Options:</span>
+<span class="go">  -o, --output FILENAME  Output file. (Writes to log if file exists).</span>
+<span class="go">  --help                 Show this message and exit.</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">run</span></code> command runs simulations according to <a class="reference internal" href="api/app.html#qecsim.app.run" title="qecsim.app.run"><code class="xref py py-func docutils literal notranslate"><span class="pre">qecsim.app.run()</span></code></a>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>qecsim run --help
+<span class="go">Usage: qecsim run [OPTIONS] CODE ERROR_MODEL DECODER ERROR_PROBABILITY...</span>
+
+<span class="go">  Simulate quantum error correction.</span>
+
+<span class="go">  Arguments:</span>
+
+<span class="go">   CODE                  Stabilizer code in format name(&lt;args&gt;)</span>
+<span class="go">    color666        Color 6.6.6 (size INT odd &gt;=3)</span>
+<span class="go">    five_qubit      5-qubit</span>
+<span class="go">    planar          Planar (rows INT &gt;= 2, cols INT &gt;= 2)</span>
+<span class="go">    rotated_planar  Rotated planar (rows INT &gt;= 3, cols INT &gt;= 3)</span>
+<span class="go">    rotated_toric   Rotated toric (rows INT even &gt;= 2, cols INT even &gt;= 2)</span>
+<span class="go">    steane          Steane</span>
+<span class="go">    toric           Toric (rows INT &gt;= 2, cols INT &gt;= 2)</span>
+
+<span class="go">   ERROR_MODEL           Error model in format name(&lt;args&gt;)</span>
+<span class="go">    generic.biased_depolarizing  Biased (bias FLOAT &gt; 0, [axis] CHAR)</span>
+<span class="go">    generic.biased_y_x           Biased Y v. X (bias FLOAT &gt;= 0)</span>
+<span class="go">    generic.bit_flip             Pr I,X,Y,Z is 1-p,p,0,0</span>
+<span class="go">    generic.bit_phase_flip       Pr I,X,Y,Z is 1-p,0,p,0</span>
+<span class="go">    generic.center_slice         Slice (lim 3-tuple of FLOAT, pos FLOAT)</span>
+<span class="go">    generic.depolarizing         Pr I,X,Y,Z is 1-p,p/3,p/3,p/3</span>
+<span class="go">    generic.file                 File (filename STR, [start] INT &gt;= 0)</span>
+<span class="go">    generic.phase_flip           Pr I,X,Y,Z is 1-p,0,0,p</span>
+
+<span class="go">   DECODER               Decoder in format name(&lt;args&gt;)</span>
+<span class="go">    color666.mps          MPS ([chi] INT, ...)</span>
+<span class="go">    generic.naive         Naive ([max_qubits] INT)</span>
+<span class="go">    planar.cmwpm          Converging MWPM ([factor] FLOAT &gt;=0, ...)</span>
+<span class="go">    planar.mps            MPS ([chi] INT &gt;=0, [mode] CHAR, ...)</span>
+<span class="go">    planar.mwpm           MWPM</span>
+<span class="go">    planar.rmps           Rotated MPS ([chi] INT &gt;=0, [mode] CHAR, ...)</span>
+<span class="go">    planar.y              Y-noise</span>
+<span class="go">    rotated_planar.mps    MPS ([chi] INT &gt;=0, [mode] CHAR, ...)</span>
+<span class="go">    rotated_planar.rmps   Rotated MPS ([chi] INT &gt;=0, [mode] CHAR, ...)</span>
+<span class="go">    rotated_planar.smwpm  Symmetry MWPM ([eta] FLOAT &gt;=0)</span>
+<span class="go">    rotated_toric.smwpm   Symmetry MWPM ([itp] BOOL, [eta] FLOAT &gt;=0)</span>
+<span class="go">    toric.mwpm            MWPM</span>
+
+<span class="go">   ERROR_PROBABILITY...  One or more probabilities as FLOAT in [0.0, 1.0]</span>
+
+<span class="go">  Examples:</span>
+
+<span class="go">   qecsim run -r10 &quot;five_qubit&quot; &quot;generic.depolarizing&quot; &quot;generic.naive&quot; 0.1</span>
+
+<span class="go">   qecsim run -f5 -r50 -s13 &quot;steane&quot; &quot;generic.phase_flip&quot; &quot;generic.naive&quot;</span>
+<span class="go">   0.1</span>
+
+<span class="go">   qecsim run -r20 &quot;planar(7,7)&quot; &quot;generic.bit_flip&quot; &quot;planar.mps(6)&quot; 0.101</span>
+<span class="go">   0.102 0.103</span>
+
+<span class="go">   qecsim run -r10 &quot;color666(7)&quot; &quot;generic.bit_flip&quot; &quot;color666.mps(16)&quot; 0.09</span>
+<span class="go">   0.10</span>
+
+<span class="go">   qecsim run -o&quot;data.json&quot; -f9 &quot;toric(3,3)&quot; &quot;generic.bit_flip&quot; &quot;toric.mwpm&quot;</span>
+<span class="go">   0.1</span>
+
+<span class="go">Options:</span>
+<span class="go">  -f, --max-failures INT  Maximum number of failures for each probability.</span>
+<span class="go">  -r, --max-runs INT      Maximum number of runs for each probability.</span>
+<span class="go">                          [default: 1 if max-failures unspecified]</span>
+
+<span class="go">  -o, --output FILENAME   Output file. (Writes to log if file exists).</span>
+<span class="go">  -s, --random-seed INT   Random seed for qubit error generation. (Re-applied</span>
+<span class="go">                          for each probability).</span>
+
+<span class="go">  --help                  Show this message and exit.</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">run-ftp</span></code> command runs fault-tolerant simulations according to <a class="reference internal" href="api/app.html#qecsim.app.run_ftp" title="qecsim.app.run_ftp"><code class="xref py py-func docutils literal notranslate"><span class="pre">qecsim.app.run_ftp()</span></code></a>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>qecsim run-ftp --help
+<span class="go">Usage: qecsim run-ftp [OPTIONS] CODE TIME_STEPS ERROR_MODEL DECODER</span>
+<span class="go">                      ERROR_PROBABILITY...</span>
+
+<span class="go">  Simulate fault-tolerant (time-periodic) quantum error correction.</span>
+
+<span class="go">  Arguments:</span>
+
+<span class="go">   CODE                  Stabilizer code in format name(&lt;args&gt;)</span>
+<span class="go">    rotated_planar  Rotated planar (rows INT &gt;= 3, cols INT &gt;= 3)</span>
+<span class="go">    rotated_toric   Rotated toric (rows INT even &gt;= 2, cols INT even &gt;= 2)</span>
+
+<span class="go">   TIME_STEPS            Number of time steps as INT &gt;= 1</span>
+
+<span class="go">   ERROR_MODEL           Error model in format name(&lt;args&gt;)</span>
+<span class="go">    generic.biased_depolarizing  Biased (bias FLOAT &gt; 0, [axis] CHAR)</span>
+<span class="go">    generic.biased_y_x           Biased Y v. X (bias FLOAT &gt;= 0)</span>
+<span class="go">    generic.bit_flip             Pr I,X,Y,Z is 1-p,p,0,0</span>
+<span class="go">    generic.bit_phase_flip       Pr I,X,Y,Z is 1-p,0,p,0</span>
+<span class="go">    generic.center_slice         Slice (lim 3-tuple of FLOAT, pos FLOAT)</span>
+<span class="go">    generic.depolarizing         Pr I,X,Y,Z is 1-p,p/3,p/3,p/3</span>
+<span class="go">    generic.phase_flip           Pr I,X,Y,Z is 1-p,0,0,p</span>
+
+<span class="go">   DECODER               Decoder in format name(&lt;args&gt;)</span>
+<span class="go">    rotated_planar.smwpm  Symmetry MWPM ([eta] FLOAT &gt;=0)</span>
+<span class="go">    rotated_toric.smwpm   Symmetry MWPM ([itp] BOOL, [eta] FLOAT &gt;=0)</span>
+
+<span class="go">   ERROR_PROBABILITY...  One or more probabilities as FLOAT in [0.0, 1.0]</span>
+
+<span class="go">  Examples:</span>
+
+<span class="go">   qecsim run-ftp -r5 &quot;rotated_planar(13,13)&quot; 13 &quot;generic.bit_phase_flip&quot;</span>
+<span class="go">   &quot;rotated_planar.smwpm&quot; 0.1 0.2</span>
+
+<span class="go">   qecsim run-ftp -r5 -m0.05 &quot;rotated_toric(6,6)&quot; 4 &quot;generic.bit_phase_flip&quot;</span>
+<span class="go">   &quot;rotated_toric.smwpm&quot; 0.1</span>
+
+<span class="go">   qecsim run-ftp -r5 -o&quot;data.json&quot; &quot;rotated_planar(7,7)&quot; 7</span>
+<span class="go">   &quot;generic.depolarizing&quot; &quot;rotated_planar.smwpm&quot; 0.1</span>
+
+<span class="go">Options:</span>
+<span class="go">  -f, --max-failures INT          Maximum number of failures for each</span>
+<span class="go">                                  probability.</span>
+
+<span class="go">  -r, --max-runs INT              Maximum number of runs for each probability.</span>
+<span class="go">                                  [default: 1 if max_failures unspecified]</span>
+
+<span class="go">  -m, --measurement-error-probability FLOAT</span>
+<span class="go">                                  Measurement error probability [default: 0.0</span>
+<span class="go">                                  if TIME_STEPS == 1 else ERROR_PROBABILITY].</span>
+
+<span class="go">  -o, --output FILENAME           Output file. (Writes to log if file exists).</span>
+<span class="go">  -s, --random-seed INT           Random seed for qubit error generation. (Re-</span>
+<span class="go">                                  applied for each probability).</span>
+
+<span class="go">  --help                          Show this message and exit.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="library">
+<h2>Library<a class="headerlink" href="#library" title="Permalink to this headline">¶</a></h2>
+<p>qecsim can be accessed as a library:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">qecsim</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qecsim</span><span class="o">.</span><span class="n">__version__</span>
+<span class="go">&#39;1.0b8&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extension">
+<h2>Extension<a class="headerlink" href="#extension" title="Permalink to this headline">¶</a></h2>
+<p>qecsim can be extended with additional codes, error models and decoders that integrate into the command-line interface.
+See <a class="reference external" href="https://github.com/qecsim/qecsimext">https://github.com/qecsim/qecsimext</a> for a basic example.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="demos.html" class="btn btn-neutral float-right" title="Demos" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2016 - 2021, David K. Tuckett.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

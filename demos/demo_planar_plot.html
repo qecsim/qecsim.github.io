@@ -1,0 +1,353 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>qecsim demos &mdash; qecsim 1.0b8 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="qecsim demos" href="demo_planar_correlated.html" />
+    <link rel="prev" title="qecsim demos" href="demo_planar.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> qecsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0b8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+        
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../demos.html">Demos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="demo_basic.html">Basic code run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo_basic_plot.html">Basic code plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo_color666.html">Color 6.6.6 code run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo_color666_plot.html">Color 6.6.6 code plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo_planar.html">Planar code run</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Planar code plot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#plotting-logical-failure-rate-as-a-function-of-physical-error-rate-for-planar-stabilizer-codes">Plotting logical failure rate as a function of physical error rate for planar stabilizer codes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="demo_planar_correlated.html">Planar correlated error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo_rotatedplanar.html">Rotated planar code run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo_rotatedplanar_plot.html">Rotated planar code plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo_toric.html">Toric code run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo_toric_plot.html">Toric code plot</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citing.html">Citing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../links.html">Links</a></li>
+</ul>
+
+            
+          
+        <a href="../genindex.html">Index</a>
+        <a href="../py-modindex.html">Module Index</a>
+    
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">qecsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../demos.html">Demos</a> &raquo;</li>
+        
+      <li>qecsim demos</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="qecsim-demos">
+<h1>qecsim demos<a class="headerlink" href="#qecsim-demos" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="plotting-logical-failure-rate-as-a-function-of-physical-error-rate-for-planar-stabilizer-codes">
+<h2>Plotting logical failure rate as a function of physical error rate for planar stabilizer codes<a class="headerlink" href="#plotting-logical-failure-rate-as-a-function-of-physical-error-rate-for-planar-stabilizer-codes" title="Permalink to this headline">¶</a></h2>
+<p>This demo shows how to plot statistics on many error correction
+simulation runs, see figure for more details.</p>
+<p>The code makes use of
+<code class="docutils literal notranslate"><span class="pre">qecsim.app.run(code,</span> <span class="pre">error_model,</span> <span class="pre">decoder,</span> <span class="pre">error_probability,</span> <span class="pre">max_runs,</span> <span class="pre">max_failures)</span></code>.</p>
+<div class="section" id="initialise-run-parameters">
+<h3>Initialise run parameters<a class="headerlink" href="#initialise-run-parameters" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">qecsim</span> <span class="kn">import</span> <span class="n">app</span>
+<span class="kn">from</span> <span class="nn">qecsim.models.generic</span> <span class="kn">import</span> <span class="n">PhaseFlipErrorModel</span>
+<span class="kn">from</span> <span class="nn">qecsim.models.planar</span> <span class="kn">import</span> <span class="n">PlanarCode</span><span class="p">,</span> <span class="n">PlanarMWPMDecoder</span>
+
+<span class="c1"># set models</span>
+<span class="n">codes</span> <span class="o">=</span> <span class="p">[</span><span class="n">PlanarCode</span><span class="p">(</span><span class="o">*</span><span class="n">size</span><span class="p">)</span> <span class="k">for</span> <span class="n">size</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">)]]</span>
+<span class="n">error_model</span> <span class="o">=</span> <span class="n">PhaseFlipErrorModel</span><span class="p">()</span>
+<span class="n">decoder</span> <span class="o">=</span> <span class="n">PlanarMWPMDecoder</span><span class="p">()</span>
+<span class="c1"># set physical error probabilities</span>
+<span class="n">error_probability_min</span><span class="p">,</span> <span class="n">error_probability_max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span>
+<span class="n">error_probabilities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">error_probability_min</span><span class="p">,</span> <span class="n">error_probability_max</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="c1"># set max_runs for each probability</span>
+<span class="n">max_runs</span> <span class="o">=</span> <span class="mi">10000</span>
+
+<span class="c1"># print run parameters</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Codes:&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">code</span><span class="o">.</span><span class="n">label</span> <span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">codes</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error model:&#39;</span><span class="p">,</span> <span class="n">error_model</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Decoder:&#39;</span><span class="p">,</span> <span class="n">decoder</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error probabilities:&#39;</span><span class="p">,</span> <span class="n">error_probabilities</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Maximum runs:&#39;</span><span class="p">,</span> <span class="n">max_runs</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Codes</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Planar 3x3&#39;</span><span class="p">,</span> <span class="s1">&#39;Planar 5x5&#39;</span><span class="p">,</span> <span class="s1">&#39;Planar 7x7&#39;</span><span class="p">,</span> <span class="s1">&#39;Planar 9x9&#39;</span><span class="p">]</span>
+<span class="n">Error</span> <span class="n">model</span><span class="p">:</span> <span class="n">Phase</span><span class="o">-</span><span class="n">flip</span>
+<span class="n">Decoder</span><span class="p">:</span> <span class="n">Planar</span> <span class="n">MWPM</span>
+<span class="n">Error</span> <span class="n">probabilities</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.</span>         <span class="mf">0.02105263</span> <span class="mf">0.04210526</span> <span class="mf">0.06315789</span> <span class="mf">0.08421053</span> <span class="mf">0.10526316</span>
+ <span class="mf">0.12631579</span> <span class="mf">0.14736842</span> <span class="mf">0.16842105</span> <span class="mf">0.18947368</span> <span class="mf">0.21052632</span> <span class="mf">0.23157895</span>
+ <span class="mf">0.25263158</span> <span class="mf">0.27368421</span> <span class="mf">0.29473684</span> <span class="mf">0.31578947</span> <span class="mf">0.33684211</span> <span class="mf">0.35789474</span>
+ <span class="mf">0.37894737</span> <span class="mf">0.4</span>       <span class="p">]</span>
+<span class="n">Maximum</span> <span class="n">runs</span><span class="p">:</span> <span class="mi">10000</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="run-simulations">
+<h3>Run simulations<a class="headerlink" href="#run-simulations" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run simulations and print data from middle run to view format</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">error_model</span><span class="p">,</span> <span class="n">decoder</span><span class="p">,</span> <span class="n">error_probability</span><span class="p">,</span> <span class="n">max_runs</span><span class="o">=</span><span class="n">max_runs</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">codes</span> <span class="k">for</span> <span class="n">error_probability</span> <span class="ow">in</span> <span class="n">error_probabilities</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;Planar 7x7&#39;</span><span class="p">,</span> <span class="s1">&#39;n_k_d&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">85</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="s1">&#39;time_steps&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;error_model&#39;</span><span class="p">:</span> <span class="s1">&#39;Phase-flip&#39;</span><span class="p">,</span> <span class="s1">&#39;decoder&#39;</span><span class="p">:</span> <span class="s1">&#39;Planar MWPM&#39;</span><span class="p">,</span> <span class="s1">&#39;error_probability&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;measurement_error_probability&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;n_run&#39;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span> <span class="s1">&#39;n_success&#39;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span> <span class="s1">&#39;n_fail&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;error_weight_total&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;error_weight_pvar&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;logical_failure_rate&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;physical_error_rate&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;wall_time&#39;</span><span class="p">:</span> <span class="mf">18.8377434680001</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="prepare-data-for-plotting">
+<h3>Prepare data for plotting<a class="headerlink" href="#prepare-data-for-plotting" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># prepare code to x,y map and print</span>
+<span class="n">code_to_xys</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+    <span class="n">xys</span> <span class="o">=</span> <span class="n">code_to_xys</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">run</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">],</span> <span class="p">[])</span>
+    <span class="n">xys</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">run</span><span class="p">[</span><span class="s1">&#39;physical_error_rate&#39;</span><span class="p">],</span> <span class="n">run</span><span class="p">[</span><span class="s1">&#39;logical_failure_rate&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">code_to_xys</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Planar</span> <span class="mi">3</span><span class="n">x3</span><span class="p">:</span> <span class="p">[(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.020376923076923077</span><span class="p">,</span> <span class="mf">0.0085</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.04244615384615385</span><span class="p">,</span> <span class="mf">0.0339</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.06314615384615385</span><span class="p">,</span> <span class="mf">0.0713</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.08421538461538462</span><span class="p">,</span> <span class="mf">0.1125</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.10518461538461538</span><span class="p">,</span> <span class="mf">0.1627</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.12524615384615387</span><span class="p">,</span> <span class="mf">0.2042</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.1468</span><span class="p">,</span> <span class="mf">0.254</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.17186923076923077</span><span class="p">,</span> <span class="mf">0.2956</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.1902</span><span class="p">,</span> <span class="mf">0.3364</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.21196923076923077</span><span class="p">,</span> <span class="mf">0.3696</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.23303076923076924</span><span class="p">,</span> <span class="mf">0.3952</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.2512615384615385</span><span class="p">,</span> <span class="mf">0.4136</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.2741769230769231</span><span class="p">,</span> <span class="mf">0.4347</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.2947923076923077</span><span class="p">,</span> <span class="mf">0.4546</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.31774615384615384</span><span class="p">,</span> <span class="mf">0.4721</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.3381076923076923</span><span class="p">,</span> <span class="mf">0.4793</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.35857692307692307</span><span class="p">,</span> <span class="mf">0.4901</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.3784692307692308</span><span class="p">,</span> <span class="mf">0.4911</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.4005230769230769</span><span class="p">,</span> <span class="mf">0.4927</span><span class="p">)]</span>
+<span class="n">Planar</span> <span class="mi">5</span><span class="n">x5</span><span class="p">:</span> <span class="p">[(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.021153658536585365</span><span class="p">,</span> <span class="mf">0.0027</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.04207073170731707</span><span class="p">,</span> <span class="mf">0.0142</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.06267317073170732</span><span class="p">,</span> <span class="mf">0.0523</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.08428536585365853</span><span class="p">,</span> <span class="mf">0.0965</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.10525365853658536</span><span class="p">,</span> <span class="mf">0.163</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.12549024390243904</span><span class="p">,</span> <span class="mf">0.2215</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.14862926829268291</span><span class="p">,</span> <span class="mf">0.2955</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.1693560975609756</span><span class="p">,</span> <span class="mf">0.3417</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.18898536585365852</span><span class="p">,</span> <span class="mf">0.389</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.2097243902439024</span><span class="p">,</span> <span class="mf">0.426</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.23202195121951216</span><span class="p">,</span> <span class="mf">0.459</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.2523170731707317</span><span class="p">,</span> <span class="mf">0.4671</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.2725073170731707</span><span class="p">,</span> <span class="mf">0.4724</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.2952780487804878</span><span class="p">,</span> <span class="mf">0.4851</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.31633170731707316</span><span class="p">,</span> <span class="mf">0.4983</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.3362390243902439</span><span class="p">,</span> <span class="mf">0.5026</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.3576731707317073</span><span class="p">,</span> <span class="mf">0.506</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.3787609756097561</span><span class="p">,</span> <span class="mf">0.5027</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.3996</span><span class="p">,</span> <span class="mf">0.5078</span><span class="p">)]</span>
+<span class="n">Planar</span> <span class="mi">7</span><span class="n">x7</span><span class="p">:</span> <span class="p">[(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.020943529411764705</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.041849411764705885</span><span class="p">,</span> <span class="mf">0.0061</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.06304</span><span class="p">,</span> <span class="mf">0.0312</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.08437176470588235</span><span class="p">,</span> <span class="mf">0.0899</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.10522470588235294</span><span class="p">,</span> <span class="mf">0.1595</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.12592823529411765</span><span class="p">,</span> <span class="mf">0.2386</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.14631882352941178</span><span class="p">,</span> <span class="mf">0.3085</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.16866235294117646</span><span class="p">,</span> <span class="mf">0.3857</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.1902129411764706</span><span class="p">,</span> <span class="mf">0.4415</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.21099058823529412</span><span class="p">,</span> <span class="mf">0.4643</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.23165882352941175</span><span class="p">,</span> <span class="mf">0.4785</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.2520835294117647</span><span class="p">,</span> <span class="mf">0.4965</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.2742423529411765</span><span class="p">,</span> <span class="mf">0.4891</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.2945717647058823</span><span class="p">,</span> <span class="mf">0.4982</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.31610941176470586</span><span class="p">,</span> <span class="mf">0.4936</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.3369682352941176</span><span class="p">,</span> <span class="mf">0.4979</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.35838705882352945</span><span class="p">,</span> <span class="mf">0.4974</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.3780823529411765</span><span class="p">,</span> <span class="mf">0.5022</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.4012858823529412</span><span class="p">,</span> <span class="mf">0.502</span><span class="p">)]</span>
+<span class="n">Planar</span> <span class="mi">9</span><span class="n">x9</span><span class="p">:</span> <span class="p">[(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.02117241379310345</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.04204068965517241</span><span class="p">,</span> <span class="mf">0.0034</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.06298344827586207</span><span class="p">,</span> <span class="mf">0.0221</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.08383448275862068</span><span class="p">,</span> <span class="mf">0.0739</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.10494068965517242</span><span class="p">,</span> <span class="mf">0.1538</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.12643517241379312</span><span class="p">,</span> <span class="mf">0.2645</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.14736689655172414</span><span class="p">,</span> <span class="mf">0.3509</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.16846620689655173</span><span class="p">,</span> <span class="mf">0.4282</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.1898193103448276</span><span class="p">,</span> <span class="mf">0.4638</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.21077172413793105</span><span class="p">,</span> <span class="mf">0.4846</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.23222413793103447</span><span class="p">,</span> <span class="mf">0.5052</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.25206206896551725</span><span class="p">,</span> <span class="mf">0.4946</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.27421103448275863</span><span class="p">,</span> <span class="mf">0.5001</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.29489931034482764</span><span class="p">,</span> <span class="mf">0.4937</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.31612758620689657</span><span class="p">,</span> <span class="mf">0.5062</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.3366724137931034</span><span class="p">,</span> <span class="mf">0.4913</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.35776206896551727</span><span class="p">,</span> <span class="mf">0.4988</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.3794165517241379</span><span class="p">,</span> <span class="mf">0.4968</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.4000496551724138</span><span class="p">,</span> <span class="mf">0.5046</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="plot-logical-failure-rate-against-physical-error-rate">
+<h3>Plot logical failure rate against physical error rate<a class="headerlink" href="#plot-logical-failure-rate-against-physical-error-rate" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># format plot</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Planar code simulation</span><span class="se">\n</span><span class="s1">(</span><span class="si">{}</span><span class="s1"> error model, </span><span class="si">{}</span><span class="s1"> decoder)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">error_model</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="n">decoder</span><span class="o">.</span><span class="n">label</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Physical error rate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Logical failure rate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">error_probability_min</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">error_probability_max</span><span class="o">+</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.65</span><span class="p">)</span>
+<span class="c1"># add data</span>
+<span class="k">for</span> <span class="n">code</span><span class="p">,</span> <span class="n">xys</span> <span class="ow">in</span> <span class="n">code_to_xys</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">xys</span><span class="p">),</span> <span class="s1">&#39;x-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> code&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">code</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/demo_planar_plot_9_0.png" src="../_images/demo_planar_plot_9_0.png" />
+<p>Fig. 1. Logical failure rate as a function of physical error rate for
+planar stabilizer codes.</p>
+<p>Definitions:</p>
+<ul>
+<li><div class="line-block">
+<div class="line">A physical error occurs when the generated error acts non-trivially
+on a physical qubit.</div>
+<div class="line"><span class="math notranslate nohighlight">\((\text{physical error rate}) = mean(\text{error weight}) / (\text{number of physical qubits})\)</span>.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">A logical failure occurs when the combined action of the generated
+error and recovery operation acts non-trivially on the codespace,
+irrespective of the number of logical qubits encoded.</div>
+<div class="line"><span class="math notranslate nohighlight">\((\text{logical failure rate}) = (\text{number of logical failures}) / (\text{number of runs})\)</span>.</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="demo_planar_correlated.html" class="btn btn-neutral float-right" title="qecsim demos" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="demo_planar.html" class="btn btn-neutral float-left" title="qecsim demos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2016 - 2021, David K. Tuckett.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

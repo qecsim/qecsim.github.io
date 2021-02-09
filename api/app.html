@@ -1,0 +1,562 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>app: application functions &mdash; qecsim 1.0b8 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="cli: command-line interface" href="cli.html" />
+    <link rel="prev" title="API" href="../api.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> qecsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0b8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+        
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demos.html">Demos</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">app: application functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-qecsim.app"><code class="docutils literal notranslate"><span class="pre">qecsim.app</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">cli: command-line interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error.html">error: error classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphtools.html">graphtools: graph tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">model: abstract base classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models/basic.html">models.basic: basic stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models/color.html">models.color: color stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models/generic.html">models.generic: generic error models and decoders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models/planar.html">models.planar: planar stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models/rotatedplanar.html">models.rotatedplanar: rotated planar stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models/rotatedtoric.html">models.rotatedtoric: rotated toric stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models/toric.html">models.toric: toric stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="paulitools.html">paulitools: pauli and binary symplectic tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tensortools.html">tensortools: tensor tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="util.html">util: utilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citing.html">Citing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../links.html">Links</a></li>
+</ul>
+
+            
+          
+        <a href="../genindex.html">Index</a>
+        <a href="../py-modindex.html">Module Index</a>
+    
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">qecsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../api.html">API</a> &raquo;</li>
+        
+      <li>app: application functions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="app-application-functions">
+<h1>app: application functions<a class="headerlink" href="#app-application-functions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-qecsim.app">
+<span id="qecsim-app"></span><h2><code class="docutils literal notranslate"><span class="pre">qecsim.app</span></code><a class="headerlink" href="#module-qecsim.app" title="Permalink to this headline">¶</a></h2>
+<p>This module contains functions to generate and merge stabilizer code simulation data.</p>
+<dl class="py function">
+<dt id="qecsim.app.merge">
+<code class="sig-prename descclassname">qecsim.app.</code><code class="sig-name descname">merge</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">data_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.app.merge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Merge any number of lists of aggregated runs data.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>The runs data is in the format specified in <a class="reference internal" href="#qecsim.app.run" title="qecsim.app.run"><code class="xref py py-func docutils literal notranslate"><span class="pre">run()</span></code></a> and <code class="xref py py-func docutils literal notranslate"><span class="pre">fun_ftp()</span></code>.</p></li>
+<li><p>Merged data is grouped by: <cite>(code, n_k_d, error_model, decoder, error_probability, time_steps,
+measurement_error_probability)</cite>.</p></li>
+<li><p>The following scalar values are summed: <cite>n_run</cite>, <cite>n_success</cite>, <cite>n_fail</cite>, <cite>error_weight_total</cite>, <cite>wall_time</cite>.</p></li>
+<li><p>The following array values are summed: <cite>n_logical_commutations</cite>, <cite>custom_totals</cite>.</p></li>
+<li><p>The following values are recalculated: <cite>logical_failure_rate</cite>, <cite>physical_error_rate</cite>.</p></li>
+<li><p>The following values are <em>not</em> currently recalculated: <cite>error_weight_pvar</cite>.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_list</strong> (<em>list of dict</em>) – List of aggregated runs data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Merged list of aggregated runs data.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of dict</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if there is a mismatch between array values to be summed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="qecsim.app.run">
+<code class="sig-prename descclassname">qecsim.app.</code><code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">error_model</span></em>, <em class="sig-param"><span class="n">decoder</span></em>, <em class="sig-param"><span class="n">error_probability</span></em>, <em class="sig-param"><span class="n">max_runs</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_failures</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">random_seed</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.app.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute stabilizer code error-decode-recovery (ideal) simulation many times and return aggregated runs data.</p>
+<p>See <a class="reference internal" href="#qecsim.app.run_once" title="qecsim.app.run_once"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_once()</span></code></a> for details of a single run.</p>
+<p>Notes:</p>
+<ul>
+<li><p>The simulation is run one or more times as determined by <code class="docutils literal notranslate"><span class="pre">max_runs</span></code> and <code class="docutils literal notranslate"><span class="pre">max_failures</span></code>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">max_runs</span></code> specified, stop after <code class="docutils literal notranslate"><span class="pre">max_runs</span></code> runs.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">max_failures</span></code> specified, stop after <code class="docutils literal notranslate"><span class="pre">max_failures</span></code> failures.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">max_runs</span></code> and <code class="docutils literal notranslate"><span class="pre">max_failures</span></code> unspecified, run once.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>The returned data is in the following format:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;5-qubit&#39;</span><span class="p">,</span>                      <span class="c1"># given code.label</span>
+    <span class="s1">&#39;n_k_d&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>                     <span class="c1"># given code.n_k_d</span>
+    <span class="s1">&#39;time_steps&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>                        <span class="c1"># always 1 for ideal simulation</span>
+    <span class="s1">&#39;error_model&#39;</span><span class="p">:</span> <span class="s1">&#39;Depolarizing&#39;</span><span class="p">,</span>          <span class="c1"># given error_model.label</span>
+    <span class="s1">&#39;decoder&#39;</span><span class="p">:</span> <span class="s1">&#39;Naive&#39;</span><span class="p">,</span>                     <span class="c1"># given decoder.label</span>
+    <span class="s1">&#39;error_probability&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>               <span class="c1"># given error_probability</span>
+    <span class="s1">&#39;measurement_error_probability&#39;</span><span class="p">:</span> <span class="mf">0.0</span>    <span class="c1"># always 0.0 for ideal simulation</span>
+    <span class="s1">&#39;n_run&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>                             <span class="c1"># count of runs</span>
+    <span class="s1">&#39;n_success&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>                         <span class="c1"># count of successful recovery</span>
+    <span class="s1">&#39;n_fail&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>                            <span class="c1"># count of failed recovery</span>
+    <span class="s1">&#39;n_logical_commutations&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>       <span class="c1"># count of logical commutations (tuple)</span>
+    <span class="s1">&#39;custom_totals&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>                  <span class="c1"># sum of custom values (tuple)</span>
+    <span class="s1">&#39;error_weight_total&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>                <span class="c1"># sum of error_weight over n_run runs</span>
+    <span class="s1">&#39;error_weight_pvar&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>               <span class="c1"># pvariance of error_weight over n_run runs</span>
+    <span class="s1">&#39;logical_failure_rate&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>            <span class="c1"># n_fail / n_run</span>
+    <span class="s1">&#39;physical_error_rate&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>             <span class="c1"># error_weight_total / n_k_d[0] / time_steps / n_run</span>
+    <span class="s1">&#39;wall_time&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>                       <span class="c1"># wall-time for run in fractional seconds</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<a class="reference internal" href="model.html#qecsim.model.StabilizerCode" title="qecsim.model.StabilizerCode"><em>StabilizerCode</em></a>) – Stabilizer code.</p></li>
+<li><p><strong>error_model</strong> (<a class="reference internal" href="model.html#qecsim.model.ErrorModel" title="qecsim.model.ErrorModel"><em>ErrorModel</em></a>) – Error model.</p></li>
+<li><p><strong>decoder</strong> (<a class="reference internal" href="model.html#qecsim.model.Decoder" title="qecsim.model.Decoder"><em>Decoder</em></a>) – Decoder.</p></li>
+<li><p><strong>error_probability</strong> (<em>float</em>) – Error probability.</p></li>
+<li><p><strong>max_runs</strong> (<em>int</em>) – Maximum number of runs. (default=None or 1 if max_failures unspecified, unrestricted=None)</p></li>
+<li><p><strong>max_failures</strong> (<em>int</em>) – Maximum number of failures. (default=None, unrestricted=None)</p></li>
+<li><p><strong>random_seed</strong> (<em>int</em>) – Error generation random seed. (default=None, unseeded=None)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Aggregated runs data.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if error_probability is not in [0, 1].</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="qecsim.app.run_ftp">
+<code class="sig-prename descclassname">qecsim.app.</code><code class="sig-name descname">run_ftp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">time_steps</span></em>, <em class="sig-param"><span class="n">error_model</span></em>, <em class="sig-param"><span class="n">decoder</span></em>, <em class="sig-param"><span class="n">error_probability</span></em>, <em class="sig-param"><span class="n">measurement_error_probability</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_runs</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_failures</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">random_seed</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.app.run_ftp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute stabilizer code error-decode-recovery (fault-tolerant time-periodic) simulation many times and return
+aggregated runs data.</p>
+<p>See <a class="reference internal" href="#qecsim.app.run_once_ftp" title="qecsim.app.run_once_ftp"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_once_ftp()</span></code></a> for details of a single run.</p>
+<p>Notes:</p>
+<ul>
+<li><p>The simulation is run one or more times as determined by <code class="docutils literal notranslate"><span class="pre">max_runs</span></code> and <code class="docutils literal notranslate"><span class="pre">max_failures</span></code>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">max_runs</span></code> specified, stop after <code class="docutils literal notranslate"><span class="pre">max_runs</span></code> runs.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">max_failures</span></code> specified, stop after <code class="docutils literal notranslate"><span class="pre">max_failures</span></code> failures.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">max_runs</span></code> and <code class="docutils literal notranslate"><span class="pre">max_failures</span></code> unspecified, run once.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>The returned data is in the following format:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;5-qubit&#39;</span><span class="p">,</span>                      <span class="c1"># given code.label</span>
+    <span class="s1">&#39;n_k_d&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>                     <span class="c1"># given code.n_k_d</span>
+    <span class="s1">&#39;time_steps&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>                        <span class="c1"># given number of time steps</span>
+    <span class="s1">&#39;error_model&#39;</span><span class="p">:</span> <span class="s1">&#39;Depolarizing&#39;</span><span class="p">,</span>          <span class="c1"># given error_model.label</span>
+    <span class="s1">&#39;decoder&#39;</span><span class="p">:</span> <span class="s1">&#39;NaiveFTP&#39;</span><span class="p">,</span>                  <span class="c1"># given decoder.label</span>
+    <span class="s1">&#39;error_probability&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>               <span class="c1"># given error_probability</span>
+    <span class="s1">&#39;measurement_error_probability&#39;</span><span class="p">:</span> <span class="mf">0.0</span>    <span class="c1"># given measurement_error_probability</span>
+    <span class="s1">&#39;n_run&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>                             <span class="c1"># count of runs</span>
+    <span class="s1">&#39;n_success&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>                         <span class="c1"># count of successful recovery</span>
+    <span class="s1">&#39;n_fail&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>                            <span class="c1"># count of failed recovery</span>
+    <span class="s1">&#39;n_logical_commutations&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>       <span class="c1"># count of logical commutations (tuple)</span>
+    <span class="s1">&#39;custom_totals&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>                  <span class="c1"># sum of custom values (tuple)</span>
+    <span class="s1">&#39;error_weight_total&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>                <span class="c1"># sum of error_weight over n_run runs</span>
+    <span class="s1">&#39;error_weight_pvar&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>               <span class="c1"># pvariance of error_weight over n_run runs</span>
+    <span class="s1">&#39;logical_failure_rate&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>            <span class="c1"># n_fail / n_run</span>
+    <span class="s1">&#39;physical_error_rate&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>             <span class="c1"># error_weight_total / n_k_d[0] / time_steps / n_run</span>
+    <span class="s1">&#39;wall_time&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>                       <span class="c1"># wall-time for run in fractional seconds</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<a class="reference internal" href="model.html#qecsim.model.StabilizerCode" title="qecsim.model.StabilizerCode"><em>StabilizerCode</em></a>) – Stabilizer code.</p></li>
+<li><p><strong>time_steps</strong> (<em>int</em>) – Number of time steps.</p></li>
+<li><p><strong>error_model</strong> (<a class="reference internal" href="model.html#qecsim.model.ErrorModel" title="qecsim.model.ErrorModel"><em>ErrorModel</em></a>) – Error model.</p></li>
+<li><p><strong>decoder</strong> (<a class="reference internal" href="model.html#qecsim.model.DecoderFTP" title="qecsim.model.DecoderFTP"><em>DecoderFTP</em></a>) – Fault-tolerant time-periodic decoder.</p></li>
+<li><p><strong>error_probability</strong> (<em>float</em>) – Error probability.</p></li>
+<li><p><strong>measurement_error_probability</strong> (<em>float</em>) – Measurement error probability.
+(default=None, None=error_probability or 0.0 if single time step)</p></li>
+<li><p><strong>max_runs</strong> (<em>int</em>) – Maximum number of runs. (default=None or 1 if max_failures unspecified, unrestricted=None)</p></li>
+<li><p><strong>max_failures</strong> (<em>int</em>) – Maximum number of failures. (default=None, unrestricted=None)</p></li>
+<li><p><strong>random_seed</strong> (<em>int</em>) – Error generation random seed. (default=None, unseeded=None)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Aggregated runs data.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – if time_steps is not &gt;= 1.</p></li>
+<li><p><strong>ValueError</strong> – if error_probability is not in [0, 1].</p></li>
+<li><p><strong>ValueError</strong> – if measurement_error_probability is not None or in [0, 1].</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="qecsim.app.run_once">
+<code class="sig-prename descclassname">qecsim.app.</code><code class="sig-name descname">run_once</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">error_model</span></em>, <em class="sig-param"><span class="n">decoder</span></em>, <em class="sig-param"><span class="n">error_probability</span></em>, <em class="sig-param"><span class="n">rng</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.app.run_once" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a stabilizer code error-decode-recovery (ideal) simulation and return run data.</p>
+<p>Assumptions:</p>
+<ul class="simple">
+<li><p>Error probability is float in [0, 1].</p></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>The simulation is as follows:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>generate Pauli <code class="docutils literal notranslate"><span class="pre">error</span></code> by passing <code class="docutils literal notranslate"><span class="pre">code</span></code> and <code class="docutils literal notranslate"><span class="pre">error_probability</span></code> to
+<a class="reference internal" href="model.html#qecsim.model.ErrorModel.generate" title="qecsim.model.ErrorModel.generate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.generate()</span></code></a>.</p></li>
+<li><p>evaluate <code class="docutils literal notranslate"><span class="pre">syndrome</span></code> as <code class="docutils literal notranslate"><span class="pre">error</span></code> <span class="math notranslate nohighlight">\(\odot\)</span> <code class="docutils literal notranslate"><span class="pre">code.stabilizers</span></code><span class="math notranslate nohighlight">\(^T\)</span>.</p></li>
+<li><p>resolve <code class="docutils literal notranslate"><span class="pre">decoding</span></code> by passing <code class="docutils literal notranslate"><span class="pre">code</span></code> and <code class="docutils literal notranslate"><span class="pre">syndrome</span></code> to <a class="reference internal" href="model.html#qecsim.model.Decoder.decode" title="qecsim.model.Decoder.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.Decoder.decode()</span></code></a>.</p></li>
+<li><p>define <code class="docutils literal notranslate"><span class="pre">recovered</span></code> as <code class="docutils literal notranslate"><span class="pre">decoding</span></code> <span class="math notranslate nohighlight">\(\oplus\)</span> <code class="docutils literal notranslate"><span class="pre">error</span></code>.</p></li>
+<li><p>verify <code class="docutils literal notranslate"><span class="pre">recovered</span></code> <span class="math notranslate nohighlight">\(\odot\)</span> <code class="docutils literal notranslate"><span class="pre">code.stabilizers</span></code><span class="math notranslate nohighlight">\(^T = 0\)</span>, by construction.</p></li>
+<li><p>define <code class="docutils literal notranslate"><span class="pre">logical_commutations</span></code> as <code class="docutils literal notranslate"><span class="pre">recovered</span></code> <span class="math notranslate nohighlight">\(\odot\)</span> <code class="docutils literal notranslate"><span class="pre">code.logicals</span></code><span class="math notranslate nohighlight">\(^T\)</span>.</p></li>
+<li><p>define <code class="docutils literal notranslate"><span class="pre">success</span></code> as <code class="docutils literal notranslate"><span class="pre">logical_commutations</span></code><span class="math notranslate nohighlight">\(= 0\)</span>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\oplus\)</span> denotes binary addition defined as addition modulo 2, or equivalently exclusive-or.</p></li>
+<li><p>See <a class="reference internal" href="paulitools.html#qecsim.paulitools.bsp" title="qecsim.paulitools.bsp"><code class="xref py py-func docutils literal notranslate"><span class="pre">qecsim.paulitools.bsp()</span></code></a> for definition of <span class="math notranslate nohighlight">\(\odot\)</span>.</p></li>
+<li><p>Optionally, <a class="reference internal" href="model.html#qecsim.model.Decoder.decode" title="qecsim.model.Decoder.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.Decoder.decode()</span></code></a> may return <a class="reference internal" href="model.html#qecsim.model.DecodeResult" title="qecsim.model.DecodeResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">DecodeResult</span></code></a> as
+<code class="docutils literal notranslate"><span class="pre">decoding</span></code> to explicitly specify <code class="docutils literal notranslate"><span class="pre">success</span></code>, <code class="docutils literal notranslate"><span class="pre">logical_commutations</span></code> and <code class="docutils literal notranslate"><span class="pre">custom_values</span></code>, see
+<a class="reference internal" href="model.html#qecsim.model.DecodeResult" title="qecsim.model.DecodeResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.DecodeResult</span></code></a> for details.</p></li>
+<li><p>In addition to <code class="docutils literal notranslate"><span class="pre">code</span></code> and <code class="docutils literal notranslate"><span class="pre">syndrome</span></code>, the following keyword parameters are passed as context to
+<a class="reference internal" href="model.html#qecsim.model.Decoder.decode" title="qecsim.model.Decoder.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.Decoder.decode()</span></code></a>: <code class="docutils literal notranslate"><span class="pre">error_model</span></code>, <code class="docutils literal notranslate"><span class="pre">error_probability</span></code>, <code class="docutils literal notranslate"><span class="pre">error</span></code>. Furthermore, in order to
+enable decoders to handle ideal and fault-tolerant decoding consistently, the following keyword parameters and
+default values are passed as context: <code class="docutils literal notranslate"><span class="pre">step_errors=[error]</span></code>, <code class="docutils literal notranslate"><span class="pre">measurement_error_probability=0.0</span></code> and
+<code class="docutils literal notranslate"><span class="pre">step_measurement_errors=[np.zeros(syndrome.shape)]</span></code>. Most decoders will ignore these parameters.</p></li>
+<li><p>The returned data is in the following format:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;error_weight&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>  <span class="c1"># number of qubits acted on non-trivially by error</span>
+    <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1"># evaluated or overridden by decode result</span>
+    <span class="s1">&#39;logical_commutations&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>  <span class="c1"># evaluated or overridden by decode result</span>
+    <span class="s1">&#39;custom_values&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># None or overridden by decode result</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<a class="reference internal" href="model.html#qecsim.model.StabilizerCode" title="qecsim.model.StabilizerCode"><em>StabilizerCode</em></a>) – Stabilizer code.</p></li>
+<li><p><strong>error_model</strong> (<a class="reference internal" href="model.html#qecsim.model.ErrorModel" title="qecsim.model.ErrorModel"><em>ErrorModel</em></a>) – Error model.</p></li>
+<li><p><strong>decoder</strong> (<a class="reference internal" href="model.html#qecsim.model.Decoder" title="qecsim.model.Decoder"><em>Decoder</em></a>) – Decoder.</p></li>
+<li><p><strong>error_probability</strong> (<em>float</em>) – Error probability.</p></li>
+<li><p><strong>rng</strong> (<em>numpy.random.Generator</em>) – Random number generator for error generation. (default=None resolves to numpy.random.default_rng())</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>error_weight, success flag, logical_commutations, and custom values.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if error_probability is not in [0, 1].</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="qecsim.app.run_once_ftp">
+<code class="sig-prename descclassname">qecsim.app.</code><code class="sig-name descname">run_once_ftp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">time_steps</span></em>, <em class="sig-param"><span class="n">error_model</span></em>, <em class="sig-param"><span class="n">decoder</span></em>, <em class="sig-param"><span class="n">error_probability</span></em>, <em class="sig-param"><span class="n">measurement_error_probability</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rng</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.app.run_once_ftp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a stabilizer code error-decode-recovery (fault-tolerant time-periodic) simulation and return run data.</p>
+<p>Assumptions:</p>
+<ul class="simple">
+<li><p>Time steps is integer &gt;= 1.</p></li>
+<li><p>Probabilities, where defined, are float in [0, 1].</p></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>The simulation is as follows:</p>
+<blockquote>
+<div><ul>
+<li><p>for each time step <span class="math notranslate nohighlight">\(t\)</span>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>generate Pauli <code class="docutils literal notranslate"><span class="pre">step_errors[t]</span></code> by passing <code class="docutils literal notranslate"><span class="pre">code</span></code> and <code class="docutils literal notranslate"><span class="pre">error_probability</span></code> to
+<a class="reference internal" href="model.html#qecsim.model.ErrorModel.generate" title="qecsim.model.ErrorModel.generate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.generate()</span></code></a>.</p></li>
+<li><p>evaluate <code class="docutils literal notranslate"><span class="pre">step_syndromes[t]</span></code> as <code class="docutils literal notranslate"><span class="pre">step_errors[t]</span></code> <span class="math notranslate nohighlight">\(\odot\)</span> <code class="docutils literal notranslate"><span class="pre">code.stabilizers</span></code><span class="math notranslate nohighlight">\(^T\)</span>.</p></li>
+<li><p>generate <code class="docutils literal notranslate"><span class="pre">step_measurement_errors[t]</span></code> as syndrome bit-flips.</p></li>
+<li><p>generate <code class="docutils literal notranslate"><span class="pre">syndrome[t]</span></code> as <code class="docutils literal notranslate"><span class="pre">step_measurement_errors[t-1]</span></code> <span class="math notranslate nohighlight">\(\oplus\)</span> <code class="docutils literal notranslate"><span class="pre">step_syndromes[t]</span></code>
+<span class="math notranslate nohighlight">\(\oplus\)</span> <code class="docutils literal notranslate"><span class="pre">step_measurement_errors[t]</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>evaluate <code class="docutils literal notranslate"><span class="pre">error</span></code> as <span class="math notranslate nohighlight">\(\bigoplus\)</span> <code class="docutils literal notranslate"><span class="pre">step_errors</span></code>.</p></li>
+<li><p>resolve <code class="docutils literal notranslate"><span class="pre">decoding</span></code> by passing <code class="docutils literal notranslate"><span class="pre">code</span></code>, <code class="docutils literal notranslate"><span class="pre">time_steps</span></code> and <code class="docutils literal notranslate"><span class="pre">syndrome</span></code> to
+<a class="reference internal" href="model.html#qecsim.model.DecoderFTP.decode_ftp" title="qecsim.model.DecoderFTP.decode_ftp"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.DecoderFTP.decode_ftp()</span></code></a>.</p></li>
+<li><p>define <code class="docutils literal notranslate"><span class="pre">recovered</span></code> as <code class="docutils literal notranslate"><span class="pre">decoding</span></code> <span class="math notranslate nohighlight">\(\oplus\)</span> <code class="docutils literal notranslate"><span class="pre">error</span></code>.</p></li>
+<li><p>verify <code class="docutils literal notranslate"><span class="pre">recovered</span></code> <span class="math notranslate nohighlight">\(\odot\)</span> <code class="docutils literal notranslate"><span class="pre">code.stabilizers</span></code><span class="math notranslate nohighlight">\(^T = 0\)</span>, by construction.</p></li>
+<li><p>define <code class="docutils literal notranslate"><span class="pre">logical_commutations</span></code> as <code class="docutils literal notranslate"><span class="pre">recovered</span></code> <span class="math notranslate nohighlight">\(\odot\)</span> <code class="docutils literal notranslate"><span class="pre">code.logicals</span></code><span class="math notranslate nohighlight">\(^T\)</span>.</p></li>
+<li><p>define <code class="docutils literal notranslate"><span class="pre">success</span></code> as <code class="docutils literal notranslate"><span class="pre">logical_commutations</span></code><span class="math notranslate nohighlight">\(= 0\)</span>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\oplus\)</span> denotes binary addition defined as addition modulo 2, or equivalently exclusive-or.</p></li>
+<li><p>See <a class="reference internal" href="paulitools.html#qecsim.paulitools.bsp" title="qecsim.paulitools.bsp"><code class="xref py py-func docutils literal notranslate"><span class="pre">qecsim.paulitools.bsp()</span></code></a> for definition of <span class="math notranslate nohighlight">\(\odot\)</span>.</p></li>
+<li><p>Optionally, <a class="reference internal" href="model.html#qecsim.model.DecoderFTP.decode_ftp" title="qecsim.model.DecoderFTP.decode_ftp"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.DecoderFTP.decode_ftp()</span></code></a> may return <a class="reference internal" href="model.html#qecsim.model.DecodeResult" title="qecsim.model.DecodeResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">DecodeResult</span></code></a> as
+<code class="docutils literal notranslate"><span class="pre">decoding</span></code> to explicitly specify <code class="docutils literal notranslate"><span class="pre">success</span></code>, <code class="docutils literal notranslate"><span class="pre">logical_commutations</span></code> and <code class="docutils literal notranslate"><span class="pre">custom_values</span></code>, see
+<a class="reference internal" href="model.html#qecsim.model.DecodeResult" title="qecsim.model.DecodeResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.DecodeResult</span></code></a> for details.</p></li>
+<li><p>In addition to <code class="docutils literal notranslate"><span class="pre">code</span></code>, <code class="docutils literal notranslate"><span class="pre">time_steps</span></code> and <code class="docutils literal notranslate"><span class="pre">syndrome</span></code>, the following keyword parameters are passed as context
+to <a class="reference internal" href="model.html#qecsim.model.DecoderFTP.decode_ftp" title="qecsim.model.DecoderFTP.decode_ftp"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.DecoderFTP.decode_ftp()</span></code></a>: <code class="docutils literal notranslate"><span class="pre">error_model</span></code>, <code class="docutils literal notranslate"><span class="pre">error_probability</span></code>, <code class="docutils literal notranslate"><span class="pre">error</span></code>, <code class="docutils literal notranslate"><span class="pre">step_errors</span></code>,
+<code class="docutils literal notranslate"><span class="pre">measurement_error_probability</span></code> and <code class="docutils literal notranslate"><span class="pre">step_measurement_errors</span></code>. Most decoders will ignore these parameters.</p></li>
+<li><p>The returned data is in the following format:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;error_weight&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>  <span class="c1"># number of qubits acted on non-trivially by error</span>
+    <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1"># evaluated or overridden by decode result</span>
+    <span class="s1">&#39;logical_commutations&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>  <span class="c1"># evaluated or overridden by decode result</span>
+    <span class="s1">&#39;custom_values&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># None or overridden by decode result</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<a class="reference internal" href="model.html#qecsim.model.StabilizerCode" title="qecsim.model.StabilizerCode"><em>StabilizerCode</em></a>) – Stabilizer code.</p></li>
+<li><p><strong>time_steps</strong> (<em>int</em>) – Number of time steps.</p></li>
+<li><p><strong>error_model</strong> (<a class="reference internal" href="model.html#qecsim.model.ErrorModel" title="qecsim.model.ErrorModel"><em>ErrorModel</em></a>) – Error model.</p></li>
+<li><p><strong>decoder</strong> (<a class="reference internal" href="model.html#qecsim.model.DecoderFTP" title="qecsim.model.DecoderFTP"><em>DecoderFTP</em></a>) – Fault-tolerant time-periodic decoder.</p></li>
+<li><p><strong>error_probability</strong> (<em>float</em>) – Error probability.</p></li>
+<li><p><strong>measurement_error_probability</strong> (<em>float</em>) – Measurement error probability.
+(default=None, None=error_probability or 0.0 if single time step)</p></li>
+<li><p><strong>rng</strong> (<em>numpy.random.Generator</em>) – Random number generator for error generation. (default=None resolves to numpy.random.default_rng())</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>error_weight, success flag, logical_commutations, and custom values.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – if time_steps is not &gt;= 1.</p></li>
+<li><p><strong>ValueError</strong> – if error_probability is not in [0, 1].</p></li>
+<li><p><strong>ValueError</strong> – if measurement_error_probability is not None or in [0, 1].</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="cli.html" class="btn btn-neutral float-right" title="cli: command-line interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../api.html" class="btn btn-neutral float-left" title="API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2016 - 2021, David K. Tuckett.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,1632 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>models.planar: planar stabilizer codes &mdash; qecsim 1.0b8 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="models.rotatedplanar: rotated planar stabilizer codes" href="rotatedplanar.html" />
+    <link rel="prev" title="models.generic: generic error models and decoders" href="generic.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> qecsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0b8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+        
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../demos.html">Demos</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../app.html">app: application functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli.html">cli: command-line interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../error.html">error: error classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graphtools.html">graphtools: graph tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model.html">model: abstract base classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic.html">models.basic: basic stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="color.html">models.color: color stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic.html">models.generic: generic error models and decoders</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">models.planar: planar stabilizer codes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-qecsim.models.planar"><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-models-planar-planarcode"><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarCode</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-models-planar-planarpauli"><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarPauli</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-models-planar-planarcmwpmdecoder"><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarCMWPMDecoder</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-models-planar-planarmpsdecoder"><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarMPSDecoder</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-models-planar-planarmwpmdecoder"><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarMWPMDecoder</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-models-planar-planarrmpsdecoder"><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarRMPSDecoder</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-models-planar-planarydecoder"><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarYDecoder</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rotatedplanar.html">models.rotatedplanar: rotated planar stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rotatedtoric.html">models.rotatedtoric: rotated toric stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toric.html">models.toric: toric stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../paulitools.html">paulitools: pauli and binary symplectic tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tensortools.html">tensortools: tensor tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../util.html">util: utilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../links.html">Links</a></li>
+</ul>
+
+            
+          
+        <a href="../../genindex.html">Index</a>
+        <a href="../../py-modindex.html">Module Index</a>
+    
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">qecsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../api.html">API</a> &raquo;</li>
+        
+      <li>models.planar: planar stabilizer codes</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="models-planar-planar-stabilizer-codes">
+<h1>models.planar: planar stabilizer codes<a class="headerlink" href="#models-planar-planar-stabilizer-codes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-qecsim.models.planar">
+<span id="qecsim-models-planar"></span><h2><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar</span></code><a class="headerlink" href="#module-qecsim.models.planar" title="Permalink to this headline">¶</a></h2>
+<p>This module contains implementations relevant to planar stabilizer codes.</p>
+</div>
+<div class="section" id="qecsim-models-planar-planarcode">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarCode</span></code><a class="headerlink" href="#qecsim-models-planar-planarcode" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.models.planar.PlanarCode">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.models.planar.</code><code class="sig-name descname">PlanarCode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rows</span></em>, <em class="sig-param"><span class="n">columns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarCode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../model.html#qecsim.model.StabilizerCode" title="qecsim.model.StabilizerCode"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.StabilizerCode</span></code></a></p>
+<p>Implements a planar mixed boundary code defined by its lattice size.</p>
+<p>In addition to the members defined in <a class="reference internal" href="../model.html#qecsim.model.StabilizerCode" title="qecsim.model.StabilizerCode"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.StabilizerCode</span></code></a>, it provides several lattice methods as
+described below.</p>
+<p>Lattice methods:</p>
+<ul class="simple">
+<li><p>Get size: <a class="reference internal" href="#qecsim.models.planar.PlanarCode.size" title="qecsim.models.planar.PlanarCode.size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">size()</span></code></a>.</p></li>
+<li><p>Find shortest translation between plaquettes: <a class="reference internal" href="#qecsim.models.planar.PlanarCode.translation" title="qecsim.models.planar.PlanarCode.translation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">translation()</span></code></a>.</p></li>
+<li><p>Resolve a syndrome to plaquettes: <a class="reference internal" href="#qecsim.models.planar.PlanarCode.syndrome_to_plaquette_indices" title="qecsim.models.planar.PlanarCode.syndrome_to_plaquette_indices"><code class="xref py py-meth docutils literal notranslate"><span class="pre">syndrome_to_plaquette_indices()</span></code></a>.</p></li>
+<li><p>Construct a Pauli operator on the lattice: <a class="reference internal" href="#qecsim.models.planar.PlanarCode.new_pauli" title="qecsim.models.planar.PlanarCode.new_pauli"><code class="xref py py-meth docutils literal notranslate"><span class="pre">new_pauli()</span></code></a>.</p></li>
+</ul>
+<p>Indices:</p>
+<ul class="simple">
+<li><p>Indices are in the format (row, column).</p></li>
+<li><p>Qubit site (i.e. edge) indices satisfy (row + column) mod 2 = 0. On the primal lattice, horizontal edge indices
+satisfy row mod 2 = 0 and col mod 2 = 0, while vertical edge indices satisfy row mod 2 = 1 and col mod 2 = 1.</p></li>
+</ul>
+<p>For example, site indices on a 3 x 3 planar lattice (primal lattice edges shown):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-----|-----</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-----|-----</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+          <span class="o">|</span>               <span class="o">|</span>
+        <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>           <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+          <span class="o">|</span>               <span class="o">|</span>
+<span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-----|-----</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-----|-----</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+          <span class="o">|</span>               <span class="o">|</span>
+        <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>           <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+          <span class="o">|</span>               <span class="o">|</span>
+<span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-----|-----</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-----|-----</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Stabilizer plaquette indices satisfy (row + column) mod 2 = 1. On the primal lattice, plaquette indices satisfy
+row mod 2 = 1 and col mod 2 = 0, while, on the dual lattice, plaquette indices satisfy row mod 2 = 0 and
+col mod 2 = 1.</p></li>
+</ul>
+<p>For example, plaquette indices on the primal 3 x 3 lattice (primal lattice edges shown):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="o">-------|---------------|-------</span>
+          <span class="o">|</span>               <span class="o">|</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>     <span class="o">|</span>     <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>     <span class="o">|</span>     <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+          <span class="o">|</span>               <span class="o">|</span>
+   <span class="o">-------|---------------|-------</span>
+          <span class="o">|</span>               <span class="o">|</span>
+<span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>     <span class="o">|</span>     <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>     <span class="o">|</span>     <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+          <span class="o">|</span>               <span class="o">|</span>
+   <span class="o">-------|---------------|-------</span>
+</pre></div>
+</div>
+<p>For example, plaquette indices on the dual 3 x 3 lattice (dual lattice edges shown):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span>     <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>     <span class="p">:</span>     <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>     <span class="p">:</span>
+<span class="p">:</span>               <span class="p">:</span>               <span class="p">:</span>
+<span class="p">:</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span> <span class="p">:</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span> <span class="p">:</span>
+<span class="p">:</span>               <span class="p">:</span>               <span class="p">:</span>
+<span class="p">:</span>     <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>     <span class="p">:</span>     <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>     <span class="p">:</span>
+<span class="p">:</span>               <span class="p">:</span>               <span class="p">:</span>
+<span class="p">:</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span> <span class="p">:</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span> <span class="p">:</span>
+<span class="p">:</span>               <span class="p">:</span>               <span class="p">:</span>
+<span class="p">:</span>     <span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>     <span class="p">:</span>     <span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>     <span class="p">:</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCode.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rows</span></em>, <em class="sig-param"><span class="n">columns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarCode.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise new planar code.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rows</strong> (<em>int</em>) – Number of rows in lattice.</p></li>
+<li><p><strong>columns</strong> (<em>int</em>) – Number of columns in lattice.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – if (rows, columns) smaller than (2, 2) in either dimension.</p></li>
+<li><p><strong>TypeError</strong> – if any parameter is of an invalid type.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCode.ascii_art">
+<code class="sig-name descname">ascii_art</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">syndrome</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">pauli</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarCode.ascii_art" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return ASCII art style lattice showing primal lattice lines with syndrome bits and Pauli operators as given.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>syndrome</strong> (<em>numpy.array</em><em> (</em><em>1d</em><em>)</em>) – Syndrome (optional) as binary vector.</p></li>
+<li><p><strong>pauli</strong> (<a class="reference internal" href="#qecsim.models.planar.PlanarPauli" title="qecsim.models.planar.PlanarPauli"><em>PlanarPauli</em></a>) – Planar Pauli (optional)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>ASCII art style lattice.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCode.bounds">
+<em class="property">property </em><code class="sig-name descname">bounds</code><a class="headerlink" href="#qecsim.models.planar.PlanarCode.bounds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum row and column value that an index coordinate can take.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>2-tuple of int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCode.is_dual">
+<em class="property">classmethod </em><code class="sig-name descname">is_dual</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarCode.is_dual" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the index specifies a dual plaquette (i.e. row mod 2 = 0) or site (i.e. row mod 2 = 1),
+irrespective of lattice bounds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>index</strong> (<em>2-tuple of int</em>) – Index in the format (row, column).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If the index specifies a dual plaquette or site.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCode.is_in_bounds">
+<code class="sig-name descname">is_in_bounds</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarCode.is_in_bounds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the index is within lattice bounds inclusive, irrespective of object type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>index</strong> (<em>2-tuple of int</em>) – Index in the format (row, column).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If the index is within lattice bounds inclusive.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCode.is_plaquette">
+<em class="property">classmethod </em><code class="sig-name descname">is_plaquette</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarCode.is_plaquette" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the index specifies a plaquette, irrespective of lattice bounds, i.e. (row + column) mod 2 = 1.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>index</strong> (<em>2-tuple of int</em>) – Index in the format (row, column).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If the index specifies a plaquette</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCode.is_primal">
+<em class="property">classmethod </em><code class="sig-name descname">is_primal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarCode.is_primal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the index specifies a primal plaquette (i.e. row mod 2 = 1) or site (i.e. row mod 2 = 0),
+irrespective of lattice bounds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>index</strong> (<em>2-tuple of int</em>) – Index in the format (row, column).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If the index specifies a primal plaquette or site.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCode.is_site">
+<em class="property">classmethod </em><code class="sig-name descname">is_site</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarCode.is_site" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the index specifies a site (i.e. (row + column) mod 2 = 0), irrespective of lattice bounds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>index</strong> (<em>2-tuple of int</em>) – Index in the format (row, column).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If the index specifies a site.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCode.label">
+<em class="property">property </em><code class="sig-name descname">label</code><a class="headerlink" href="#qecsim.models.planar.PlanarCode.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.StabilizerCode.label" title="qecsim.model.StabilizerCode.label"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.StabilizerCode.label()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCode.logical_xs">
+<em class="property">property </em><code class="sig-name descname">logical_xs</code><a class="headerlink" href="#qecsim.models.planar.PlanarCode.logical_xs" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.StabilizerCode.logical_xs" title="qecsim.model.StabilizerCode.logical_xs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.StabilizerCode.logical_xs()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCode.logical_zs">
+<em class="property">property </em><code class="sig-name descname">logical_zs</code><a class="headerlink" href="#qecsim.models.planar.PlanarCode.logical_zs" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.StabilizerCode.logical_zs" title="qecsim.model.StabilizerCode.logical_zs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.StabilizerCode.logical_zs()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCode.logicals">
+<em class="property">property </em><code class="sig-name descname">logicals</code><a class="headerlink" href="#qecsim.models.planar.PlanarCode.logicals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logical operators as binary symplectic matrix.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Each row is a logical operator.</p></li>
+<li><p>All logical X operators are stacked above all logical Z operators, in the order given by <a class="reference internal" href="#qecsim.models.planar.PlanarCode.logical_xs" title="qecsim.models.planar.PlanarCode.logical_xs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logical_xs()</span></code></a>
+and <a class="reference internal" href="#qecsim.models.planar.PlanarCode.logical_zs" title="qecsim.models.planar.PlanarCode.logical_zs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logical_zs()</span></code></a>.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array (2d)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCode.n_k_d">
+<em class="property">property </em><code class="sig-name descname">n_k_d</code><a class="headerlink" href="#qecsim.models.planar.PlanarCode.n_k_d" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.StabilizerCode.n_k_d" title="qecsim.model.StabilizerCode.n_k_d"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.StabilizerCode.n_k_d()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCode.new_pauli">
+<code class="sig-name descname">new_pauli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bsf</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarCode.new_pauli" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience constructor of planar Pauli for this code.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>For performance reasons, the new Pauli is a view of the given bsf. Modifying one will modify the other.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>bsf</strong> (<em>numpy.array</em><em> (</em><em>1d</em><em>)</em>) – Binary symplectic representation of Pauli. (Optional. Defaults to identity.)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Planar Pauli</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#qecsim.models.planar.PlanarPauli" title="qecsim.models.planar.PlanarPauli">PlanarPauli</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCode.size">
+<em class="property">property </em><code class="sig-name descname">size</code><a class="headerlink" href="#qecsim.models.planar.PlanarCode.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Size of the lattice in format (rows, columns), e.g. (5, 5).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>2-tuple of int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCode.stabilizers">
+<em class="property">property </em><code class="sig-name descname">stabilizers</code><a class="headerlink" href="#qecsim.models.planar.PlanarCode.stabilizers" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.StabilizerCode.stabilizers" title="qecsim.model.StabilizerCode.stabilizers"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.StabilizerCode.stabilizers()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCode.syndrome_to_plaquette_indices">
+<code class="sig-name descname">syndrome_to_plaquette_indices</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">syndrome</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarCode.syndrome_to_plaquette_indices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the indices of the plaquettes associated with the non-commuting stabilizers identified by the syndrome.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>syndrome</strong> (<em>numpy.array</em><em> (</em><em>1d</em><em>)</em>) – Binary vector identifying commuting and non-commuting stabilizers by 0 and 1 respectively.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Set of plaquette indices.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>set of 2-tuple of int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCode.translation">
+<code class="sig-name descname">translation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a_index</span></em>, <em class="sig-param"><span class="n">b_index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarCode.translation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate the shortest taxi-cab translation from plaquette A to plaquette B in format (row_steps, col_steps),
+where translation is the number of plaquette steps not the the difference in indices.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Indices are in the format (row, column).</p></li>
+<li><p>Both indices must index the same lattice, see <a class="reference internal" href="#qecsim.models.planar.PlanarCode.is_primal" title="qecsim.models.planar.PlanarCode.is_primal"><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_primal()</span></code></a> / <a class="reference internal" href="#qecsim.models.planar.PlanarCode.is_dual" title="qecsim.models.planar.PlanarCode.is_dual"><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_dual()</span></code></a>.</p></li>
+<li><p>Plaquettes not indexed within the lattice are said to be virtual, see <a class="reference internal" href="#qecsim.models.planar.PlanarCode.bounds" title="qecsim.models.planar.PlanarCode.bounds"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bounds()</span></code></a>.</p></li>
+<li><p>If both plaquettes are virtual then the translation is defined to be (0, 0).</p></li>
+<li><p>Negative row_steps / col_steps indicate steps in the direction of decreasing index.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a_index</strong> (<em>2-tuple of int</em>) – Index identifying a plaquette in the format (row, column).</p></li>
+<li><p><strong>b_index</strong> (<em>2-tuple of int</em>) – Index identifying a plaquette in the format (row, column).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Taxi-cab translation between plaquettes.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>2-tuple of int</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>IndexError</strong> – If indices are not plaquette indices on the same lattice.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCode.validate">
+<code class="sig-name descname">validate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarCode.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform various sanity checks.</p>
+<p>Sanity checks:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(stabilizers \odot stabilisers^T = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(stabilizers \odot logicals^T = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(logicals \odot logicals^T = \Lambda\)</span></p></li>
+</ul>
+<p>See <a class="reference internal" href="../paulitools.html#qecsim.paulitools.bsp" title="qecsim.paulitools.bsp"><code class="xref py py-func docutils literal notranslate"><span class="pre">qecsim.paulitools.bsp()</span></code></a> for definition of <span class="math notranslate nohighlight">\(\odot\)</span> and <span class="math notranslate nohighlight">\(\Lambda\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../error.html#qecsim.error.QecsimError" title="qecsim.error.QecsimError"><strong>QecsimError</strong></a> – if the stabilizers or logicals fail the sanity checks.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCode.virtual_plaquette_index">
+<code class="sig-name descname">virtual_plaquette_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarCode.virtual_plaquette_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>For the given index of a plaquette on the primal (dual) lattice, returns the index of the virtual plaquette just
+outside the nearest primal (dual) boundary.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Index is in the format (row, column).</p></li>
+<li><p>Given a primal (dual) plaquette, the nearest virtual plaquette will reside on the North or South (West or
+East) boundary, so the returned index will be the same as the given index with the row (column) adjusted to
+sit just outside the nearest boundary. If both boundaries are equally close then the North (West) boundary is
+preferred.</p></li>
+<li><p>The above rule applies even if the given index is outside the boundary.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>index</strong> (<em>2-tuple of int</em>) – Index identifying a plaquette in the format (row, column).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Index of nearest virtual plaquette.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>2-tuple of int</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>IndexError</strong> – If index is not a plaquette index.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="qecsim-models-planar-planarpauli">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarPauli</span></code><a class="headerlink" href="#qecsim-models-planar-planarpauli" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.models.planar.PlanarPauli">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.models.planar.</code><code class="sig-name descname">PlanarPauli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">bsf</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarPauli" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines a Pauli operator on a planar lattice.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>This is a utility class used by planar implementations of the core models.</p></li>
+<li><p>It is typically instantiated using <a class="reference internal" href="#qecsim.models.planar.PlanarCode.new_pauli" title="qecsim.models.planar.PlanarCode.new_pauli"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarCode.new_pauli()</span></code></a></p></li>
+</ul>
+<p>Use cases:</p>
+<ul class="simple">
+<li><p>Construct a planar Pauli operator by applying site, plaquette, path and logical operators: <a class="reference internal" href="#qecsim.models.planar.PlanarPauli.site" title="qecsim.models.planar.PlanarPauli.site"><code class="xref py py-meth docutils literal notranslate"><span class="pre">site()</span></code></a>,
+<a class="reference internal" href="#qecsim.models.planar.PlanarPauli.plaquette" title="qecsim.models.planar.PlanarPauli.plaquette"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plaquette()</span></code></a>, <a class="reference internal" href="#qecsim.models.planar.PlanarPauli.path" title="qecsim.models.planar.PlanarPauli.path"><code class="xref py py-meth docutils literal notranslate"><span class="pre">path()</span></code></a>, <a class="reference internal" href="#qecsim.models.planar.PlanarPauli.logical_x" title="qecsim.models.planar.PlanarPauli.logical_x"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logical_x()</span></code></a>, <a class="reference internal" href="#qecsim.models.planar.PlanarPauli.logical_z" title="qecsim.models.planar.PlanarPauli.logical_z"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logical_z()</span></code></a>.</p></li>
+<li><p>Get the single Pauli operator applied to a given site: <a class="reference internal" href="#qecsim.models.planar.PlanarPauli.operator" title="qecsim.models.planar.PlanarPauli.operator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">operator()</span></code></a></p></li>
+<li><p>Convert to binary symplectic form: <a class="reference internal" href="#qecsim.models.planar.PlanarPauli.to_bsf" title="qecsim.models.planar.PlanarPauli.to_bsf"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_bsf()</span></code></a>.</p></li>
+<li><p>Copy a planar Pauli operator: <a class="reference internal" href="#qecsim.models.planar.PlanarPauli.copy" title="qecsim.models.planar.PlanarPauli.copy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">copy()</span></code></a>.</p></li>
+</ul>
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarPauli.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">bsf</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarPauli.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise new planar Pauli.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>For performance reasons, the new Pauli is a view of the given bsf. Modifying one will modify the other.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<a class="reference internal" href="#qecsim.models.planar.PlanarCode" title="qecsim.models.planar.PlanarCode"><em>PlanarCode</em></a>) – The planar code.</p></li>
+<li><p><strong>bsf</strong> (<em>numpy.array</em><em> (</em><em>1d</em><em>)</em>) – Binary symplectic representation of Pauli. (Optional. Defaults to identity.)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarPauli.code">
+<em class="property">property </em><code class="sig-name descname">code</code><a class="headerlink" href="#qecsim.models.planar.PlanarPauli.code" title="Permalink to this definition">¶</a></dt>
+<dd><p>The planar code.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#qecsim.models.planar.PlanarCode" title="qecsim.models.planar.PlanarCode">PlanarCode</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarPauli.copy">
+<code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarPauli.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a copy of this Pauli that references the same code but is backed by a copy of the bsf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A copy of this Pauli.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#qecsim.models.planar.PlanarPauli" title="qecsim.models.planar.PlanarPauli">PlanarPauli</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarPauli.logical_x">
+<code class="sig-name descname">logical_x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarPauli.logical_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply a logical X operator, i.e. column of X on horizontal-edge sites of primal lattice.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>The column of X is applied to the rightmost column to allow optimisation of the MPS decoder.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>self (to allow chaining)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#qecsim.models.planar.PlanarPauli" title="qecsim.models.planar.PlanarPauli">PlanarPauli</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarPauli.logical_z">
+<code class="sig-name descname">logical_z</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarPauli.logical_z" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply a logical Z operator, i.e. row of Z on horizontal-edge sites of primal lattice.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>The row of Z is applied to the bottom row to allow optimisation of the MPS decoder.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>self (to allow chaining)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#qecsim.models.planar.PlanarPauli" title="qecsim.models.planar.PlanarPauli">PlanarPauli</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarPauli.operator">
+<code class="sig-name descname">operator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarPauli.operator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the operator on the site identified by the index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>index</strong> (<em>2-tuple of int</em>) – Index identifying a site in the format (row, column).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Pauli operator. One of ‘I’, ‘X’, ‘Y’, ‘Z’.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>IndexError</strong> – If index is not an in-bounds site index.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarPauli.path">
+<code class="sig-name descname">path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a_index</span></em>, <em class="sig-param"><span class="n">b_index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarPauli.path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply the shortest taxi-cab path of operators between the plaquettes indexed by A and B.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Indices are in the format (row, column).</p></li>
+<li><p>Both indices must index the same lattice, see <a class="reference internal" href="#qecsim.models.planar.PlanarCode.is_primal" title="qecsim.models.planar.PlanarCode.is_primal"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarCode.is_primal()</span></code></a> /
+<a class="reference internal" href="#qecsim.models.planar.PlanarCode.is_dual" title="qecsim.models.planar.PlanarCode.is_dual"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarCode.is_dual()</span></code></a>.</p></li>
+<li><p>Plaquettes not indexed within the lattice are said to be virtual, see
+<a class="reference internal" href="#qecsim.models.planar.PlanarCode.bounds" title="qecsim.models.planar.PlanarCode.bounds"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarCode.bounds()</span></code></a>.</p></li>
+<li><p>Paths proceed in the following directions in order: North/South, West/East. Therefore if one plaquette lies
+beyond both boundaries the path will meet the boundary as dictated by the directions defined here.</p></li>
+<li><p>If both plaquettes are virtual then they are considered connected by a zero length path.</p></li>
+<li><p>Parts of paths that lie outside the lattice have no effect on the lattice.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a_index</strong> (<em>2-tuple of int</em>) – Index identifying a plaquette in the format (row, column).</p></li>
+<li><p><strong>b_index</strong> (<em>2-tuple of int</em>) – Index identifying a plaquette in the format (row, column).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>self (to allow chaining)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#qecsim.models.planar.PlanarPauli" title="qecsim.models.planar.PlanarPauli">PlanarPauli</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>IndexError</strong> – If indices are not plaquette indices on the same lattice.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarPauli.plaquette">
+<code class="sig-name descname">plaquette</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarPauli.plaquette" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply a plaquette operator at the given index.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Index is in the format (row, column).</p></li>
+<li><p>If the primal lattice is indexed (i.e. row % 2 = 1), then Z operators are applied around the plaquette.
+(This is equivalent to a vertex operator on the dual lattice.)</p></li>
+<li><p>If the dual lattice is indexed (i.e. row % 2 = 0), then X operators are applied around the plaquette.
+(This is equivalent to a vertex operator on the primal lattice.)</p></li>
+<li><p>Parts of plaquettes that lie outside the lattice have no effect on the lattice.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>index</strong> (<em>2-tuple of int</em>) – Index identifying the plaquette in the format (row, column).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>self (to allow chaining)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#qecsim.models.planar.PlanarPauli" title="qecsim.models.planar.PlanarPauli">PlanarPauli</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>IndexError</strong> – If index is not a plaquette index.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarPauli.site">
+<code class="sig-name descname">site</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">operator</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">indices</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarPauli.site" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply the operator to site identified by the index.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Index is in the format (row, column).</p></li>
+<li><p>Operations on sites that lie outside the lattice have no effect on the lattice.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>operator</strong> (<em>str</em>) – Pauli operator. One of ‘I’, ‘X’, ‘Y’, ‘Z’.</p></li>
+<li><p><strong>indices</strong> (<em>Any number of 2-tuple of int</em>) – Any number of indices identifying a site in the format (row, column).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>self (to allow chaining)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#qecsim.models.planar.PlanarPauli" title="qecsim.models.planar.PlanarPauli">PlanarPauli</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>IndexError</strong> – If index is not a site index.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarPauli.to_bsf">
+<code class="sig-name descname">to_bsf</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarPauli.to_bsf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Binary symplectic representation of Pauli.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>For performance reasons, the returned bsf is a view of this Pauli. Modifying one will modify the other.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Binary symplectic representation of Pauli.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>numpy.array (1d)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="qecsim-models-planar-planarcmwpmdecoder">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarCMWPMDecoder</span></code><a class="headerlink" href="#qecsim-models-planar-planarcmwpmdecoder" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.models.planar.PlanarCMWPMDecoder">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.models.planar.</code><code class="sig-name descname">PlanarCMWPMDecoder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">factor</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="n">max_iterations</span><span class="o">=</span><span class="default_value">4</span></em>, <em class="sig-param"><span class="n">box_shape</span><span class="o">=</span><span class="default_value">'t'</span></em>, <em class="sig-param"><span class="n">distance_algorithm</span><span class="o">=</span><span class="default_value">4</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarCMWPMDecoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../model.html#qecsim.model.Decoder" title="qecsim.model.Decoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.Decoder</span></code></a></p>
+<p>Implements a planar Converging Minimum Weight Perfect Matching (CMWPM) decoder.</p>
+<p>Decoding algorithm:</p>
+<ul>
+<li><p>Resolve syndrome plaquettes using: <a class="reference internal" href="#qecsim.models.planar.PlanarCode.syndrome_to_plaquette_indices" title="qecsim.models.planar.PlanarCode.syndrome_to_plaquette_indices"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarCode.syndrome_to_plaquette_indices()</span></code></a>.</p></li>
+<li><p>Separate syndrome plaquettes into primal and dual plaquettes.</p></li>
+<li><p>For max_iterations:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Resolve matched_primal_pairs using MWPM with edge weights between primal plaquettes given by the taxi-cab
+distance through a background grid determined by the previous_matched_dual_pairs.</p></li>
+<li><p>Resolve matched_dual_pairs using MWPM with edge weights between dual plaquettes given by the taxi-cab distance
+through a background grid determined by the previous_matched_primal_pairs.</p></li>
+<li><p>Stop if matched_primal_pairs = previous_matched_primal_pairs and matched_dual_pairs =
+previous_matched_dual_pairs.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Return recovery operator by applying the shortest path between matching pairs using:
+<a class="reference internal" href="#qecsim.models.planar.PlanarPauli.path" title="qecsim.models.planar.PlanarPauli.path"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarPauli.path()</span></code></a>.</p></li>
+</ul>
+<p>Notes on background grid:</p>
+<ul class="simple">
+<li><p>The grid is initialised with a grid factor (e.g. 3), box-shape (e.g. tight) and distance-algorithm (e.g. 1), and
+each edge is given an initial weight (e.g. 1).</p></li>
+<li><p>The grid background is set such that, for each pair of syndrome indices (e.g. matched Z syndromes), all edges
+outside the chosen box-shape (see below), bounding the pair of indices, is multiplied by the grid factor.</p></li>
+<li><p>The distance between any two syndrome indices (e.g. unmatched X syndromes) is weighted by the taxi-cab path
+through the background according to the chosen distance algorithm (see below).</p></li>
+<li><p>A minimum-weight perfect matching in a graph of syndrome indices (e.g. unmatched X syndromes) with edges weighted
+by distance through the background gives matched pairs (e.g. matched X syndromes) taking into account correlations
+with the background (e.g. matched Z syndromes).</p></li>
+<li><p>Box shape defines area outside of which the background is multiplied by the grid factor:</p></li>
+</ul>
+<p>Tight:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+<span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+ <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+<span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+ <span class="o">+</span> <span class="o">+</span> <span class="o">+</span><span class="n">X</span>
+</pre></div>
+</div>
+<p>Rounded:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="o">+</span> <span class="o">+</span>
+ <span class="n">X</span><span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+ <span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+<span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+ <span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+  <span class="o">+</span> <span class="o">+</span> <span class="o">+</span><span class="n">X</span>
+   <span class="o">+</span> <span class="o">+</span>
+</pre></div>
+</div>
+<p>Fitted:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+ <span class="n">X</span><span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+ <span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+<span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+ <span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+<span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span><span class="n">X</span>
+ <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+</pre></div>
+</div>
+<p>Loose:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+<span class="o">+</span><span class="n">X</span><span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+ <span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+<span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+ <span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+<span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span><span class="n">X</span><span class="o">+</span>
+ <span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Distance algorithm defines how the path sum over the background of weighted edges is calculated:</p></li>
+</ul>
+<p>Alg. 1:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+<span class="o">|</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+ <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+<span class="o">|</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+ <span class="o">-</span> <span class="o">-</span> <span class="o">-</span><span class="n">X</span>
+</pre></div>
+</div>
+<p>Alg. 2:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="n">X</span><span class="o">+</span> <span class="o">+</span> <span class="o">+</span>      <span class="n">X</span><span class="o">-</span> <span class="o">-</span> <span class="o">-</span>
+     <span class="o">|</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>     <span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">|</span>
+<span class="nb">min</span><span class="p">(</span>  <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>   <span class="p">,</span>   <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>  <span class="p">)</span>
+     <span class="o">|</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>     <span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">|</span>
+      <span class="o">-</span> <span class="o">-</span> <span class="o">-</span><span class="n">X</span>      <span class="o">+</span> <span class="o">+</span> <span class="o">+</span><span class="n">X</span>
+</pre></div>
+</div>
+<p>Alg. 4:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="n">X</span><span class="o">+</span> <span class="o">+</span> <span class="o">+</span>      <span class="n">X</span><span class="o">-</span> <span class="o">-</span> <span class="o">-</span>      <span class="n">X</span><span class="o">+</span> <span class="o">+</span> <span class="o">+</span>      <span class="n">X</span><span class="o">-</span> <span class="o">|</span> <span class="o">+</span>
+     <span class="o">|</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>     <span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">|</span>     <span class="o">|</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>     <span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+<span class="nb">min</span><span class="p">(</span>  <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>   <span class="p">,</span>   <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>   <span class="p">,</span>   <span class="o">-</span> <span class="o">-</span> <span class="o">-</span>   <span class="p">,</span>   <span class="o">+</span> <span class="o">|</span> <span class="o">+</span>  <span class="p">)</span>
+     <span class="o">|</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>     <span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">|</span>     <span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">|</span>     <span class="o">+</span> <span class="o">+</span> <span class="o">+</span> <span class="o">+</span>
+      <span class="o">-</span> <span class="o">-</span> <span class="o">-</span><span class="n">X</span>      <span class="o">+</span> <span class="o">+</span> <span class="o">+</span><span class="n">X</span>      <span class="o">+</span> <span class="o">+</span> <span class="o">+</span><span class="n">X</span>      <span class="o">+</span> <span class="o">-</span> <span class="o">-</span><span class="n">X</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt id="qecsim.models.planar.PlanarCMWPMDecoder.StepGrid">
+<em class="property">class </em><code class="sig-name descname">StepGrid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarCMWPMDecoder.StepGrid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Grid providing a weighted background for MWPM.</p>
+<p>Methods:</p>
+<ul class="simple">
+<li><p>Set background weights based on matched index pairs: <a class="reference internal" href="#qecsim.models.planar.PlanarCMWPMDecoder.StepGrid.set_background" title="qecsim.models.planar.PlanarCMWPMDecoder.StepGrid.set_background"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_background()</span></code></a>.</p></li>
+<li><p>Resolve taxi-cab distance, weighted by the background, between a pair of indices: <a class="reference internal" href="#qecsim.models.planar.PlanarCMWPMDecoder.StepGrid.distance" title="qecsim.models.planar.PlanarCMWPMDecoder.StepGrid.distance"><code class="xref py py-meth docutils literal notranslate"><span class="pre">distance()</span></code></a>.</p></li>
+<li><p>Minimum weight perfect matching in a graph of indices where sites are weighted based on distance through the
+background: <a class="reference internal" href="#qecsim.models.planar.PlanarCMWPMDecoder.StepGrid.mwpm" title="qecsim.models.planar.PlanarCMWPMDecoder.StepGrid.mwpm"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mwpm()</span></code></a>.</p></li>
+</ul>
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCMWPMDecoder.StepGrid.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarCMWPMDecoder.StepGrid.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise new step grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>code</strong> (<a class="reference internal" href="#qecsim.models.planar.PlanarCode" title="qecsim.models.planar.PlanarCode"><em>PlanarCode</em></a>) – Planar code.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCMWPMDecoder.StepGrid.distance">
+<code class="sig-name descname">distance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">src_i</span></em>, <em class="sig-param"><span class="n">tgt_i</span></em>, <em class="sig-param"><span class="n">algorithm</span><span class="o">=</span><span class="default_value">4</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarCMWPMDecoder.StepGrid.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Distance between syndrome indices weighted by the grid background.</p>
+<p>Note:</p>
+<ul class="simple">
+<li><p>The distance algorithm defines the path(s) used to calculate distance between syndrome indices.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src_i</strong> (<em>2-tuple of int</em>) – Source syndrome index.</p></li>
+<li><p><strong>tgt_i</strong> (<em>2-tuple of int</em>) – Target syndrome index.</p></li>
+<li><p><strong>algorithm</strong> (<em>int</em>) – Distance algorithm. (default=4, 1=v+h, 2=min(v+h,h+v), 4=min(v+h,h+v,v+h+v,h+v+h)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Distance.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCMWPMDecoder.StepGrid.mwpm">
+<code class="sig-name descname">mwpm</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">matched_indices</span></em>, <em class="sig-param"><span class="n">syndrome_indices</span></em>, <em class="sig-param"><span class="n">factor</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="n">initial</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">box_shape</span><span class="o">=</span><span class="default_value">'t'</span></em>, <em class="sig-param"><span class="n">distance_algorithm</span><span class="o">=</span><span class="default_value">4</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarCMWPMDecoder.StepGrid.mwpm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum-weight perfect matching of syndrome indices over a background of matched dual syndrome indices.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>The background is set according to <a class="reference internal" href="#qecsim.models.planar.PlanarCMWPMDecoder.StepGrid.set_background" title="qecsim.models.planar.PlanarCMWPMDecoder.StepGrid.set_background"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_background()</span></code></a>.</p></li>
+<li><p>A graph of the unmatched foreground indices is created, with appropriate virtual indices, and with edge
+weights given by <a class="reference internal" href="#qecsim.models.planar.PlanarCMWPMDecoder.StepGrid.distance" title="qecsim.models.planar.PlanarCMWPMDecoder.StepGrid.distance"><code class="xref py py-meth docutils literal notranslate"><span class="pre">distance()</span></code></a>.</p></li>
+<li><p>A standard minimum-weight perfect matching is found in the graph.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>matched_indices</strong> (<em>frozenset of 2-tuples of 2-tuple of int</em>) – Matched pairs of background syndrome indices (dual to foreground).</p></li>
+<li><p><strong>syndrome_indices</strong> (<em>frozenset of 2-tuple of int</em>) – Unmatched foreground syndrome indices.</p></li>
+<li><p><strong>factor</strong> (<em>int</em><em> or </em><em>float</em>) – Multiplication factor. (default=3)</p></li>
+<li><p><strong>initial</strong> (<em>int</em><em> or </em><em>float</em>) – Initial edge weight. (default=1)</p></li>
+<li><p><strong>box_shape</strong> (<em>str</em>) – Shape of background boxes. (default=’t’, ‘t’=tight, ‘r’=rounded, ‘f’=fitted, ‘l’=loose)</p></li>
+<li><p><strong>distance_algorithm</strong> (<em>int</em>) – Distance algorithm. (default=4, 1=v+h, 2=min(v+h,h+v), 4=min(v+h,h+v,v+h+v,h+v+h)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Minimum-weight perfect matching of foreground syndrome indices.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>frozenset of 2-tuples of 2-tuple of int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCMWPMDecoder.StepGrid.set_background">
+<code class="sig-name descname">set_background</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">matched_indices</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">factor</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="n">initial</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">box_shape</span><span class="o">=</span><span class="default_value">'t'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarCMWPMDecoder.StepGrid.set_background" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set grid background from matched syndrome indices.</p>
+<p>Note:</p>
+<ul class="simple">
+<li><p>The grid is initialised with initial value at all sites and zero elsewhere.</p></li>
+<li><p>For each matched pair of syndrome indices, all sites outside the box-shape, bounding the pair of indices,
+are multiplied by factor.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>matched_indices</strong> (<em>set of 2-tuples of 2-tuple of int</em>) – Matched pairs of syndrome indices.</p></li>
+<li><p><strong>factor</strong> (<em>int</em><em> or </em><em>float</em>) – Multiplication factor. (default=3)</p></li>
+<li><p><strong>initial</strong> (<em>int</em><em> or </em><em>float</em>) – Initial edge weight. (default=1)</p></li>
+<li><p><strong>box_shape</strong> (<em>str</em>) – Shape of background boxes. (default=’t’, ‘t’=tight, ‘r’=rounded, ‘f’=fitted, ‘l’=loose)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCMWPMDecoder.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">factor</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="n">max_iterations</span><span class="o">=</span><span class="default_value">4</span></em>, <em class="sig-param"><span class="n">box_shape</span><span class="o">=</span><span class="default_value">'t'</span></em>, <em class="sig-param"><span class="n">distance_algorithm</span><span class="o">=</span><span class="default_value">4</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarCMWPMDecoder.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise new planar CMWPM decoder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>factor</strong> (<em>int</em><em> or </em><em>float</em>) – Multiplication factor.</p></li>
+<li><p><strong>max_iterations</strong> (<em>int</em>) – Maximum number of iterations. (default=4, 0=null, 1=MWPM, 2+=CMWPM)</p></li>
+<li><p><strong>box_shape</strong> (<em>str</em>) – Shape of background boxes. (default=’t’, ‘t’=tight, ‘r’=rounded, ‘f’=fitted, ‘l’=loose)</p></li>
+<li><p><strong>distance_algorithm</strong> (<em>int</em>) – Distance algorithm. (default=4, 1=h+v, 2=min(h+v,v+h), 4=min(h+v,v+h,h+v+h,v+h+v)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – if factor is not &gt;= 0.0.</p></li>
+<li><p><strong>ValueError</strong> – if max_iterations is not &gt;= 0.</p></li>
+<li><p><strong>ValueError</strong> – if box_shape not in (‘t’, ‘r’, ‘f’, ‘l’).</p></li>
+<li><p><strong>ValueError</strong> – if distance_algorithm not in (1, 2, 4).</p></li>
+<li><p><strong>TypeError</strong> – if any parameter is of an invalid type.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCMWPMDecoder.decode">
+<code class="sig-name descname">decode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">syndrome</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarCMWPMDecoder.decode" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.Decoder.decode" title="qecsim.model.Decoder.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.Decoder.decode()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarCMWPMDecoder.label">
+<em class="property">property </em><code class="sig-name descname">label</code><a class="headerlink" href="#qecsim.models.planar.PlanarCMWPMDecoder.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.Decoder.label" title="qecsim.model.Decoder.label"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.Decoder.label()</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="qecsim-models-planar-planarmpsdecoder">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarMPSDecoder</span></code><a class="headerlink" href="#qecsim-models-planar-planarmpsdecoder" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.models.planar.PlanarMPSDecoder">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.models.planar.</code><code class="sig-name descname">PlanarMPSDecoder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">chi</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'c'</span></em>, <em class="sig-param"><span class="n">stp</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tol</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarMPSDecoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../model.html#qecsim.model.Decoder" title="qecsim.model.Decoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.Decoder</span></code></a></p>
+<p>Implements a planar Matrix Product State (MPS) decoder.</p>
+<p>A version of this decoder yielded results reported in <a class="reference external" href="https://arxiv.org/abs/1708.08474">https://arxiv.org/abs/1708.08474</a>
+and <a class="reference external" href="https://arxiv.org/abs/1812.08186">https://arxiv.org/abs/1812.08186</a>.</p>
+<p>Decoding algorithm:</p>
+<ul class="simple">
+<li><p>A sample recovery operation <span class="math notranslate nohighlight">\(f\)</span> is found by resolving the syndrome to plaquettes
+(<a class="reference internal" href="#qecsim.models.planar.PlanarCode.syndrome_to_plaquette_indices" title="qecsim.models.planar.PlanarCode.syndrome_to_plaquette_indices"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarCode.syndrome_to_plaquette_indices()</span></code></a>), finding the nearest boundary of the same
+type for each plaquette (<a class="reference internal" href="#qecsim.models.planar.PlanarCode.virtual_plaquette_index" title="qecsim.models.planar.PlanarCode.virtual_plaquette_index"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarCode.virtual_plaquette_index()</span></code></a>), constructing a recovery
+operation by applying the path between each plaquette and its corresponding boundary
+(<a class="reference internal" href="#qecsim.models.planar.PlanarPauli.path" title="qecsim.models.planar.PlanarPauli.path"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarPauli.path()</span></code></a>).</p></li>
+<li><p>The probability of the left coset <span class="math notranslate nohighlight">\(fG\)</span> of the stabilizer group <span class="math notranslate nohighlight">\(G\)</span> of the planar code with respect
+to <span class="math notranslate nohighlight">\(f\)</span> is found by contracting an appropriately defined MPS-based tensor network (see
+<a class="reference external" href="https://arxiv.org/abs/1405.4883">https://arxiv.org/abs/1405.4883</a>).</p></li>
+<li><p>The complexity of the algorithm can managed by defining a bond dimension <span class="math notranslate nohighlight">\(\chi\)</span> to which the MPS bond
+dimension is truncated after each row/column of the tensor network is contracted into the MPS.</p></li>
+<li><p>The probability of cosets <span class="math notranslate nohighlight">\(f\bar{X}G\)</span>, <span class="math notranslate nohighlight">\(f\bar{Y}G\)</span> and <span class="math notranslate nohighlight">\(f\bar{Z}G\)</span> are calculated similarly.</p></li>
+<li><p>The default contraction is column-by-column but can be set using the mode parameter to row-by-row or the average
+of both contractions.</p></li>
+<li><p>A sample recovery operation from the most probable coset is returned.</p></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>Specifying chi=None gives an exact contract (up to rounding errors) but is exponentially slow in the size of
+the lattice.</p></li>
+<li><p>Modes:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>mode=’c’: contract by columns</p></li>
+<li><p>mode=’r’: contract by rows</p></li>
+<li><p>mode=’a’: contract by columns and by rows and, for each coset, take the average of the probabilities.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Contracting by columns (i.e. truncating vertical links) may give different coset probabilities to contracting by
+rows (i.e. truncating horizontal links). However, the effect is symmetric in that transposing the sample_pauli on
+the lattice and exchanging X and Z single Paulis reverses the difference between X and Z cosets probabilities.</p></li>
+<li><p>Specifying stp (skip truncate probability) gives the probability that a tensor is not truncated in the approximate
+contraction controlled by chi. This can be used to break the symmetry of the contraction approximation.</p></li>
+<li><p>The code is optimised to evaluate cosets that differ only in the last column/row together. It is important,
+therefore, that the logical X/Z operators of the PlanarPauli act on the last column/row respectively.</p></li>
+</ul>
+<p>Tensor network example:</p>
+<p>3x4 planar code (H=qubit on horizontal edge, V=qubit on vertical edge):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">H</span><span class="o">---</span><span class="n">H</span><span class="o">---</span><span class="n">H</span><span class="o">---</span><span class="n">H</span>
+  <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>
+  <span class="n">V</span>   <span class="n">V</span>   <span class="n">V</span>
+  <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>
+<span class="n">H</span><span class="o">---</span><span class="n">H</span><span class="o">---</span><span class="n">H</span><span class="o">---</span><span class="n">H</span>
+  <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>
+  <span class="n">V</span>   <span class="n">V</span>   <span class="n">V</span>
+  <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>
+<span class="n">H</span><span class="o">---</span><span class="n">H</span><span class="o">---</span><span class="n">H</span><span class="o">---</span><span class="n">H</span>
+</pre></div>
+</div>
+<p>MPS tensor network as per <a class="reference external" href="https://arxiv.org/abs/1405.4883">https://arxiv.org/abs/1405.4883</a> (s=stabilizer):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span>
+<span class="mi">0</span><span class="n">H</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">H</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">H</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">H</span>
+ <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span>
+<span class="mi">1</span><span class="n">s</span><span class="o">-</span><span class="n">V</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">V</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">V</span><span class="o">-</span><span class="n">s</span>
+ <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span>
+<span class="mi">2</span><span class="n">H</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">H</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">H</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">H</span>
+ <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span>
+<span class="mi">3</span><span class="n">s</span><span class="o">-</span><span class="n">V</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">V</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">V</span><span class="o">-</span><span class="n">s</span>
+ <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span>
+<span class="mi">4</span><span class="n">H</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">H</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">H</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">H</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarMPSDecoder.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">chi</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'c'</span></em>, <em class="sig-param"><span class="n">stp</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tol</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarMPSDecoder.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise new planar MPS decoder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chi</strong> (<em>int</em><em> or </em><em>None</em>) – Truncated bond dimension. (default=None, unrestricted=falsy)</p></li>
+<li><p><strong>mode</strong> (<em>str</em>) – Contraction mode. (default=’c’, ‘c’=columns, ‘r’=rows, ‘a’=average)</p></li>
+<li><p><strong>stp</strong> (<em>float</em><em> or </em><em>None</em>) – Skip truncate probability. (default=None, disabled=falsy)</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em> or </em><em>None</em>) – Tolerance for treating normalised singular values as zero. (default=None, unrestricted=falsy)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – if chi is not falsy or &gt; 0.</p></li>
+<li><p><strong>ValueError</strong> – if mode not in (‘c’, ‘r’, ‘a’).</p></li>
+<li><p><strong>ValueError</strong> – if stp is not falsy or 1.0 &gt;= stp &gt; 0.0.</p></li>
+<li><p><strong>ValueError</strong> – if tol is not falsy or &gt; 0.0.</p></li>
+<li><p><strong>TypeError</strong> – if any parameter is of an invalid type.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarMPSDecoder.decode">
+<code class="sig-name descname">decode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">syndrome</span></em>, <em class="sig-param"><span class="n">error_model</span><span class="o">=</span><span class="default_value">DepolarizingErrorModel()</span></em>, <em class="sig-param"><span class="n">error_probability</span><span class="o">=</span><span class="default_value">0.1</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarMPSDecoder.decode" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.Decoder.decode" title="qecsim.model.Decoder.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.Decoder.decode()</span></code></a></p>
+<p>Note: The optional keyword parameters <code class="docutils literal notranslate"><span class="pre">error_model</span></code> and <code class="docutils literal notranslate"><span class="pre">error_probability</span></code> are used to determine the prior
+probability distribution for use in the decoding algorithm. Any provided error model must implement
+<a class="reference internal" href="../model.html#qecsim.model.ErrorModel.probability_distribution" title="qecsim.model.ErrorModel.probability_distribution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">probability_distribution()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<a class="reference internal" href="#qecsim.models.planar.PlanarCode" title="qecsim.models.planar.PlanarCode"><em>PlanarCode</em></a>) – Planar code.</p></li>
+<li><p><strong>syndrome</strong> (<em>numpy.array</em><em> (</em><em>1d</em><em>)</em>) – Syndrome as binary vector.</p></li>
+<li><p><strong>error_model</strong> (<a class="reference internal" href="../model.html#qecsim.model.ErrorModel" title="qecsim.model.ErrorModel"><em>ErrorModel</em></a>) – Error model. (default=DepolarizingErrorModel())</p></li>
+<li><p><strong>error_probability</strong> (<em>float</em>) – Overall probability of an error on a single qubit. (default=0.1)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Recovery operation as binary symplectic vector.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array (1d)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarMPSDecoder.label">
+<em class="property">property </em><code class="sig-name descname">label</code><a class="headerlink" href="#qecsim.models.planar.PlanarMPSDecoder.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.Decoder.label" title="qecsim.model.Decoder.label"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.Decoder.label()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarMPSDecoder.sample_recovery">
+<em class="property">classmethod </em><code class="sig-name descname">sample_recovery</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">syndrome</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarMPSDecoder.sample_recovery" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a sample Pauli consistent with the syndrome, created by applying a path between each plaquette identified
+by the syndrome and the nearest boundary of the same type as the plaquette.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<a class="reference internal" href="#qecsim.models.planar.PlanarCode" title="qecsim.models.planar.PlanarCode"><em>PlanarCode</em></a>) – Planar code.</p></li>
+<li><p><strong>syndrome</strong> (<em>numpy.array</em><em> (</em><em>1d</em><em>)</em>) – Syndrome as binary vector.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Sample recovery operation as planar pauli.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#qecsim.models.planar.PlanarPauli" title="qecsim.models.planar.PlanarPauli">PlanarPauli</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="qecsim-models-planar-planarmwpmdecoder">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarMWPMDecoder</span></code><a class="headerlink" href="#qecsim-models-planar-planarmwpmdecoder" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.models.planar.PlanarMWPMDecoder">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.models.planar.</code><code class="sig-name descname">PlanarMWPMDecoder</code><a class="headerlink" href="#qecsim.models.planar.PlanarMWPMDecoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../model.html#qecsim.model.Decoder" title="qecsim.model.Decoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.Decoder</span></code></a></p>
+<p>Implements a planar Minimum Weight Perfect Matching (MWPM) decoder.</p>
+<p>Decoding algorithm:</p>
+<ul class="simple">
+<li><p>The syndrome is resolved to plaquettes defects using:
+<a class="reference internal" href="#qecsim.models.planar.PlanarCode.syndrome_to_plaquette_indices" title="qecsim.models.planar.PlanarCode.syndrome_to_plaquette_indices"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarCode.syndrome_to_plaquette_indices()</span></code></a>.</p></li>
+<li><p>For each defect the nearest off-boundary plaquette defect is added using:
+<a class="reference internal" href="#qecsim.models.planar.PlanarCode.virtual_plaquette_index" title="qecsim.models.planar.PlanarCode.virtual_plaquette_index"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarCode.virtual_plaquette_index()</span></code></a>.</p></li>
+<li><p>If the total number of defects is odd an extra virtual off-boundary defect is added.</p></li>
+<li><p>A graph between plaquettes is built with weights given by: <a class="reference internal" href="#qecsim.models.planar.PlanarMWPMDecoder.distance" title="qecsim.models.planar.PlanarMWPMDecoder.distance"><code class="xref py py-meth docutils literal notranslate"><span class="pre">distance()</span></code></a>.</p></li>
+<li><p>A MWPM algorithm is used to match plaquettes into pairs.</p></li>
+<li><p>A recovery operator is constructed by applying the shortest path between matching plaquette pairs using:
+<a class="reference internal" href="#qecsim.models.planar.PlanarPauli.path" title="qecsim.models.planar.PlanarPauli.path"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarPauli.path()</span></code></a> and returned.</p></li>
+</ul>
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarMWPMDecoder.decode">
+<code class="sig-name descname">decode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">syndrome</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarMWPMDecoder.decode" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.Decoder.decode" title="qecsim.model.Decoder.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.Decoder.decode()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarMWPMDecoder.distance">
+<em class="property">classmethod </em><code class="sig-name descname">distance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">a_index</span></em>, <em class="sig-param"><span class="n">b_index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarMWPMDecoder.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Distance between plaquettes in terms of plaquette steps.</p>
+<p>Note: This implementation returns the taxi-cab distance based on
+<a class="reference internal" href="#qecsim.models.planar.PlanarCode.translation" title="qecsim.models.planar.PlanarCode.translation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarCode.translation()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<a class="reference internal" href="#qecsim.models.planar.PlanarCode" title="qecsim.models.planar.PlanarCode"><em>PlanarCode</em></a>) – Planar code.</p></li>
+<li><p><strong>a_index</strong> (<em>2-tuple of int</em>) – Index identifying a plaquette in the format (row, column).</p></li>
+<li><p><strong>b_index</strong> (<em>2-tuple of int</em>) – Index identifying a plaquette in the format (row, column).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Distance between plaquettes.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>IndexError</strong> – If indices are not plaquette indices on the same lattice.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarMWPMDecoder.label">
+<em class="property">property </em><code class="sig-name descname">label</code><a class="headerlink" href="#qecsim.models.planar.PlanarMWPMDecoder.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.Decoder.label" title="qecsim.model.Decoder.label"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.Decoder.label()</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="qecsim-models-planar-planarrmpsdecoder">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarRMPSDecoder</span></code><a class="headerlink" href="#qecsim-models-planar-planarrmpsdecoder" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.models.planar.PlanarRMPSDecoder">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.models.planar.</code><code class="sig-name descname">PlanarRMPSDecoder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">chi</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'c'</span></em>, <em class="sig-param"><span class="n">stp</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tol</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarRMPSDecoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../model.html#qecsim.model.Decoder" title="qecsim.model.Decoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.Decoder</span></code></a></p>
+<p>Implements a planar Rotated Matrix Product State (RMPS) decoder.</p>
+<p>Decoding algorithm:</p>
+<ul class="simple">
+<li><p>A sample recovery operation <span class="math notranslate nohighlight">\(f\)</span> is found by resolving the syndrome to plaquettes
+(<a class="reference internal" href="#qecsim.models.planar.PlanarCode.syndrome_to_plaquette_indices" title="qecsim.models.planar.PlanarCode.syndrome_to_plaquette_indices"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarCode.syndrome_to_plaquette_indices()</span></code></a>), finding the nearest boundary of the same
+type for each plaquette (<a class="reference internal" href="#qecsim.models.planar.PlanarCode.virtual_plaquette_index" title="qecsim.models.planar.PlanarCode.virtual_plaquette_index"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarCode.virtual_plaquette_index()</span></code></a>), constructing a recovery
+operation by applying the path between each plaquette and its corresponding boundary
+(<a class="reference internal" href="#qecsim.models.planar.PlanarPauli.path" title="qecsim.models.planar.PlanarPauli.path"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarPauli.path()</span></code></a>).</p></li>
+<li><p>The probability of the left coset <span class="math notranslate nohighlight">\(fG\)</span> of the stabilizer group <span class="math notranslate nohighlight">\(G\)</span> of the planar code with respect
+to <span class="math notranslate nohighlight">\(f\)</span> is found by contracting an appropriately defined MPS-based tensor network (see
+<a class="reference external" href="https://arxiv.org/abs/1405.4883">https://arxiv.org/abs/1405.4883</a>).</p></li>
+<li><p>Since this is a rotated MPS decoder, the links of the network are rotated 45 degrees by splitting each stabilizer
+node into 4 delta nodes that are absorbed into the neighbouring qubit nodes.</p></li>
+<li><p>The complexity of the algorithm can managed by defining a bond dimension <span class="math notranslate nohighlight">\(\chi\)</span> to which the MPS bond
+dimension is truncated after each row/column of the tensor network is contracted into the MPS.</p></li>
+<li><p>The probability of cosets <span class="math notranslate nohighlight">\(f\bar{X}G\)</span>, <span class="math notranslate nohighlight">\(f\bar{Y}G\)</span> and <span class="math notranslate nohighlight">\(f\bar{Z}G\)</span> are calculated similarly.</p></li>
+<li><p>The default contraction is column-by-column but can be set using the mode parameter to row-by-row or the average
+of both contractions.</p></li>
+<li><p>A sample recovery operation from the most probable coset is returned.</p></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>Specifying chi=None gives an exact contract (up to rounding errors) but is exponentially slow in the size of
+the lattice.</p></li>
+<li><p>Modes:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>mode=’c’: contract by columns</p></li>
+<li><p>mode=’r’: contract by rows</p></li>
+<li><p>mode=’a’: contract by columns and by rows and, for each coset, take the average of the probabilities.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Contracting by columns (i.e. truncating vertical links) may give different coset probabilities to contracting by
+rows (i.e. truncating horizontal links). However, the effect is symmetric in that transposing the sample_pauli on
+the lattice and exchanging X and Z single Paulis reverses the difference between X and Z cosets probabilities.</p></li>
+<li><p>Specifying stp (skip truncate probability) gives the probability that a tensor is not truncated in the approximate
+contraction controlled by chi. This can be used to break the symmetry of the contraction approximation.</p></li>
+</ul>
+<p>Tensor network example:</p>
+<p>3x4 planar code (H=qubit on horizontal edge, V=qubit on vertical edge):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">H</span><span class="o">---</span><span class="n">H</span><span class="o">---</span><span class="n">H</span><span class="o">---</span><span class="n">H</span>
+  <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>
+  <span class="n">V</span>   <span class="n">V</span>   <span class="n">V</span>
+  <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>
+<span class="n">H</span><span class="o">---</span><span class="n">H</span><span class="o">---</span><span class="n">H</span><span class="o">---</span><span class="n">H</span>
+  <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>
+  <span class="n">V</span>   <span class="n">V</span>   <span class="n">V</span>
+  <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>
+<span class="n">H</span><span class="o">---</span><span class="n">H</span><span class="o">---</span><span class="n">H</span><span class="o">---</span><span class="n">H</span>
+</pre></div>
+</div>
+<p>MPS tensor network as per <a class="reference external" href="https://arxiv.org/abs/1405.4883">https://arxiv.org/abs/1405.4883</a> (s=stabilizer):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span>
+<span class="mi">0</span><span class="n">H</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">H</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">H</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">H</span>
+ <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span>
+<span class="mi">1</span><span class="n">s</span><span class="o">-</span><span class="n">V</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">V</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">V</span><span class="o">-</span><span class="n">s</span>
+ <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span>
+<span class="mi">2</span><span class="n">H</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">H</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">H</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">H</span>
+ <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span>
+<span class="mi">3</span><span class="n">s</span><span class="o">-</span><span class="n">V</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">V</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">V</span><span class="o">-</span><span class="n">s</span>
+ <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span>
+<span class="mi">4</span><span class="n">H</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">H</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">H</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">H</span>
+</pre></div>
+</div>
+<p>Links are rotated by splitting stabilizers and summing them into neighbouring qubits:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">H</span>            <span class="n">H</span>            <span class="n">H</span>
+  <span class="o">|</span>            <span class="o">|</span>           <span class="o">/</span> \
+<span class="n">V</span><span class="o">-</span><span class="n">s</span><span class="o">-</span><span class="n">V</span>  <span class="o">=&gt;</span>      <span class="n">s</span>      <span class="o">=&gt;</span>  <span class="n">V</span>   <span class="n">V</span>
+  <span class="o">|</span>           <span class="o">/</span> \          \ <span class="o">/</span>
+  <span class="n">H</span>        <span class="n">V</span><span class="o">-</span><span class="n">s</span>   <span class="n">s</span><span class="o">-</span><span class="n">V</span>        <span class="n">H</span>
+              \ <span class="o">/</span>
+               <span class="n">s</span>
+               <span class="o">|</span>
+               <span class="n">H</span>
+</pre></div>
+</div>
+<p>Resultant MPS tensor network (rotated 45 degree clockwise for contraction by column/row):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span>
+<span class="mi">0</span>    <span class="n">H</span>
+     <span class="o">|</span>
+<span class="mi">1</span>  <span class="n">H</span><span class="o">-</span><span class="n">V</span><span class="o">-</span><span class="n">H</span>
+   <span class="o">|</span> <span class="o">|</span> <span class="o">|</span>
+<span class="mi">2</span><span class="n">H</span><span class="o">-</span><span class="n">V</span><span class="o">-</span><span class="n">H</span><span class="o">-</span><span class="n">V</span><span class="o">-</span><span class="n">H</span>
+   <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span>
+<span class="mi">3</span>  <span class="n">H</span><span class="o">-</span><span class="n">V</span><span class="o">-</span><span class="n">H</span><span class="o">-</span><span class="n">V</span><span class="o">-</span><span class="n">H</span>
+     <span class="o">|</span> <span class="o">|</span> <span class="o">|</span>
+<span class="mi">4</span>    <span class="n">H</span><span class="o">-</span><span class="n">V</span><span class="o">-</span><span class="n">H</span>
+       <span class="o">|</span>
+<span class="mi">5</span>      <span class="n">H</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarRMPSDecoder.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">chi</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'c'</span></em>, <em class="sig-param"><span class="n">stp</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tol</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarRMPSDecoder.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise new planar RMPS decoder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chi</strong> (<em>int</em><em> or </em><em>None</em>) – Truncated bond dimension. (default=None, unrestricted=falsy)</p></li>
+<li><p><strong>mode</strong> (<em>str</em>) – Contraction mode. (default=’c’, ‘c’=columns, ‘r’=rows, ‘a’=average)</p></li>
+<li><p><strong>stp</strong> (<em>float</em><em> or </em><em>None</em>) – Skip truncate probability. (default=None, disabled=falsy)</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em> or </em><em>None</em>) – Tolerance for treating normalised singular values as zero. (default=None, unrestricted=falsy)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – if chi is not falsy or &gt; 0.</p></li>
+<li><p><strong>ValueError</strong> – if mode not in (‘c’, ‘r’, ‘a’).</p></li>
+<li><p><strong>ValueError</strong> – if stp is not falsy or 1.0 &gt;= stp &gt; 0.0.</p></li>
+<li><p><strong>ValueError</strong> – if tol is not falsy or &gt; 0.0.</p></li>
+<li><p><strong>TypeError</strong> – if any parameter is of an invalid type.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarRMPSDecoder.decode">
+<code class="sig-name descname">decode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">syndrome</span></em>, <em class="sig-param"><span class="n">error_model</span><span class="o">=</span><span class="default_value">DepolarizingErrorModel()</span></em>, <em class="sig-param"><span class="n">error_probability</span><span class="o">=</span><span class="default_value">0.1</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarRMPSDecoder.decode" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.Decoder.decode" title="qecsim.model.Decoder.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.Decoder.decode()</span></code></a></p>
+<p>Note: The optional keyword parameters <code class="docutils literal notranslate"><span class="pre">error_model</span></code> and <code class="docutils literal notranslate"><span class="pre">error_probability</span></code> are used to determine the prior
+probability distribution for use in the decoding algorithm. Any provided error model must implement
+<a class="reference internal" href="../model.html#qecsim.model.ErrorModel.probability_distribution" title="qecsim.model.ErrorModel.probability_distribution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">probability_distribution()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<a class="reference internal" href="#qecsim.models.planar.PlanarCode" title="qecsim.models.planar.PlanarCode"><em>PlanarCode</em></a>) – Planar code.</p></li>
+<li><p><strong>syndrome</strong> (<em>numpy.array</em><em> (</em><em>1d</em><em>)</em>) – Syndrome as binary vector.</p></li>
+<li><p><strong>error_model</strong> (<a class="reference internal" href="../model.html#qecsim.model.ErrorModel" title="qecsim.model.ErrorModel"><em>ErrorModel</em></a>) – Error model. (default=DepolarizingErrorModel())</p></li>
+<li><p><strong>error_probability</strong> (<em>float</em>) – Overall probability of an error on a single qubit. (default=0.1)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Recovery operation as binary symplectic vector.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array (1d)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarRMPSDecoder.label">
+<em class="property">property </em><code class="sig-name descname">label</code><a class="headerlink" href="#qecsim.models.planar.PlanarRMPSDecoder.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.Decoder.label" title="qecsim.model.Decoder.label"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.Decoder.label()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarRMPSDecoder.sample_recovery">
+<em class="property">classmethod </em><code class="sig-name descname">sample_recovery</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">syndrome</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarRMPSDecoder.sample_recovery" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a sample Pauli consistent with the syndrome, created by applying a path between each plaquette identified
+by the syndrome and the nearest boundary of the same type as the plaquette.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<a class="reference internal" href="#qecsim.models.planar.PlanarCode" title="qecsim.models.planar.PlanarCode"><em>PlanarCode</em></a>) – Planar code.</p></li>
+<li><p><strong>syndrome</strong> (<em>numpy.array</em><em> (</em><em>1d</em><em>)</em>) – Syndrome as binary vector.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Sample recovery operation as planar pauli.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#qecsim.models.planar.PlanarPauli" title="qecsim.models.planar.PlanarPauli">PlanarPauli</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="qecsim-models-planar-planarydecoder">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarYDecoder</span></code><a class="headerlink" href="#qecsim-models-planar-planarydecoder" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.models.planar.PlanarYDecoder">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.models.planar.</code><code class="sig-name descname">PlanarYDecoder</code><a class="headerlink" href="#qecsim.models.planar.PlanarYDecoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../model.html#qecsim.model.Decoder" title="qecsim.model.Decoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.Decoder</span></code></a></p>
+<p>Implements a planar Y-noise decoder.</p>
+<p>A version of this decoder yielded results reported in <a class="reference external" href="https://arxiv.org/abs/1812.08186">https://arxiv.org/abs/1812.08186</a>.</p>
+<p>NOTE: This decoder will not be optimal for noise models that are not pure Y-noise.</p>
+<p>Decoding algorithm given syndrome:</p>
+<ul class="simple">
+<li><p>Find a sample all-Y recovery operator matching syndrome.</p></li>
+<li><p>Construct an alternative all-Y recovery operator by adding an all-Y non-trivial logical operator.</p></li>
+<li><p>Find group of all-Y stabilizer operators.</p></li>
+<li><p>Calculate probability of coset of stabilizer group with each recovery operator.</p></li>
+<li><p>Return a recovery operator from highest probability coset.</p></li>
+</ul>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>MP math is used to calculate coset probabilities with exact exponent and precision of 50 decimal places.</p></li>
+</ul>
+<p>Algorithm to find a sample all-Y recovery operator given syndrome (general case):</p>
+<ul class="simple">
+<li><p>For each syndrome bit, construct a partial recovery operator that triggers the given syndrome bit and some bits on
+the right/lower boundary (whichever is shorter).</p></li>
+<li><p>Combine partial recoveries to give combined partial recovery.</p></li>
+<li><p>Subtract error syndrome from combined partial recovery syndrome to give residual syndrome on lower boundary.</p></li>
+<li><p>Find residual recovery operator that triggers residual syndrome on right/lower boundary.</p></li>
+<li><p>Return combined partial and residual recovery as all-Y recovery operator.</p></li>
+</ul>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Constructing a partial recovery operator: An operator that triggers a given syndrome bit and some bits on the
+right/lower boundary can be constructed directly by by applying a zig-zag pattern of Y starting right/below the
+given syndrome bit. For a p x q code, there are n - 1 = pq + (p-1)(q-1) - 1 distinct syndrome bits.</p></li>
+<li><p>For co-prime codes, it is always possible to trigger a single syndrome bit on a boundary by apply Y next to the
+syndrome bit and bouncing diagonally around the lattice until a corner is encountered. That is destabilizers exist
+for co-prime codes. This is implemented in this decoder.</p></li>
+<li><p>For codes where one side is an integer multiple of the other, the residual syndrome will always be trivial because
+patterns of Y that trigger no syndrome bits on 3 boundaries also trigger no syndrome bits on the 4th boundary.
+This is implemented in this decoder.</p></li>
+<li><p>For constant gcd &gt; 1 codes where one side is not a multiple of the other, it is possible to combine the above
+approaches for rectangular regions of the lattice where one side is a multiple of the other and one co-prime
+region to find a sample recovery operator. This is not yet implemented in this decoder; instead a look-up table of
+residual recovery operators is constructed by combining operators consisting of applying a zig-zag pattern of Y
+starting at each of the edges on the left/upper boundary.</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span><span class="p">:</span>     <span class="n">Syndrome</span><span class="p">:</span>
+<span class="n">Y</span><span class="o">--------</span>  <span class="o">---------</span>
+  <span class="n">Y</span>   <span class="o">|</span>      <span class="o">|</span>   <span class="o">|</span>
+<span class="o">----</span><span class="n">Y</span><span class="o">----</span>  <span class="o">------</span><span class="n">V</span><span class="o">--</span>
+  <span class="o">|</span>   <span class="o">|</span>      <span class="o">|</span> <span class="n">P</span> <span class="o">|</span>
+<span class="o">---------</span>  <span class="o">---------</span>
+  <span class="o">|</span>   <span class="o">|</span>      <span class="o">|</span>   <span class="o">|</span>
+<span class="o">---------</span>  <span class="o">---------</span>
+
+<span class="n">Partial</span>    <span class="n">Partial</span>       <span class="n">Partial</span>    <span class="n">Partial</span>       <span class="n">Combined</span>   <span class="n">Combined</span>
+<span class="n">recovery</span><span class="p">:</span>  <span class="n">syndrome</span><span class="p">:</span>     <span class="n">recovery</span><span class="p">:</span>  <span class="n">syndrome</span><span class="p">:</span>     <span class="n">partial</span>    <span class="n">partial</span>
+                                                  <span class="n">recovery</span><span class="p">:</span>  <span class="n">syndrome</span><span class="p">:</span>
+<span class="o">---------</span>  <span class="o">---------</span>     <span class="o">---------</span>  <span class="o">---------</span>     <span class="o">---------</span>  <span class="o">---------</span>
+  <span class="o">|</span>   <span class="o">|</span>      <span class="o">|</span>   <span class="o">|</span>         <span class="o">|</span>   <span class="o">|</span>      <span class="o">|</span>   <span class="o">|</span>         <span class="o">|</span>   <span class="o">|</span>      <span class="o">|</span>   <span class="o">|</span>
+<span class="o">---------</span>  <span class="o">---------</span>     <span class="o">---------</span>  <span class="o">------</span><span class="n">V</span><span class="o">--</span>     <span class="o">---------</span>  <span class="o">------</span><span class="n">V</span><span class="o">--</span>
+  <span class="o">|</span>   <span class="o">|</span>      <span class="o">|</span> <span class="n">P</span> <span class="o">|</span>    <span class="o">+</span>    <span class="o">|</span>   <span class="n">Y</span>      <span class="o">|</span>   <span class="o">|</span>    <span class="o">=</span>    <span class="o">|</span>   <span class="n">Y</span>      <span class="o">|</span> <span class="n">P</span> <span class="o">|</span>
+<span class="o">----</span><span class="n">Y</span><span class="o">----</span>  <span class="o">---------</span>     <span class="o">----</span><span class="n">Y</span><span class="o">---</span><span class="n">Y</span>  <span class="o">---------</span>     <span class="o">--------</span><span class="n">Y</span>  <span class="o">---------</span>
+  <span class="n">Y</span>   <span class="n">Y</span>      <span class="o">|</span>   <span class="o">|</span>         <span class="n">Y</span>   <span class="n">Y</span>      <span class="o">|</span>   <span class="o">|</span>         <span class="o">|</span>   <span class="o">|</span>      <span class="o">|</span>   <span class="o">|</span>
+<span class="n">Y</span><span class="o">---</span><span class="n">Y</span><span class="o">---</span><span class="n">Y</span>  <span class="o">--</span><span class="n">V</span><span class="o">---</span><span class="n">V</span><span class="o">--</span>     <span class="n">Y</span><span class="o">---</span><span class="n">Y</span><span class="o">----</span>  <span class="o">--</span><span class="n">V</span><span class="o">------</span>     <span class="o">--------</span><span class="n">Y</span>  <span class="o">------</span><span class="n">V</span><span class="o">--</span>
+
+<span class="n">Combined</span>   <span class="n">Combined</span>      <span class="n">Residual</span>   <span class="n">Residual</span>      <span class="n">Sample</span>     <span class="n">Sample</span>
+<span class="n">partial</span>    <span class="n">partial</span>       <span class="n">recovery</span><span class="p">:</span>  <span class="n">syndrome</span><span class="p">:</span>     <span class="n">recovery</span><span class="p">:</span>  <span class="n">syndrome</span><span class="p">:</span>
+<span class="n">recovery</span><span class="p">:</span>  <span class="n">syndrome</span><span class="p">:</span>
+<span class="o">---------</span>  <span class="o">---------</span>     <span class="n">Y</span><span class="o">--------</span>  <span class="o">---------</span>     <span class="n">Y</span><span class="o">--------</span>  <span class="o">---------</span>
+  <span class="o">|</span>   <span class="o">|</span>      <span class="o">|</span>   <span class="o">|</span>         <span class="n">Y</span>   <span class="o">|</span>      <span class="o">|</span>   <span class="o">|</span>         <span class="n">Y</span>   <span class="o">|</span>      <span class="o">|</span>   <span class="o">|</span>
+<span class="o">---------</span>  <span class="o">------</span><span class="n">V</span><span class="o">--</span>     <span class="o">----</span><span class="n">Y</span><span class="o">----</span>  <span class="o">---------</span>     <span class="o">----</span><span class="n">Y</span><span class="o">----</span>  <span class="o">------</span><span class="n">V</span><span class="o">--</span>
+  <span class="o">|</span>   <span class="n">Y</span>      <span class="o">|</span> <span class="n">P</span> <span class="o">|</span>    <span class="o">+</span>    <span class="o">|</span>   <span class="n">Y</span>      <span class="o">|</span>   <span class="o">|</span>    <span class="o">=</span>    <span class="o">|</span>   <span class="o">|</span>      <span class="o">|</span> <span class="n">P</span> <span class="o">|</span>
+<span class="o">--------</span><span class="n">Y</span>  <span class="o">---------</span>     <span class="o">--------</span><span class="n">Y</span>  <span class="o">---------</span>     <span class="o">---------</span>  <span class="o">---------</span>
+  <span class="o">|</span>   <span class="o">|</span>      <span class="o">|</span>   <span class="o">|</span>         <span class="o">|</span>   <span class="o">|</span>      <span class="o">|</span>   <span class="o">|</span>         <span class="o">|</span>   <span class="o">|</span>      <span class="o">|</span>   <span class="o">|</span>
+<span class="o">--------</span><span class="n">Y</span>  <span class="o">------</span><span class="n">V</span><span class="o">--</span>     <span class="o">--------</span><span class="n">Y</span>  <span class="o">------</span><span class="n">V</span><span class="o">--</span>     <span class="o">---------</span>  <span class="o">---------</span>
+</pre></div>
+</div>
+<p>Algorithm to find group of all-Y stabilizers and logicals algorithm (general case):</p>
+<ul class="simple">
+<li><p>Create generators: For row=0 and column=each of 0 to gcd(p,q) - 1, apply Y at row,column and in a SE direction,
+bouncing just beyond the boundaries until a loop is completed or a corner is encountered.</p></li>
+<li><p>Create full group: Combine generators in a possible combinations without repetition.</p></li>
+<li><p>Split into stabilizers/logicals: Check commutation relations with logical X and Z of code.</p></li>
+</ul>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>There are 2^gcd(p,q) all-Y (trivial and non-trivial) logical operator for a p x q code.</p></li>
+<li><p>For coprime codes, the all-Y non-trivial logical operator consists of Y on all horizontal edges.</p></li>
+<li><p>For square codes, an all-Y non-trivial logical operator consists of Y on the major diagonal edges.</p></li>
+</ul>
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarYDecoder.decode">
+<code class="sig-name descname">decode</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarYDecoder.decode" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.Decoder.decode" title="qecsim.model.Decoder.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.Decoder.decode()</span></code></a></p>
+<p>Note: The optional keyword parameters <code class="docutils literal notranslate"><span class="pre">error_model</span></code> and <code class="docutils literal notranslate"><span class="pre">error_probability</span></code> are used to determine the prior
+probability distribution for use in the decoding algorithm. Any provided error model must implement
+<a class="reference internal" href="../model.html#qecsim.model.ErrorModel.probability_distribution" title="qecsim.model.ErrorModel.probability_distribution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">probability_distribution()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<a class="reference internal" href="#qecsim.models.planar.PlanarCode" title="qecsim.models.planar.PlanarCode"><em>PlanarCode</em></a>) – Planar code.</p></li>
+<li><p><strong>syndrome</strong> (<em>numpy.array</em><em> (</em><em>1d</em><em>)</em>) – Syndrome as binary vector.</p></li>
+<li><p><strong>error_model</strong> (<a class="reference internal" href="../model.html#qecsim.model.ErrorModel" title="qecsim.model.ErrorModel"><em>ErrorModel</em></a>) – Error model. (default=BitPhaseFlipErrorModel())</p></li>
+<li><p><strong>error_probability</strong> (<em>float</em>) – Overall probability of an error on a single qubit. (default=0.1)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Recovery operation as binary symplectic vector.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array (1d)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.planar.PlanarYDecoder.label">
+<em class="property">property </em><code class="sig-name descname">label</code><a class="headerlink" href="#qecsim.models.planar.PlanarYDecoder.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.Decoder.label" title="qecsim.model.Decoder.label"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.Decoder.label()</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="rotatedplanar.html" class="btn btn-neutral float-right" title="models.rotatedplanar: rotated planar stabilizer codes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="generic.html" class="btn btn-neutral float-left" title="models.generic: generic error models and decoders" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2016 - 2021, David K. Tuckett.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

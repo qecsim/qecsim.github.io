@@ -1,0 +1,944 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>models.generic: generic error models and decoders &mdash; qecsim 1.0b8 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="models.planar: planar stabilizer codes" href="planar.html" />
+    <link rel="prev" title="models.color: color stabilizer codes" href="color.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> qecsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0b8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+        
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../demos.html">Demos</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../app.html">app: application functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli.html">cli: command-line interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../error.html">error: error classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graphtools.html">graphtools: graph tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model.html">model: abstract base classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic.html">models.basic: basic stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="color.html">models.color: color stabilizer codes</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">models.generic: generic error models and decoders</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-qecsim.models.generic"><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-models-generic-simpleerrormodel"><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.SimpleErrorModel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-models-generic-biaseddepolarizingerrormodel"><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.BiasedDepolarizingErrorModel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-models-generic-biasedyxerrormodel"><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.BiasedYXErrorModel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-models-generic-bitfliperrormodel"><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.BitFlipErrorModel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-models-generic-bitphasefliperrormodel"><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.BitPhaseFlipErrorModel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-models-generic-centersliceerrormodel"><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.CenterSliceErrorModel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-models-generic-depolarizingerrormodel"><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.DepolarizingErrorModel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-models-generic-fileerrormodel"><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.FileErrorModel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-models-generic-phasefliperrormodel"><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.PhaseFlipErrorModel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-models-generic-naivedecoder"><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.NaiveDecoder</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="planar.html">models.planar: planar stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rotatedplanar.html">models.rotatedplanar: rotated planar stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rotatedtoric.html">models.rotatedtoric: rotated toric stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toric.html">models.toric: toric stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../paulitools.html">paulitools: pauli and binary symplectic tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tensortools.html">tensortools: tensor tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../util.html">util: utilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../links.html">Links</a></li>
+</ul>
+
+            
+          
+        <a href="../../genindex.html">Index</a>
+        <a href="../../py-modindex.html">Module Index</a>
+    
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">qecsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../api.html">API</a> &raquo;</li>
+        
+      <li>models.generic: generic error models and decoders</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="models-generic-generic-error-models-and-decoders">
+<h1>models.generic: generic error models and decoders<a class="headerlink" href="#models-generic-generic-error-models-and-decoders" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-qecsim.models.generic">
+<span id="qecsim-models-generic"></span><h2><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic</span></code><a class="headerlink" href="#module-qecsim.models.generic" title="Permalink to this headline">¶</a></h2>
+<p>This module contains generic implementations of error models and decoders that will work with any stabilizer codes.</p>
+</div>
+<div class="section" id="qecsim-models-generic-simpleerrormodel">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.SimpleErrorModel</span></code><a class="headerlink" href="#qecsim-models-generic-simpleerrormodel" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.models.generic.SimpleErrorModel">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.models.generic.</code><code class="sig-name descname">SimpleErrorModel</code><a class="headerlink" href="#qecsim.models.generic.SimpleErrorModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../model.html#qecsim.model.ErrorModel" title="qecsim.model.ErrorModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel</span></code></a></p>
+<p>Implements a simple IID error model that generates an error based on the number of qubits and the probability
+distribution.</p>
+<p>This class cannot be instantiated directly, see <a class="reference internal" href="#qecsim.models.generic.DepolarizingErrorModel" title="qecsim.models.generic.DepolarizingErrorModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.generic.DepolarizingErrorModel</span></code></a> for an example
+implementation.</p>
+<dl class="py method">
+<dt id="qecsim.models.generic.SimpleErrorModel.generate">
+<code class="sig-name descname">generate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">probability</span></em>, <em class="sig-param"><span class="n">rng</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.SimpleErrorModel.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.generate" title="qecsim.model.ErrorModel.generate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.generate()</span></code></a></p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>This method delegates to <a class="reference internal" href="#qecsim.models.generic.SimpleErrorModel.probability_distribution" title="qecsim.models.generic.SimpleErrorModel.probability_distribution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">probability_distribution()</span></code></a> to find the probability of I, X, Y, Z operators on
+each qubit, assuming an IID error model.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.SimpleErrorModel.label">
+<em class="property">abstract property </em><code class="sig-name descname">label</code><a class="headerlink" href="#qecsim.models.generic.SimpleErrorModel.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.label" title="qecsim.model.ErrorModel.label"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.label()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.SimpleErrorModel.probability_distribution">
+<em class="property">abstract </em><code class="sig-name descname">probability_distribution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">probability</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.SimpleErrorModel.probability_distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.probability_distribution" title="qecsim.model.ErrorModel.probability_distribution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.probability_distribution()</span></code></a></p>
+<p>Note: Implementing this method is <strong>required</strong>. It is invoked by <a class="reference internal" href="#qecsim.models.generic.SimpleErrorModel.generate" title="qecsim.models.generic.SimpleErrorModel.generate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate()</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="qecsim-models-generic-biaseddepolarizingerrormodel">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.BiasedDepolarizingErrorModel</span></code><a class="headerlink" href="#qecsim-models-generic-biaseddepolarizingerrormodel" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.models.generic.BiasedDepolarizingErrorModel">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.models.generic.</code><code class="sig-name descname">BiasedDepolarizingErrorModel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bias</span></em>, <em class="sig-param"><span class="n">axis</span><span class="o">=</span><span class="default_value">'Y'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.BiasedDepolarizingErrorModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.generic._simpleerrormodel.SimpleErrorModel</span></code></p>
+<p>Implements a biased-depolarizing error model.</p>
+<p>In addition to the members defined in <a class="reference internal" href="../model.html#qecsim.model.ErrorModel" title="qecsim.model.ErrorModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel</span></code></a>, it provides the following method:</p>
+<ul class="simple">
+<li><p>Get bias: <a class="reference internal" href="#qecsim.models.generic.BiasedDepolarizingErrorModel.bias" title="qecsim.models.generic.BiasedDepolarizingErrorModel.bias"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bias()</span></code></a>.</p></li>
+<li><p>Get axis: <a class="reference internal" href="#qecsim.models.generic.BiasedDepolarizingErrorModel.axis" title="qecsim.models.generic.BiasedDepolarizingErrorModel.axis"><code class="xref py py-meth docutils literal notranslate"><span class="pre">axis()</span></code></a>.</p></li>
+</ul>
+<p>The probability distribution for a given error probability p given axis = ‘Y’ is:</p>
+<ul class="simple">
+<li><p>1 - p: I (i.e. no error)</p></li>
+<li><p>1 / (2 * (bias + 1)) * p: X</p></li>
+<li><p>bias / (bias + 1) * p: Y</p></li>
+<li><p>1 / (2 * (bias + 1)) * p: Z</p></li>
+</ul>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Probability distributions are defined analogously for axis = ‘X’ and axis = ‘Z’.</p></li>
+<li><p>bias = 0.5 corresponds to the standard depolarizing error model.</p></li>
+</ul>
+<dl class="py method">
+<dt id="qecsim.models.generic.BiasedDepolarizingErrorModel.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bias</span></em>, <em class="sig-param"><span class="n">axis</span><span class="o">=</span><span class="default_value">'Y'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.BiasedDepolarizingErrorModel.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise new biased-depolarizing error model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bias</strong> (<em>float</em>) – Bias in favour of axis errors relative to  off-axis errors.</p></li>
+<li><p><strong>axis</strong> (<em>str</em>) – Axis towards which the noise is biased (default=’Y’, values=’X’, ‘Y’, ‘Z’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – if bias is not &gt; 0.</p></li>
+<li><p><strong>ValueError</strong> – if axis is not in (‘X’, ‘Y’, ‘Z’) (lowercase accepted).</p></li>
+<li><p><strong>TypeError</strong> – if any parameter is of an invalid type.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.BiasedDepolarizingErrorModel.axis">
+<em class="property">property </em><code class="sig-name descname">axis</code><a class="headerlink" href="#qecsim.models.generic.BiasedDepolarizingErrorModel.axis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.BiasedDepolarizingErrorModel.bias">
+<em class="property">property </em><code class="sig-name descname">bias</code><a class="headerlink" href="#qecsim.models.generic.BiasedDepolarizingErrorModel.bias" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bias.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.BiasedDepolarizingErrorModel.generate">
+<code class="sig-name descname">generate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">probability</span></em>, <em class="sig-param"><span class="n">rng</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.BiasedDepolarizingErrorModel.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.generate" title="qecsim.model.ErrorModel.generate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.generate()</span></code></a></p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>This method delegates to <a class="reference internal" href="#qecsim.models.generic.BiasedDepolarizingErrorModel.probability_distribution" title="qecsim.models.generic.BiasedDepolarizingErrorModel.probability_distribution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">probability_distribution()</span></code></a> to find the probability of I, X, Y, Z operators on
+each qubit, assuming an IID error model.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.BiasedDepolarizingErrorModel.label">
+<em class="property">property </em><code class="sig-name descname">label</code><a class="headerlink" href="#qecsim.models.generic.BiasedDepolarizingErrorModel.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.label" title="qecsim.model.ErrorModel.label"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.label()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.BiasedDepolarizingErrorModel.probability_distribution">
+<code class="sig-name descname">probability_distribution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">probability</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.BiasedDepolarizingErrorModel.probability_distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.probability_distribution" title="qecsim.model.ErrorModel.probability_distribution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.probability_distribution()</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="qecsim-models-generic-biasedyxerrormodel">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.BiasedYXErrorModel</span></code><a class="headerlink" href="#qecsim-models-generic-biasedyxerrormodel" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.models.generic.BiasedYXErrorModel">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.models.generic.</code><code class="sig-name descname">BiasedYXErrorModel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bias</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.BiasedYXErrorModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.generic._simpleerrormodel.SimpleErrorModel</span></code></p>
+<p>Implements a biased-Y-X error model.</p>
+<p>In addition to the members defined in <a class="reference internal" href="../model.html#qecsim.model.ErrorModel" title="qecsim.model.ErrorModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel</span></code></a>, it provides the following method:</p>
+<ul class="simple">
+<li><p>Get bias: <a class="reference internal" href="#qecsim.models.generic.BiasedYXErrorModel.bias" title="qecsim.models.generic.BiasedYXErrorModel.bias"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bias()</span></code></a>.</p></li>
+</ul>
+<p>The probability distribution for a given error probability p is:</p>
+<ul class="simple">
+<li><p>1 - p: I (i.e. no error)</p></li>
+<li><p>rx * (1 - ry): X</p></li>
+<li><p>ry * (1 - rx): Y</p></li>
+<li><p>rx * ry: Z</p></li>
+</ul>
+<p>where rx, ry, rz are rates found by solving:</p>
+<ul class="simple">
+<li><p>p = px + py + pz</p></li>
+<li><p>bias = py / px</p></li>
+</ul>
+<p>Note: bias = 0 corresponds to the standard bit-flip error model (i.e. pure X-noise).</p>
+<dl class="py method">
+<dt id="qecsim.models.generic.BiasedYXErrorModel.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bias</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.BiasedYXErrorModel.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise new biased-Y-X error model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>bias</strong> (<em>float</em>) – Bias in favour of Y errors relative to X errors.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – if bias is not &gt;=0.</p></li>
+<li><p><strong>TypeError</strong> – if any parameter is of an invalid type.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.BiasedYXErrorModel.bias">
+<em class="property">property </em><code class="sig-name descname">bias</code><a class="headerlink" href="#qecsim.models.generic.BiasedYXErrorModel.bias" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bias.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.BiasedYXErrorModel.generate">
+<code class="sig-name descname">generate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">probability</span></em>, <em class="sig-param"><span class="n">rng</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.BiasedYXErrorModel.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.generate" title="qecsim.model.ErrorModel.generate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.generate()</span></code></a></p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>This method delegates to <a class="reference internal" href="#qecsim.models.generic.BiasedYXErrorModel.probability_distribution" title="qecsim.models.generic.BiasedYXErrorModel.probability_distribution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">probability_distribution()</span></code></a> to find the probability of I, X, Y, Z operators on
+each qubit, assuming an IID error model.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.BiasedYXErrorModel.label">
+<em class="property">property </em><code class="sig-name descname">label</code><a class="headerlink" href="#qecsim.models.generic.BiasedYXErrorModel.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.label" title="qecsim.model.ErrorModel.label"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.label()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.BiasedYXErrorModel.probability_distribution">
+<code class="sig-name descname">probability_distribution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">probability</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.BiasedYXErrorModel.probability_distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.probability_distribution" title="qecsim.model.ErrorModel.probability_distribution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.probability_distribution()</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="qecsim-models-generic-bitfliperrormodel">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.BitFlipErrorModel</span></code><a class="headerlink" href="#qecsim-models-generic-bitfliperrormodel" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.models.generic.BitFlipErrorModel">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.models.generic.</code><code class="sig-name descname">BitFlipErrorModel</code><a class="headerlink" href="#qecsim.models.generic.BitFlipErrorModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.generic._simpleerrormodel.SimpleErrorModel</span></code></p>
+<p>Implements a bit-flip error model.</p>
+<p>The probability distribution for a given error probability p is:</p>
+<ul class="simple">
+<li><p>(1 - p): I (i.e. no error)</p></li>
+<li><p>p: X</p></li>
+<li><p>0: Y</p></li>
+<li><p>0: Z</p></li>
+</ul>
+<dl class="py method">
+<dt id="qecsim.models.generic.BitFlipErrorModel.generate">
+<code class="sig-name descname">generate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">probability</span></em>, <em class="sig-param"><span class="n">rng</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.BitFlipErrorModel.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.generate" title="qecsim.model.ErrorModel.generate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.generate()</span></code></a></p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>This method delegates to <a class="reference internal" href="#qecsim.models.generic.BitFlipErrorModel.probability_distribution" title="qecsim.models.generic.BitFlipErrorModel.probability_distribution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">probability_distribution()</span></code></a> to find the probability of I, X, Y, Z operators on
+each qubit, assuming an IID error model.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.BitFlipErrorModel.label">
+<em class="property">property </em><code class="sig-name descname">label</code><a class="headerlink" href="#qecsim.models.generic.BitFlipErrorModel.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.label" title="qecsim.model.ErrorModel.label"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.label()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.BitFlipErrorModel.probability_distribution">
+<code class="sig-name descname">probability_distribution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">probability</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.BitFlipErrorModel.probability_distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.probability_distribution" title="qecsim.model.ErrorModel.probability_distribution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.probability_distribution()</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="qecsim-models-generic-bitphasefliperrormodel">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.BitPhaseFlipErrorModel</span></code><a class="headerlink" href="#qecsim-models-generic-bitphasefliperrormodel" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.models.generic.BitPhaseFlipErrorModel">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.models.generic.</code><code class="sig-name descname">BitPhaseFlipErrorModel</code><a class="headerlink" href="#qecsim.models.generic.BitPhaseFlipErrorModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.generic._simpleerrormodel.SimpleErrorModel</span></code></p>
+<p>Implements a bit-phase-flip error model.</p>
+<p>The probability distribution for a given error probability p is:</p>
+<ul class="simple">
+<li><p>(1 - p): I (i.e. no error)</p></li>
+<li><p>0: X</p></li>
+<li><p>p: Y</p></li>
+<li><p>0: Z</p></li>
+</ul>
+<dl class="py method">
+<dt id="qecsim.models.generic.BitPhaseFlipErrorModel.generate">
+<code class="sig-name descname">generate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">probability</span></em>, <em class="sig-param"><span class="n">rng</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.BitPhaseFlipErrorModel.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.generate" title="qecsim.model.ErrorModel.generate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.generate()</span></code></a></p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>This method delegates to <a class="reference internal" href="#qecsim.models.generic.BitPhaseFlipErrorModel.probability_distribution" title="qecsim.models.generic.BitPhaseFlipErrorModel.probability_distribution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">probability_distribution()</span></code></a> to find the probability of I, X, Y, Z operators on
+each qubit, assuming an IID error model.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.BitPhaseFlipErrorModel.label">
+<em class="property">property </em><code class="sig-name descname">label</code><a class="headerlink" href="#qecsim.models.generic.BitPhaseFlipErrorModel.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.label" title="qecsim.model.ErrorModel.label"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.label()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.BitPhaseFlipErrorModel.probability_distribution">
+<code class="sig-name descname">probability_distribution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">probability</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.BitPhaseFlipErrorModel.probability_distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.probability_distribution" title="qecsim.model.ErrorModel.probability_distribution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.probability_distribution()</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="qecsim-models-generic-centersliceerrormodel">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.CenterSliceErrorModel</span></code><a class="headerlink" href="#qecsim-models-generic-centersliceerrormodel" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.models.generic.CenterSliceErrorModel">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.models.generic.</code><code class="sig-name descname">CenterSliceErrorModel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lim</span></em>, <em class="sig-param"><span class="n">pos</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.CenterSliceErrorModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.generic._simpleerrormodel.SimpleErrorModel</span></code></p>
+<p>Implements a center-slice error model.</p>
+<p>In addition to the members defined in <a class="reference internal" href="../model.html#qecsim.model.ErrorModel" title="qecsim.model.ErrorModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel</span></code></a>, it provides the following properties:</p>
+<ul class="simple">
+<li><p>Get limit (normalized): <a class="reference internal" href="#qecsim.models.generic.CenterSliceErrorModel.lim" title="qecsim.models.generic.CenterSliceErrorModel.lim"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lim()</span></code></a>.</p></li>
+<li><p>Get position: <a class="reference internal" href="#qecsim.models.generic.CenterSliceErrorModel.pos" title="qecsim.models.generic.CenterSliceErrorModel.pos"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pos()</span></code></a>.</p></li>
+<li><p>Get ratio: <a class="reference internal" href="#qecsim.models.generic.CenterSliceErrorModel.ratio" title="qecsim.models.generic.CenterSliceErrorModel.ratio"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ratio()</span></code></a>.</p></li>
+<li><p>Get negative limit: <a class="reference internal" href="#qecsim.models.generic.CenterSliceErrorModel.neg_lim" title="qecsim.models.generic.CenterSliceErrorModel.neg_lim"><code class="xref py py-meth docutils literal notranslate"><span class="pre">neg_lim()</span></code></a>.</p></li>
+</ul>
+<p>The (normalized) limit defines a point on the boundary of the triangle with vertices (1, 0, 0),
+(0, 1, 0), and (0, 0, 1) in Euclidean x, y, z coordinates. The center point is defined to be at (1/3, 1/3, 1/3).
+The negative limit defines the point at the other intersection of the boundary of the triangle and the line through
+the limit and the center. Positive position defines a point on a linear scale along this line from the center, at
+position 0, to the limit, at position 1. Similarly, negative position defines a point on the line from the center
+to the negative limit, at position -1. The ratio, r_x:r_y:r_z, corresponds to the coordinates (r_x, r_y, r_z) of the
+point defined by position. With such a definition, ratio is always normalized to sum to 1.</p>
+<p>The probability distribution for a given error probability p is:</p>
+<ul class="simple">
+<li><p>1 - p: I (i.e. no error)</p></li>
+<li><p>r_x * p: X</p></li>
+<li><p>r_y * p: Y</p></li>
+<li><p>r_z * p: Z</p></li>
+</ul>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>pos = 0 corresponds to the standard depolarizing error model.</p></li>
+<li><p>lim = (1, 0, 0) and pos = 1 corresponds to pure bit-flip noise.</p></li>
+<li><p>lim = (0, 1, 0) and pos = 1 corresponds to pure bit-phase-flip noise.</p></li>
+<li><p>lim = (0, 0, 1) and pos = 1 corresponds to pure phase-flip noise.</p></li>
+</ul>
+<dl class="py method">
+<dt id="qecsim.models.generic.CenterSliceErrorModel.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lim</span></em>, <em class="sig-param"><span class="n">pos</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.CenterSliceErrorModel.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise new center-slice error model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lim</strong> (<em>3-tuple of float</em>) – Limit (possibly unnormalized).</p></li>
+<li><p><strong>pos</strong> (<em>float</em>) – Position.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – if lim is not of length 3 with 1 or 2 zeros.</p></li>
+<li><p><strong>ValueError</strong> – if stp is not -1.0 &lt;= pos &lt;= 1.0.</p></li>
+<li><p><strong>TypeError</strong> – if any parameter is of an invalid type.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.CenterSliceErrorModel.generate">
+<code class="sig-name descname">generate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">probability</span></em>, <em class="sig-param"><span class="n">rng</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.CenterSliceErrorModel.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.generate" title="qecsim.model.ErrorModel.generate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.generate()</span></code></a></p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>This method delegates to <a class="reference internal" href="#qecsim.models.generic.CenterSliceErrorModel.probability_distribution" title="qecsim.models.generic.CenterSliceErrorModel.probability_distribution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">probability_distribution()</span></code></a> to find the probability of I, X, Y, Z operators on
+each qubit, assuming an IID error model.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.CenterSliceErrorModel.label">
+<em class="property">property </em><code class="sig-name descname">label</code><a class="headerlink" href="#qecsim.models.generic.CenterSliceErrorModel.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.label" title="qecsim.model.ErrorModel.label"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.label()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.CenterSliceErrorModel.lim">
+<em class="property">property </em><code class="sig-name descname">lim</code><a class="headerlink" href="#qecsim.models.generic.CenterSliceErrorModel.lim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Limit (normalized).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>3-tuple of float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.CenterSliceErrorModel.neg_lim">
+<em class="property">property </em><code class="sig-name descname">neg_lim</code><a class="headerlink" href="#qecsim.models.generic.CenterSliceErrorModel.neg_lim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Negative limit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>3-tuple of float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.CenterSliceErrorModel.pos">
+<em class="property">property </em><code class="sig-name descname">pos</code><a class="headerlink" href="#qecsim.models.generic.CenterSliceErrorModel.pos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.CenterSliceErrorModel.probability_distribution">
+<code class="sig-name descname">probability_distribution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">probability</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.CenterSliceErrorModel.probability_distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.probability_distribution" title="qecsim.model.ErrorModel.probability_distribution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.probability_distribution()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.CenterSliceErrorModel.ratio">
+<em class="property">property </em><code class="sig-name descname">ratio</code><a class="headerlink" href="#qecsim.models.generic.CenterSliceErrorModel.ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ratio.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>3-tuple of float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="qecsim-models-generic-depolarizingerrormodel">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.DepolarizingErrorModel</span></code><a class="headerlink" href="#qecsim-models-generic-depolarizingerrormodel" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.models.generic.DepolarizingErrorModel">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.models.generic.</code><code class="sig-name descname">DepolarizingErrorModel</code><a class="headerlink" href="#qecsim.models.generic.DepolarizingErrorModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.generic._simpleerrormodel.SimpleErrorModel</span></code></p>
+<p>Implements a depolarizing error model.</p>
+<p>The probability distribution for a given error probability p is:</p>
+<ul class="simple">
+<li><p>(1 - p): I (i.e. no error)</p></li>
+<li><p>p/3: X</p></li>
+<li><p>p/3: Y</p></li>
+<li><p>p/3: Z</p></li>
+</ul>
+<dl class="py method">
+<dt id="qecsim.models.generic.DepolarizingErrorModel.generate">
+<code class="sig-name descname">generate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">probability</span></em>, <em class="sig-param"><span class="n">rng</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.DepolarizingErrorModel.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.generate" title="qecsim.model.ErrorModel.generate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.generate()</span></code></a></p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>This method delegates to <a class="reference internal" href="#qecsim.models.generic.DepolarizingErrorModel.probability_distribution" title="qecsim.models.generic.DepolarizingErrorModel.probability_distribution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">probability_distribution()</span></code></a> to find the probability of I, X, Y, Z operators on
+each qubit, assuming an IID error model.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.DepolarizingErrorModel.label">
+<em class="property">property </em><code class="sig-name descname">label</code><a class="headerlink" href="#qecsim.models.generic.DepolarizingErrorModel.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.label" title="qecsim.model.ErrorModel.label"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.label()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.DepolarizingErrorModel.probability_distribution">
+<code class="sig-name descname">probability_distribution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">probability</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.DepolarizingErrorModel.probability_distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.probability_distribution" title="qecsim.model.ErrorModel.probability_distribution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.probability_distribution()</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="qecsim-models-generic-fileerrormodel">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.FileErrorModel</span></code><a class="headerlink" href="#qecsim-models-generic-fileerrormodel" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.models.generic.FileErrorModel">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.models.generic.</code><code class="sig-name descname">FileErrorModel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.FileErrorModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../model.html#qecsim.model.ErrorModel" title="qecsim.model.ErrorModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel</span></code></a></p>
+<p>Implements a file error model.</p>
+<p>In addition to the members defined in <a class="reference internal" href="../model.html#qecsim.model.ErrorModel" title="qecsim.model.ErrorModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel</span></code></a>, it provides properties given by additional
+headers in the file.</p>
+<p>The expected file format is new-line delimited JSON + JS comments:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Comment</span> <span class="n">lines</span> <span class="n">start</span> <span class="k">with</span> <span class="o">//</span><span class="p">;</span> <span class="n">comment</span> <span class="n">lines</span> <span class="n">are</span> <span class="n">ignored</span><span class="o">.</span>
+<span class="o">//</span> <span class="n">Blank</span> <span class="n">lines</span> <span class="n">are</span> <span class="n">also</span> <span class="n">ignored</span><span class="o">.</span>
+<span class="o">//</span> <span class="n">Non</span><span class="o">-</span><span class="n">comment</span> <span class="n">lines</span> <span class="n">are</span> <span class="n">JSON</span><span class="o">-</span><span class="n">encoded</span> <span class="n">per</span> <span class="n">line</span><span class="o">.</span>
+<span class="o">//</span>
+<span class="o">//</span> <span class="n">Header</span> <span class="n">lines</span> <span class="n">are</span> <span class="n">JSON</span> <span class="n">objects</span> <span class="n">containing</span> <span class="n">one</span> <span class="ow">or</span> <span class="n">more</span> <span class="n">keys</span><span class="o">.</span>
+<span class="o">//</span> <span class="n">A</span> <span class="n">dictionary</span> <span class="ow">is</span> <span class="n">built</span> <span class="kn">from</span> <span class="nn">header</span> <span class="n">lines</span><span class="p">;</span> <span class="n">an</span> <span class="n">exception</span> <span class="ow">is</span> <span class="n">raised</span> <span class="k">if</span> <span class="n">keys</span> <span class="n">are</span> <span class="n">repeated</span> <span class="n">across</span> <span class="n">header</span> <span class="n">lines</span><span class="o">.</span>
+<span class="o">//</span> <span class="n">The</span> <span class="n">following</span> <span class="n">header</span> <span class="n">key</span> <span class="ow">is</span> <span class="n">required</span><span class="p">;</span> <span class="n">it</span> <span class="n">gives</span> <span class="n">the</span> <span class="n">marginal</span> <span class="n">error</span> <span class="n">probability</span> <span class="n">per</span> <span class="n">qubit</span><span class="o">.</span>
+<span class="p">{</span><span class="s2">&quot;probability&quot;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">}</span>
+<span class="o">//</span> <span class="n">The</span> <span class="n">following</span> <span class="n">header</span> <span class="n">key</span> <span class="ow">is</span> <span class="n">required</span><span class="p">;</span> <span class="n">it</span> <span class="n">identifies</span> <span class="n">the</span> <span class="n">algorithm</span><span class="o">/</span><span class="n">parameters</span> <span class="n">used</span> <span class="n">to</span> <span class="n">generate</span> <span class="n">the</span> <span class="n">errors</span><span class="o">.</span>
+<span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Biased (bias=10)&quot;</span><span class="p">}</span>
+<span class="o">//</span> <span class="n">The</span> <span class="n">following</span> <span class="n">header</span> <span class="n">key</span> <span class="ow">is</span> <span class="n">desirable</span><span class="p">;</span> <span class="n">it</span> <span class="n">gives</span> <span class="n">the</span> <span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">)</span> <span class="n">marginal</span> <span class="n">probability</span> <span class="n">distribution</span> <span class="n">per</span> <span class="n">qubit</span><span class="o">.</span>
+<span class="p">{</span><span class="s2">&quot;probability_distribution&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.018181818181818184</span><span class="p">,</span> <span class="mf">0.36363636363636365</span><span class="p">,</span> <span class="mf">0.018181818181818184</span><span class="p">]}</span>
+<span class="o">//</span> <span class="n">Additional</span> <span class="n">header</span> <span class="n">keys</span> <span class="n">are</span> <span class="n">optional</span><span class="p">;</span> <span class="n">they</span> <span class="n">are</span> <span class="n">added</span> <span class="k">as</span> <span class="n">properties</span> <span class="n">to</span> <span class="n">the</span> <span class="n">error</span> <span class="n">model</span><span class="o">.</span>
+<span class="p">{</span><span class="s2">&quot;bias&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+<span class="o">//</span> <span class="n">All</span> <span class="n">header</span> <span class="n">lines</span> <span class="n">must</span> <span class="n">appear</span> <span class="n">before</span> <span class="n">body</span> <span class="n">lines</span><span class="o">.</span>
+<span class="o">//</span>
+<span class="o">//</span> <span class="n">Body</span> <span class="n">lines</span> <span class="n">are</span> <span class="n">JSON</span> <span class="n">lists</span> <span class="n">containing</span> <span class="n">a</span> <span class="n">single</span> <span class="n">error</span> <span class="n">per</span> <span class="n">line</span><span class="o">.</span>
+<span class="o">//</span> <span class="n">Each</span> <span class="n">error</span> <span class="n">unpacked</span> <span class="n">using</span> <span class="n">qecsim</span><span class="o">.</span><span class="n">paulitools</span><span class="o">.</span><span class="n">unpack</span> <span class="n">into</span> <span class="n">a</span> <span class="n">NumPy</span> <span class="n">array</span> <span class="ow">in</span> <span class="n">binary</span> <span class="n">symplectic</span> <span class="n">form</span><span class="o">.</span>
+<span class="o">//</span> <span class="p">(</span><span class="n">The</span> <span class="n">following</span> <span class="n">errors</span> <span class="n">are</span> <span class="n">suitable</span> <span class="k">for</span> <span class="n">the</span> <span class="n">qecsim</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">FiveQubitCode</span><span class="p">)</span>
+<span class="p">[</span><span class="s2">&quot;f380&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="p">[</span><span class="s2">&quot;2940&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="p">[</span><span class="s2">&quot;ce00&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="p">[</span><span class="s2">&quot;7bc0&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="p">[</span><span class="s2">&quot;8400&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="p">[</span><span class="s2">&quot;5280&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="p">[</span><span class="s2">&quot;1080&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="p">[</span><span class="s2">&quot;d680&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="p">[</span><span class="s2">&quot;4a40&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="p">[</span><span class="s2">&quot;4a40&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Header key “probability” is used to validate the error probability assumed in simulations matches that of the
+generated errors.</p></li>
+<li><p>Header key “label” is used to identify simulations that can be merged for statistical purposes.</p></li>
+<li><p>Header key “probability_distribution” is used to make that information available to decoders that make use of it.</p></li>
+<li><p>Extra header keys are made available as object attributes to decoders that make use of them. The key format must
+be a valid Python attribute name, not start with an underscore, and not shadow an existing attribute.</p></li>
+</ul>
+<dl class="py method">
+<dt id="qecsim.models.generic.FileErrorModel.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.FileErrorModel.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise new file error model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em><em> or </em><em>path-like</em>) – Name of file containing generated errors.</p></li>
+<li><p><strong>start</strong> (<em>int</em>) – Index of first error to serve. (default=0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – if start is not &gt;=0.</p></li>
+<li><p><strong>OSError</strong> – if filename cannot be opened for reading.</p></li>
+<li><p><strong>ValueError</strong> – if file parsing fails.</p></li>
+<li><p><strong>EOFError</strong> – if start error unavailable.</p></li>
+<li><p><strong>TypeError</strong> – if any parameter is of an invalid type.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.FileErrorModel.generate">
+<code class="sig-name descname">generate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">probability</span></em>, <em class="sig-param"><span class="n">rng</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.FileErrorModel.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return next error from file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<a class="reference internal" href="../model.html#qecsim.model.StabilizerCode" title="qecsim.model.StabilizerCode"><em>StabilizerCode</em></a>) – Stabilizer code.</p></li>
+<li><p><strong>probability</strong> (<em>float</em>) – Overall probability of an error on a single qubit.</p></li>
+<li><p><strong>rng</strong> (<em>numpy.random.Generator</em>) – Random number generator. (default=None, ignored)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Next error as binary symplectic vector.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array (1d)</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – if probability does not equal probability given in file header.</p></li>
+<li><p><strong>EOFError</strong> – if next error unavailable.</p></li>
+<li><p><strong>ValueError</strong> – if file parsing fails.</p></li>
+<li><p><strong>ValueError</strong> – if length of error is inconsistent with number of qubits in code.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.FileErrorModel.label">
+<em class="property">property </em><code class="sig-name descname">label</code><a class="headerlink" href="#qecsim.models.generic.FileErrorModel.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.label" title="qecsim.model.ErrorModel.label"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.label()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.FileErrorModel.probability_distribution">
+<code class="sig-name descname">probability_distribution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">probability</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.FileErrorModel.probability_distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the single-qubit probability distribution amongst Pauli I, X, Y and Z.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>probability</strong> (<em>float</em>) – Overall probability of an error on a single qubit.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Tuple of probability distribution in the format (Pr(I), Pr(X), Pr(Y), Pr(Z)).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>4-tuple of float</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – if probability does not equal probability given in file header.</p></li>
+<li><p><strong>ValueError</strong> – if probability_distribution not given in file header.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="qecsim-models-generic-phasefliperrormodel">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.PhaseFlipErrorModel</span></code><a class="headerlink" href="#qecsim-models-generic-phasefliperrormodel" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.models.generic.PhaseFlipErrorModel">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.models.generic.</code><code class="sig-name descname">PhaseFlipErrorModel</code><a class="headerlink" href="#qecsim.models.generic.PhaseFlipErrorModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.generic._simpleerrormodel.SimpleErrorModel</span></code></p>
+<p>Implements a phase-flip error model.</p>
+<p>The probability distribution for a given error probability p is:</p>
+<ul class="simple">
+<li><p>(1 - p): I (i.e. no error)</p></li>
+<li><p>0: X</p></li>
+<li><p>0: Y</p></li>
+<li><p>p: Z</p></li>
+</ul>
+<dl class="py method">
+<dt id="qecsim.models.generic.PhaseFlipErrorModel.generate">
+<code class="sig-name descname">generate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">probability</span></em>, <em class="sig-param"><span class="n">rng</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.PhaseFlipErrorModel.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.generate" title="qecsim.model.ErrorModel.generate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.generate()</span></code></a></p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>This method delegates to <a class="reference internal" href="#qecsim.models.generic.PhaseFlipErrorModel.probability_distribution" title="qecsim.models.generic.PhaseFlipErrorModel.probability_distribution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">probability_distribution()</span></code></a> to find the probability of I, X, Y, Z operators on
+each qubit, assuming an IID error model.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.PhaseFlipErrorModel.label">
+<em class="property">property </em><code class="sig-name descname">label</code><a class="headerlink" href="#qecsim.models.generic.PhaseFlipErrorModel.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.label" title="qecsim.model.ErrorModel.label"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.label()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.PhaseFlipErrorModel.probability_distribution">
+<code class="sig-name descname">probability_distribution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">probability</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.PhaseFlipErrorModel.probability_distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.ErrorModel.probability_distribution" title="qecsim.model.ErrorModel.probability_distribution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel.probability_distribution()</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="qecsim-models-generic-naivedecoder">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.models.generic.NaiveDecoder</span></code><a class="headerlink" href="#qecsim-models-generic-naivedecoder" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.models.generic.NaiveDecoder">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.models.generic.</code><code class="sig-name descname">NaiveDecoder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">max_qubits</span><span class="o">=</span><span class="default_value">10</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.NaiveDecoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../model.html#qecsim.model.Decoder" title="qecsim.model.Decoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.Decoder</span></code></a></p>
+<p>Implements a naive decoder.</p>
+<p>Decoding algorithm:</p>
+<ul class="simple">
+<li><p>Naively iterate through all possible errors, in ascending weight, and resolve to the first error that matches
+the syndrome.</p></li>
+</ul>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Slow for large numbers of qubits and high weights.</p></li>
+</ul>
+<dl class="py method">
+<dt id="qecsim.models.generic.NaiveDecoder.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">max_qubits</span><span class="o">=</span><span class="default_value">10</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.NaiveDecoder.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise new naive decoder.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>As this decoder is slow for large number of qubits, it is restricted by default. Set max_qubits to override.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>max_qubits</strong> (<em>int</em><em> or </em><em>None</em>) – Maximum supported number of physical qubits. (default=10, unrestricted=falsy)</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – if max_qubits is not falsy or &gt; 0.</p></li>
+<li><p><strong>TypeError</strong> – if any parameter is of an invalid type.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.NaiveDecoder.decode">
+<code class="sig-name descname">decode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">syndrome</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.generic.NaiveDecoder.decode" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.Decoder.decode" title="qecsim.model.Decoder.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.Decoder.decode()</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – if qubits in code exceeds max_qubits.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.generic.NaiveDecoder.label">
+<em class="property">property </em><code class="sig-name descname">label</code><a class="headerlink" href="#qecsim.models.generic.NaiveDecoder.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.Decoder.label" title="qecsim.model.Decoder.label"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.Decoder.label()</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="planar.html" class="btn btn-neutral float-right" title="models.planar: planar stabilizer codes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="color.html" class="btn btn-neutral float-left" title="models.color: color stabilizer codes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2016 - 2021, David K. Tuckett.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

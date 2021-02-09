@@ -1,0 +1,388 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Overview &mdash; qecsim 1.0b8 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="qecsim - Quantum Error Correction Simulator" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> qecsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0b8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+        
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#components">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#implementations">Implementations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demos.html">Demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="links.html">Links</a></li>
+</ul>
+
+            
+          
+        <a href="genindex.html">Index</a>
+        <a href="py-modindex.html">Module Index</a>
+    
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">qecsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Overview</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-qecsim">
+<span id="overview"></span><h1>Overview<a class="headerlink" href="#module-qecsim" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>qecsim is a Python 3 package for simulating quantum error correction using stabilizer codes.</p>
+<p>It is lightweight, modular and extensible, allowing additional codes, error models and decoders to be plugged in.</p>
+</div>
+<div class="section" id="components">
+<h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
+<p>qecsim includes three key abstract classes: <a class="reference internal" href="api/model.html#qecsim.model.StabilizerCode" title="qecsim.model.StabilizerCode"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.StabilizerCode</span></code></a>, <a class="reference internal" href="api/model.html#qecsim.model.ErrorModel" title="qecsim.model.ErrorModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel</span></code></a> and
+<a class="reference internal" href="api/model.html#qecsim.model.Decoder" title="qecsim.model.Decoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.Decoder</span></code></a>.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>StabilizerCode</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">n_k_d</div>
+<div class="line">stabilizers</div>
+<div class="line">logical_xs</div>
+<div class="line">logical_zs</div>
+<div class="line">logicals</div>
+<div class="line"><br /></div>
+<div class="line">validate()</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>ErrorModel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">probability_distribution(probability):tuple</div>
+<div class="line">generate(code, probability):error</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Decoder</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">decode(syndrome):recovery</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>A simulation run is executed by passing implementations of the key classes, along with an <code class="docutils literal notranslate"><span class="pre">error_probability</span></code> to the
+function <a class="reference internal" href="api/app.html#qecsim.app.run_once" title="qecsim.app.run_once"><code class="xref py py-func docutils literal notranslate"><span class="pre">qecsim.app.run_once()</span></code></a>.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>app</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">run_once(code, error_model, decoder, error_probability):run_data</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line">1. <span class="math notranslate nohighlight">\(S \leftarrow\)</span> code.stabilizers</div>
+<div class="line">2. <span class="math notranslate nohighlight">\(L \leftarrow\)</span> code.logicals</div>
+<div class="line">3. <span class="math notranslate nohighlight">\(e \leftarrow\)</span> error_model.generate(code, error_probability)</div>
+<div class="line">4. <span class="math notranslate nohighlight">\(y \leftarrow e \odot S^T\)</span></div>
+<div class="line">5. <span class="math notranslate nohighlight">\(r \leftarrow\)</span> decoder.decode(code, <span class="math notranslate nohighlight">\(y\)</span>)</div>
+<div class="line">6. sanity check <span class="math notranslate nohighlight">\(r \odot S^T = y\)</span></div>
+<div class="line">7. success <span class="math notranslate nohighlight">\(\iff (r \oplus e) \odot L^T = 0\)</span></div>
+<div class="line"><br /></div>
+</div>
+<div class="line">run(code, error_model, decoder, error_probabilities, max_runs, max_failures):runs_data</div>
+<div class="line"><br /></div>
+<div class="line">merge(runs_data_list, …):runs_data_list</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>The binary symplectic product <span class="math notranslate nohighlight">\(\odot\)</span> is defined as <span class="math notranslate nohighlight">\(A \odot B \equiv A \Lambda B \bmod 2\)</span> where
+<span class="math notranslate nohighlight">\(\Lambda = \left[\begin{matrix} 0 &amp; I \\ I &amp; 0 \end{matrix}\right]\)</span>.</p></li>
+<li><p>Pauli operators - <code class="docutils literal notranslate"><span class="pre">stabilizers</span></code>, <code class="docutils literal notranslate"><span class="pre">logicals</span></code>, <code class="docutils literal notranslate"><span class="pre">error</span></code>, <code class="docutils literal notranslate"><span class="pre">recovery</span></code> - are represented in binary symplectic form
+by NumPy arrays:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>  <span class="c1"># [0 0 1 1 | 0 1 1 0] = IZYX</span>
+</pre></div>
+</div>
+</li>
+<li><p>The <a class="reference internal" href="api/app.html#module-qecsim.app" title="qecsim.app"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qecsim.app</span></code></a> module also includes functions to execute fault-tolerant simulations, see
+<a class="reference internal" href="api/app.html#qecsim.app.run_once_ftp" title="qecsim.app.run_once_ftp"><code class="xref py py-func docutils literal notranslate"><span class="pre">qecsim.app.run_once_ftp()</span></code></a> and <a class="reference internal" href="api/app.html#qecsim.app.run_ftp" title="qecsim.app.run_ftp"><code class="xref py py-func docutils literal notranslate"><span class="pre">qecsim.app.run_ftp()</span></code></a>, which delegate to a fault-tolerant decoder
+implementation of <a class="reference internal" href="api/model.html#qecsim.model.DecoderFTP" title="qecsim.model.DecoderFTP"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.DecoderFTP</span></code></a>.</p></li>
+<li><p>The <a class="reference internal" href="api/paulitools.html#module-qecsim.paulitools" title="qecsim.paulitools"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qecsim.paulitools</span></code></a> module provides utility functions for manipulating Pauli operators in string and binary
+symplectic form.</p></li>
+<li><p>The <a class="reference internal" href="api/graphtools.html#module-qecsim.graphtools" title="qecsim.graphtools"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qecsim.graphtools</span></code></a> and <a class="reference internal" href="api/tensortools.html#module-qecsim.tensortools" title="qecsim.tensortools"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qecsim.tensortools</span></code></a> modules provide support for graph matching and tensor
+network contraction as used by some decoder implementations.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="implementations">
+<h2>Implementations<a class="headerlink" href="#implementations" title="Permalink to this headline">¶</a></h2>
+<p>Stablizer code implementations include:</p>
+<ul class="simple">
+<li><p>5-qubit code <a class="reference internal" href="api/models/basic.html#qecsim.models.basic.FiveQubitCode" title="qecsim.models.basic.FiveQubitCode"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.basic.FiveQubitCode</span></code></a></p></li>
+<li><p>7-qubit Steane code <a class="reference internal" href="api/models/basic.html#qecsim.models.basic.SteaneCode" title="qecsim.models.basic.SteaneCode"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.basic.SteaneCode</span></code></a></p></li>
+<li><p>Color 6.6.6 code <a class="reference internal" href="api/models/color.html#qecsim.models.color.Color666Code" title="qecsim.models.color.Color666Code"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.color.Color666Code</span></code></a></p></li>
+<li><p>Planar code <a class="reference internal" href="api/models/planar.html#qecsim.models.planar.PlanarCode" title="qecsim.models.planar.PlanarCode"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarCode</span></code></a></p></li>
+<li><p>Rotated planar code <a class="reference internal" href="api/models/rotatedplanar.html#qecsim.models.rotatedplanar.RotatedPlanarCode" title="qecsim.models.rotatedplanar.RotatedPlanarCode"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.rotatedplanar.RotatedPlanarCode</span></code></a></p></li>
+<li><p>Rotated toric code <a class="reference internal" href="api/models/rotatedtoric.html#qecsim.models.rotatedtoric.RotatedToricCode" title="qecsim.models.rotatedtoric.RotatedToricCode"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.rotatedtoric.RotatedToricCode</span></code></a></p></li>
+<li><p>Toric code <a class="reference internal" href="api/models/toric.html#qecsim.models.toric.ToricCode" title="qecsim.models.toric.ToricCode"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.toric.ToricCode</span></code></a></p></li>
+</ul>
+<p>Error model implementations include:</p>
+<ul class="simple">
+<li><p>Biased-depolarizing error model <a class="reference internal" href="api/models/generic.html#qecsim.models.generic.BiasedDepolarizingErrorModel" title="qecsim.models.generic.BiasedDepolarizingErrorModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.generic.BiasedDepolarizingErrorModel</span></code></a></p></li>
+<li><p>Biased-Y-X error model <a class="reference internal" href="api/models/generic.html#qecsim.models.generic.BiasedYXErrorModel" title="qecsim.models.generic.BiasedYXErrorModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.generic.BiasedYXErrorModel</span></code></a></p></li>
+<li><p>Bit-flip error model <a class="reference internal" href="api/models/generic.html#qecsim.models.generic.BitFlipErrorModel" title="qecsim.models.generic.BitFlipErrorModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.generic.BitFlipErrorModel</span></code></a></p></li>
+<li><p>Bit-phase-flip error model <a class="reference internal" href="api/models/generic.html#qecsim.models.generic.BitPhaseFlipErrorModel" title="qecsim.models.generic.BitPhaseFlipErrorModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.generic.BitPhaseFlipErrorModel</span></code></a></p></li>
+<li><p>Center slice error model <a class="reference internal" href="api/models/generic.html#qecsim.models.generic.CenterSliceErrorModel" title="qecsim.models.generic.CenterSliceErrorModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.generic.CenterSliceErrorModel</span></code></a></p></li>
+<li><p>Depolarizing error model <a class="reference internal" href="api/models/generic.html#qecsim.models.generic.DepolarizingErrorModel" title="qecsim.models.generic.DepolarizingErrorModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.generic.DepolarizingErrorModel</span></code></a></p></li>
+<li><p>File error model <a class="reference internal" href="api/models/generic.html#qecsim.models.generic.FileErrorModel" title="qecsim.models.generic.FileErrorModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.generic.FileErrorModel</span></code></a></p></li>
+<li><p>Phase-flip error model <a class="reference internal" href="api/models/generic.html#qecsim.models.generic.PhaseFlipErrorModel" title="qecsim.models.generic.PhaseFlipErrorModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.generic.PhaseFlipErrorModel</span></code></a></p></li>
+</ul>
+<p>Decoder implementations include:</p>
+<ul class="simple">
+<li><p>Color 6.6.6 MPS decoder <a class="reference internal" href="api/models/color.html#qecsim.models.color.Color666MPSDecoder" title="qecsim.models.color.Color666MPSDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.color.Color666MPSDecoder</span></code></a></p></li>
+<li><p>Naive decoder <a class="reference internal" href="api/models/generic.html#qecsim.models.generic.NaiveDecoder" title="qecsim.models.generic.NaiveDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.generic.NaiveDecoder</span></code></a></p></li>
+<li><p>Planar Converging MWPM decoder <a class="reference internal" href="api/models/planar.html#qecsim.models.planar.PlanarCMWPMDecoder" title="qecsim.models.planar.PlanarCMWPMDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarCMWPMDecoder</span></code></a></p></li>
+<li><p>Planar MPS decoder <a class="reference internal" href="api/models/planar.html#qecsim.models.planar.PlanarMPSDecoder" title="qecsim.models.planar.PlanarMPSDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarMPSDecoder</span></code></a></p></li>
+<li><p>Planar MWPM decoder <a class="reference internal" href="api/models/planar.html#qecsim.models.planar.PlanarMWPMDecoder" title="qecsim.models.planar.PlanarMWPMDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarMWPMDecoder</span></code></a></p></li>
+<li><p>Planar Rotated MPS decoder <a class="reference internal" href="api/models/planar.html#qecsim.models.planar.PlanarRMPSDecoder" title="qecsim.models.planar.PlanarRMPSDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarRMPSDecoder</span></code></a></p></li>
+<li><p>Planar Y-noise decoder <a class="reference internal" href="api/models/planar.html#qecsim.models.planar.PlanarYDecoder" title="qecsim.models.planar.PlanarYDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarYDecoder</span></code></a></p></li>
+<li><p>Rotated planar MPS decoder <a class="reference internal" href="api/models/rotatedplanar.html#qecsim.models.rotatedplanar.RotatedPlanarMPSDecoder" title="qecsim.models.rotatedplanar.RotatedPlanarMPSDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.rotatedplanar.RotatedPlanarMPSDecoder</span></code></a></p></li>
+<li><p>Rotated planar Rotated MPS decoder <a class="reference internal" href="api/models/rotatedplanar.html#qecsim.models.rotatedplanar.RotatedPlanarRMPSDecoder" title="qecsim.models.rotatedplanar.RotatedPlanarRMPSDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.rotatedplanar.RotatedPlanarRMPSDecoder</span></code></a></p></li>
+<li><p>Rotated planar Symmetry MWPM decoder <a class="reference internal" href="api/models/rotatedplanar.html#qecsim.models.rotatedplanar.RotatedPlanarSMWPMDecoder" title="qecsim.models.rotatedplanar.RotatedPlanarSMWPMDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.rotatedplanar.RotatedPlanarSMWPMDecoder</span></code></a></p></li>
+<li><p>Rotated toric Symmetry MWPM decoder <a class="reference internal" href="api/models/rotatedtoric.html#qecsim.models.rotatedtoric.RotatedToricSMWPMDecoder" title="qecsim.models.rotatedtoric.RotatedToricSMWPMDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.rotatedtoric.RotatedToricSMWPMDecoder</span></code></a></p></li>
+<li><p>Toric MWPM decoder <a class="reference internal" href="api/models/toric.html#qecsim.models.toric.ToricMWPMDecoder" title="qecsim.models.toric.ToricMWPMDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.toric.ToricMWPMDecoder</span></code></a></p></li>
+</ul>
+<p>Further implementations can be added by extending the key abstract models.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="qecsim - Quantum Error Correction Simulator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2016 - 2021, David K. Tuckett.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

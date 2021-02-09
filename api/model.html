@@ -1,0 +1,645 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>model: abstract base classes &mdash; qecsim 1.0b8 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="models.basic: basic stabilizer codes" href="models/basic.html" />
+    <link rel="prev" title="graphtools: graph tools" href="graphtools.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> qecsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0b8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+        
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demos.html">Demos</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="app.html">app: application functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">cli: command-line interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error.html">error: error classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphtools.html">graphtools: graph tools</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">model: abstract base classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-qecsim.model"><code class="docutils literal notranslate"><span class="pre">qecsim.model</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-model-stabilizercode"><code class="docutils literal notranslate"><span class="pre">qecsim.model.StabilizerCode</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-model-errormodel"><code class="docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-model-decoder"><code class="docutils literal notranslate"><span class="pre">qecsim.model.Decoder</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-model-decoderftp"><code class="docutils literal notranslate"><span class="pre">qecsim.model.DecoderFTP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-model-decoderesult"><code class="docutils literal notranslate"><span class="pre">qecsim.model.DecodeResult</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-model-cli-description"><code class="docutils literal notranslate"><span class="pre">qecsim.model.cli_description</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models/basic.html">models.basic: basic stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models/color.html">models.color: color stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models/generic.html">models.generic: generic error models and decoders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models/planar.html">models.planar: planar stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models/rotatedplanar.html">models.rotatedplanar: rotated planar stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models/rotatedtoric.html">models.rotatedtoric: rotated toric stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models/toric.html">models.toric: toric stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="paulitools.html">paulitools: pauli and binary symplectic tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tensortools.html">tensortools: tensor tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="util.html">util: utilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citing.html">Citing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../links.html">Links</a></li>
+</ul>
+
+            
+          
+        <a href="../genindex.html">Index</a>
+        <a href="../py-modindex.html">Module Index</a>
+    
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">qecsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../api.html">API</a> &raquo;</li>
+        
+      <li>model: abstract base classes</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="model-abstract-base-classes">
+<h1>model: abstract base classes<a class="headerlink" href="#model-abstract-base-classes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-qecsim.model">
+<span id="qecsim-model"></span><h2><code class="docutils literal notranslate"><span class="pre">qecsim.model</span></code><a class="headerlink" href="#module-qecsim.model" title="Permalink to this headline">¶</a></h2>
+<p>This module contains base classes relevant to simulating stabilizer codes and a CLI description class decorator.</p>
+</div>
+<div class="section" id="qecsim-model-stabilizercode">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.model.StabilizerCode</span></code><a class="headerlink" href="#qecsim-model-stabilizercode" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.model.StabilizerCode">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.model.</code><code class="sig-name descname">StabilizerCode</code><a class="headerlink" href="#qecsim.model.StabilizerCode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines stabilizer code properties and methods.</p>
+<p>This class cannot be instantiated directly, see <a class="reference internal" href="models/basic.html#qecsim.models.basic.FiveQubitCode" title="qecsim.models.basic.FiveQubitCode"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.basic.FiveQubitCode</span></code></a> for an example
+implementation.</p>
+<dl class="py method">
+<dt id="qecsim.model.StabilizerCode.label">
+<em class="property">abstract property </em><code class="sig-name descname">label</code><a class="headerlink" href="#qecsim.model.StabilizerCode.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Label suitable for use in plots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.model.StabilizerCode.logical_xs">
+<em class="property">abstract property </em><code class="sig-name descname">logical_xs</code><a class="headerlink" href="#qecsim.model.StabilizerCode.logical_xs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logical X operators as binary symplectic vector or matrix.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Each row is a logical X operator.</p></li>
+<li><p>The order of logical X operators matches that of logical Z operators given by <a class="reference internal" href="#qecsim.model.StabilizerCode.logical_zs" title="qecsim.model.StabilizerCode.logical_zs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logical_zs()</span></code></a>, with one for
+each logical qubit.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array (1d or 2d)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.model.StabilizerCode.logical_zs">
+<em class="property">abstract property </em><code class="sig-name descname">logical_zs</code><a class="headerlink" href="#qecsim.model.StabilizerCode.logical_zs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logical Z operators as binary symplectic vector or matrix.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Each row is a logical Z operator.</p></li>
+<li><p>The order of logical Z operators matches that of logical X operators given by <a class="reference internal" href="#qecsim.model.StabilizerCode.logical_xs" title="qecsim.model.StabilizerCode.logical_xs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logical_xs()</span></code></a>, with one for
+each logical qubit.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array (1d or 2d)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.model.StabilizerCode.logicals">
+<em class="property">property </em><code class="sig-name descname">logicals</code><a class="headerlink" href="#qecsim.model.StabilizerCode.logicals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logical operators as binary symplectic matrix.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Each row is a logical operator.</p></li>
+<li><p>All logical X operators are stacked above all logical Z operators, in the order given by <a class="reference internal" href="#qecsim.model.StabilizerCode.logical_xs" title="qecsim.model.StabilizerCode.logical_xs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logical_xs()</span></code></a>
+and <a class="reference internal" href="#qecsim.model.StabilizerCode.logical_zs" title="qecsim.model.StabilizerCode.logical_zs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logical_zs()</span></code></a>.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array (2d)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.model.StabilizerCode.n_k_d">
+<em class="property">abstract property </em><code class="sig-name descname">n_k_d</code><a class="headerlink" href="#qecsim.model.StabilizerCode.n_k_d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Descriptor of the code in the format (n, k, d).</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>n == number of physical qubits.</p></li>
+<li><p>k == number of logical qubits.</p></li>
+<li><p>d == distance of the code. (Optional. None if not known).</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>3-tuple of int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.model.StabilizerCode.stabilizers">
+<em class="property">abstract property </em><code class="sig-name descname">stabilizers</code><a class="headerlink" href="#qecsim.model.StabilizerCode.stabilizers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stabilizer generators as binary symplectic vector or matrix.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Each row is a stabilizer generator.</p></li>
+<li><p>The set must include at least a full set of generators but it may include additional stabilizers to simplify
+the decoding of syndromes. (E.g. all plaquette / vertex stabilizers on a surface code).</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array (1d or 2d)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.model.StabilizerCode.validate">
+<code class="sig-name descname">validate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.model.StabilizerCode.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform various sanity checks.</p>
+<p>Sanity checks:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(stabilizers \odot stabilisers^T = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(stabilizers \odot logicals^T = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(logicals \odot logicals^T = \Lambda\)</span></p></li>
+</ul>
+<p>See <a class="reference internal" href="paulitools.html#qecsim.paulitools.bsp" title="qecsim.paulitools.bsp"><code class="xref py py-func docutils literal notranslate"><span class="pre">qecsim.paulitools.bsp()</span></code></a> for definition of <span class="math notranslate nohighlight">\(\odot\)</span> and <span class="math notranslate nohighlight">\(\Lambda\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="error.html#qecsim.error.QecsimError" title="qecsim.error.QecsimError"><strong>QecsimError</strong></a> – if the stabilizers or logicals fail the sanity checks.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="qecsim-model-errormodel">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.model.ErrorModel</span></code><a class="headerlink" href="#qecsim-model-errormodel" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.model.ErrorModel">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.model.</code><code class="sig-name descname">ErrorModel</code><a class="headerlink" href="#qecsim.model.ErrorModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines error model properties and methods.</p>
+<p>This class cannot be instantiated directly, see <a class="reference internal" href="models/generic.html#qecsim.models.generic.DepolarizingErrorModel" title="qecsim.models.generic.DepolarizingErrorModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.generic.DepolarizingErrorModel</span></code></a> for an example
+implementation.</p>
+<dl class="py method">
+<dt id="qecsim.model.ErrorModel.generate">
+<em class="property">abstract </em><code class="sig-name descname">generate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">probability</span></em>, <em class="sig-param"><span class="n">rng</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.model.ErrorModel.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate new error.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<a class="reference internal" href="#qecsim.model.StabilizerCode" title="qecsim.model.StabilizerCode"><em>StabilizerCode</em></a>) – Stabilizer code.</p></li>
+<li><p><strong>probability</strong> (<em>float</em>) – Overall probability of an error on a single qubit.</p></li>
+<li><p><strong>rng</strong> (<em>numpy.random.Generator</em>) – Random number generator. (default=None resolves to numpy.random.default_rng())</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>New error as binary symplectic vector.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array (1d)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.model.ErrorModel.label">
+<em class="property">abstract property </em><code class="sig-name descname">label</code><a class="headerlink" href="#qecsim.model.ErrorModel.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Label suitable for use in plots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.model.ErrorModel.probability_distribution">
+<code class="sig-name descname">probability_distribution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">probability</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.model.ErrorModel.probability_distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the single-qubit probability distribution amongst Pauli I, X, Y and Z.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Implementing this method is <strong>optional</strong>. It is <strong>not</strong> invoked by any core modules. By default, it raises
+<code class="xref py py-class docutils literal notranslate"><span class="pre">NotImplementedError</span></code>.</p></li>
+<li><p>Since this method is often useful for decoders, it is provided as a template and subclasses are encouraged to
+implement it when appropriate, particularly for IID error models.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>probability</strong> (<em>float</em>) – Overall probability of an error on a single qubit.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Tuple of probability distribution in the format (Pr(I), Pr(X), Pr(Y), Pr(Z)).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>4-tuple of float</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>NotImplementedError</strong> – Unless implemented in a subclass.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="qecsim-model-decoder">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.model.Decoder</span></code><a class="headerlink" href="#qecsim-model-decoder" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.model.Decoder">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.model.</code><code class="sig-name descname">Decoder</code><a class="headerlink" href="#qecsim.model.Decoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines decoder properties and methods.</p>
+<p>This class cannot be instantiated directly, see <a class="reference internal" href="models/generic.html#qecsim.models.generic.NaiveDecoder" title="qecsim.models.generic.NaiveDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.generic.NaiveDecoder</span></code></a> for an example
+implementation.</p>
+<dl class="py method">
+<dt id="qecsim.model.Decoder.decode">
+<em class="property">abstract </em><code class="sig-name descname">decode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">syndrome</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.model.Decoder.decode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resolve recovery operation for given syndrome.</p>
+<p>Assumptions:</p>
+<ul class="simple">
+<li><p>The syndrome has length equal to the number of stabilizers.</p></li>
+<li><p>A syndrome element value of 0 or 1 indicates that the corresponding stabilizer commutes or does not commute
+with the error, respectively.</p></li>
+</ul>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>The keyword parameters <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> may be provided by the client with context values such as <cite>error_model</cite>,
+<cite>error_probability</cite> and <cite>error</cite>, see <a class="reference internal" href="app.html#qecsim.app.run_once" title="qecsim.app.run_once"><code class="xref py py-func docutils literal notranslate"><span class="pre">qecsim.app.run_once()</span></code></a>. Most implementations will ignore such
+parameters; however, if they are used, implementations should declare them explicitly and treat them as
+optional.</p></li>
+<li><p>This method typically returns a recovery operation but it may, alternatively, return <a class="reference internal" href="#qecsim.model.DecodeResult" title="qecsim.model.DecodeResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">DecodeResult</span></code></a>
+to indicate success/failure more explicitly.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<a class="reference internal" href="#qecsim.model.StabilizerCode" title="qecsim.model.StabilizerCode"><em>StabilizerCode</em></a>) – Stabilizer code.</p></li>
+<li><p><strong>syndrome</strong> (<em>numpy.array</em><em> (</em><em>1d</em><em>)</em>) – Syndrome as binary vector.</p></li>
+<li><p><strong>kwargs</strong> (<em>dict</em>) – Optional context parameters passed by a client.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Recovery operation as binary symplectic vector, or decode result indicating recovery success.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array (1d) or <a class="reference internal" href="#qecsim.model.DecodeResult" title="qecsim.model.DecodeResult">DecodeResult</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.model.Decoder.label">
+<em class="property">abstract property </em><code class="sig-name descname">label</code><a class="headerlink" href="#qecsim.model.Decoder.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Label suitable for use in plots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="qecsim-model-decoderftp">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.model.DecoderFTP</span></code><a class="headerlink" href="#qecsim-model-decoderftp" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.model.DecoderFTP">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.model.</code><code class="sig-name descname">DecoderFTP</code><a class="headerlink" href="#qecsim.model.DecoderFTP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines (fault-tolerant time-periodic) decoder properties and methods.</p>
+<p>This class cannot be instantiated directly, see <a class="reference internal" href="models/rotatedtoric.html#qecsim.models.rotatedtoric.RotatedToricSMWPMDecoder" title="qecsim.models.rotatedtoric.RotatedToricSMWPMDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.rotatedtoric.RotatedToricSMWPMDecoder</span></code></a> for an
+example implementation.</p>
+<dl class="py method">
+<dt id="qecsim.model.DecoderFTP.decode_ftp">
+<em class="property">abstract </em><code class="sig-name descname">decode_ftp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">time_steps</span></em>, <em class="sig-param"><span class="n">syndrome</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.model.DecoderFTP.decode_ftp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resolve recovery operation for given (fault-tolerant time-periodic) syndrome.</p>
+<p>Assumptions:</p>
+<ul class="simple">
+<li><p>The syndrome has shape (number of time steps, number of stabilizers).</p></li>
+<li><p>In the absence of a measurement error, a syndrome element value of 0 or 1 indicates that the corresponding
+stabilizer commutes or does not commute with the error, respectively.</p></li>
+<li><p>The presence of a measurement error inverts the value of the corresponding syndrome element.</p></li>
+</ul>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>The keyword parameters <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> may be provided by the client with context values such as <cite>error_model</cite>,
+<cite>error_probability</cite>, <cite>error</cite>, <cite>step_errors</cite>, <cite>measurement_error_probability</cite> and <cite>step_measurement_errors</cite>,
+see <a class="reference internal" href="app.html#qecsim.app.run_once_ftp" title="qecsim.app.run_once_ftp"><code class="xref py py-func docutils literal notranslate"><span class="pre">qecsim.app.run_once_ftp()</span></code></a>. Most implementations will ignore such parameters; however, if they are
+used, implementations should declare them explicitly and treat them as optional.</p></li>
+<li><p>This method typically returns a recovery operation but it may, alternatively, return <a class="reference internal" href="#qecsim.model.DecodeResult" title="qecsim.model.DecodeResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">DecodeResult</span></code></a>
+to indicate success/failure more explicitly.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<a class="reference internal" href="#qecsim.model.StabilizerCode" title="qecsim.model.StabilizerCode"><em>StabilizerCode</em></a>) – Stabilizer code.</p></li>
+<li><p><strong>time_steps</strong> (<em>int</em>) – Number of time steps.</p></li>
+<li><p><strong>syndrome</strong> (<em>numpy.array</em><em> (</em><em>2d</em><em>)</em>) – Syndrome as binary array.</p></li>
+<li><p><strong>kwargs</strong> (<em>dict</em>) – Optional context parameters passed by a client.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Recovery operation as binary symplectic vector, or decode result indicating recovery success.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array (1d) or <a class="reference internal" href="#qecsim.model.DecodeResult" title="qecsim.model.DecodeResult">DecodeResult</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.model.DecoderFTP.label">
+<em class="property">abstract property </em><code class="sig-name descname">label</code><a class="headerlink" href="#qecsim.model.DecoderFTP.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Label suitable for use in plots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="qecsim-model-decoderesult">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.model.DecodeResult</span></code><a class="headerlink" href="#qecsim-model-decoderesult" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.model.DecodeResult">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.model.</code><code class="sig-name descname">DecodeResult</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">success</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">logical_commutations</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">recovery</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">custom_values</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.model.DecodeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents the result of decoding.</p>
+<p>Typically decoders return a recovery operation and delegate the evaluation
+of success and logical commutations to <a class="reference internal" href="app.html#module-qecsim.app" title="qecsim.app"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qecsim.app</span></code></a>. Optionally,
+decoders may return an instance of this class to partially or completely
+override the evaluation of success and logical commutations. Additionally,
+decoders can provide custom values to be summed across runs.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">success</span></code> and/or <code class="docutils literal notranslate"><span class="pre">logical_commutations</span></code>, if not None, are used by
+<a class="reference internal" href="app.html#module-qecsim.app" title="qecsim.app"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qecsim.app</span></code></a> to override the usual evaluation of success and logical
+commutations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">recovery</span></code>, if not None, is used by <a class="reference internal" href="app.html#module-qecsim.app" title="qecsim.app"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qecsim.app</span></code></a> to evaluate any
+values unspecified by <code class="docutils literal notranslate"><span class="pre">success</span></code> and/or <code class="docutils literal notranslate"><span class="pre">logical_commutations</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">success</span></code> and <code class="docutils literal notranslate"><span class="pre">recovery</span></code> must not both be None; this ensures that
+<a class="reference internal" href="app.html#module-qecsim.app" title="qecsim.app"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qecsim.app</span></code></a> can resolve a success value.</p></li>
+<li><p>Logical commutations, as resolved by <a class="reference internal" href="app.html#module-qecsim.app" title="qecsim.app"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qecsim.app</span></code></a>, and custom values
+must be consistent across identically parameterized simulation runs, i.e.
+always None or always equal length arrays; this ensures that
+<a class="reference internal" href="app.html#module-qecsim.app" title="qecsim.app"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qecsim.app</span></code></a> can sum results across multiple runs.</p></li>
+</ul>
+<p>See also <a class="reference internal" href="#qecsim.model.Decoder" title="qecsim.model.Decoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">Decoder</span></code></a> and <a class="reference internal" href="#qecsim.model.DecoderFTP" title="qecsim.model.DecoderFTP"><code class="xref py py-class docutils literal notranslate"><span class="pre">DecoderFTP</span></code></a>.</p>
+<dl class="py method">
+<dt id="qecsim.model.DecodeResult.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">success</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">logical_commutations</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">recovery</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">custom_values</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.model.DecodeResult.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise new decode result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>success</strong> (<em>bool</em>) – If the decoding was successful (default=None).</p></li>
+<li><p><strong>logical_commutations</strong> (<em>numpy.array</em><em> (</em><em>1d</em><em>)</em>) – Logical commutations as binary vector or None (default=None).</p></li>
+<li><p><strong>recovery</strong> (<em>numpy.array</em><em> (</em><em>1d</em><em>)</em>) – Recovery operation as binary symplectic vector (default=None).</p></li>
+<li><p><strong>custom_values</strong> (<em>numpy.array</em><em> (</em><em>1d</em><em>)</em>) – Custom values as numeric vector or None (default=None).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="error.html#qecsim.error.QecsimError" title="qecsim.error.QecsimError"><strong>QecsimError</strong></a> – If both success and recovery are unspecified (i.e. None).</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="qecsim-model-cli-description">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.model.cli_description</span></code><a class="headerlink" href="#qecsim-model-cli-description" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="qecsim.model.cli_description">
+<code class="sig-prename descclassname">&#64;</code><code class="sig-prename descclassname">qecsim.model.</code><code class="sig-name descname">cli_description</code><a class="headerlink" href="#qecsim.model.cli_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>CLI description class decorator.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Adds the attribute <code class="docutils literal notranslate"><span class="pre">__qecsim_cli_desc</span></code> to the class with the value of the given description.</p></li>
+<li><p>The description is used by <a class="reference internal" href="cli.html#module-qecsim.cli" title="qecsim.cli"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qecsim.cli</span></code></a> to generate CLI help messages.</p></li>
+<li><p>Typically it describes the model and parameters in a human-readable form; the model type (i.e. code, error model,
+decoder) is not included.</p></li>
+<li><p>For examples, see <a class="reference internal" href="models/planar.html#qecsim.models.planar.PlanarCode" title="qecsim.models.planar.PlanarCode"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarCode</span></code></a>, <a class="reference internal" href="models/generic.html#qecsim.models.generic.BitPhaseFlipErrorModel" title="qecsim.models.generic.BitPhaseFlipErrorModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.generic.BitPhaseFlipErrorModel</span></code></a>
+and <a class="reference internal" href="models/planar.html#qecsim.models.planar.PlanarMPSDecoder" title="qecsim.models.planar.PlanarMPSDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.planar.PlanarMPSDecoder</span></code></a>.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>description</strong> (<em>str</em>) – CLI description.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>CLI description class decorator.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>function</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="models/basic.html" class="btn btn-neutral float-right" title="models.basic: basic stabilizer codes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="graphtools.html" class="btn btn-neutral float-left" title="graphtools: graph tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2016 - 2021, David K. Tuckett.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

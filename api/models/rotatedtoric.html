@@ -1,0 +1,927 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>models.rotatedtoric: rotated toric stabilizer codes &mdash; qecsim 1.0b8 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="models.toric: toric stabilizer codes" href="toric.html" />
+    <link rel="prev" title="models.rotatedplanar: rotated planar stabilizer codes" href="rotatedplanar.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> qecsim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0b8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+        
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../demos.html">Demos</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../app.html">app: application functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli.html">cli: command-line interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../error.html">error: error classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graphtools.html">graphtools: graph tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model.html">model: abstract base classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic.html">models.basic: basic stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="color.html">models.color: color stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic.html">models.generic: generic error models and decoders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="planar.html">models.planar: planar stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rotatedplanar.html">models.rotatedplanar: rotated planar stabilizer codes</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">models.rotatedtoric: rotated toric stabilizer codes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-qecsim.models.rotatedtoric"><code class="docutils literal notranslate"><span class="pre">qecsim.models.rotatedtoric</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-models-rotatedtoric-rotatedtoriccode"><code class="docutils literal notranslate"><span class="pre">qecsim.models.rotatedtoric.RotatedToricCode</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-models-rotatedtoric-rotatedtoricpauli"><code class="docutils literal notranslate"><span class="pre">qecsim.models.rotatedtoric.RotatedToricPauli</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qecsim-models-rotatedtoric-rotatedtoricsmwpmdecoder"><code class="docutils literal notranslate"><span class="pre">qecsim.models.rotatedtoric.RotatedToricSMWPMDecoder</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="toric.html">models.toric: toric stabilizer codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../paulitools.html">paulitools: pauli and binary symplectic tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tensortools.html">tensortools: tensor tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../util.html">util: utilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../links.html">Links</a></li>
+</ul>
+
+            
+          
+        <a href="../../genindex.html">Index</a>
+        <a href="../../py-modindex.html">Module Index</a>
+    
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">qecsim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../api.html">API</a> &raquo;</li>
+        
+      <li>models.rotatedtoric: rotated toric stabilizer codes</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="models-rotatedtoric-rotated-toric-stabilizer-codes">
+<h1>models.rotatedtoric: rotated toric stabilizer codes<a class="headerlink" href="#models-rotatedtoric-rotated-toric-stabilizer-codes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-qecsim.models.rotatedtoric">
+<span id="qecsim-models-rotatedtoric"></span><h2><code class="docutils literal notranslate"><span class="pre">qecsim.models.rotatedtoric</span></code><a class="headerlink" href="#module-qecsim.models.rotatedtoric" title="Permalink to this headline">¶</a></h2>
+<p>This module contains implementations relevant to rotated toric stabilizer codes.</p>
+</div>
+<div class="section" id="qecsim-models-rotatedtoric-rotatedtoriccode">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.models.rotatedtoric.RotatedToricCode</span></code><a class="headerlink" href="#qecsim-models-rotatedtoric-rotatedtoriccode" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.models.rotatedtoric.RotatedToricCode">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.models.rotatedtoric.</code><code class="sig-name descname">RotatedToricCode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rows</span></em>, <em class="sig-param"><span class="n">columns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricCode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../model.html#qecsim.model.StabilizerCode" title="qecsim.model.StabilizerCode"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.StabilizerCode</span></code></a></p>
+<p>Implements a rotated toric code defined by its lattice size.</p>
+<p>In addition to the members defined in <a class="reference internal" href="../model.html#qecsim.model.StabilizerCode" title="qecsim.model.StabilizerCode"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.StabilizerCode</span></code></a>, it provides several lattice methods as
+described below.</p>
+<p>Lattice methods:</p>
+<ul class="simple">
+<li><p>Get size: <a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricCode.size" title="qecsim.models.rotatedtoric.RotatedToricCode.size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">size()</span></code></a>.</p></li>
+<li><p>Get plaquette type: <a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricCode.is_x_plaquette" title="qecsim.models.rotatedtoric.RotatedToricCode.is_x_plaquette"><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_x_plaquette()</span></code></a>, <a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricCode.is_z_plaquette" title="qecsim.models.rotatedtoric.RotatedToricCode.is_z_plaquette"><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_z_plaquette()</span></code></a>.</p></li>
+<li><p>Get and test bounds: <a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricCode.bounds" title="qecsim.models.rotatedtoric.RotatedToricCode.bounds"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bounds()</span></code></a>, <a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricCode.is_in_bounds" title="qecsim.models.rotatedtoric.RotatedToricCode.is_in_bounds"><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_in_bounds()</span></code></a>.</p></li>
+<li><p>Resolve a syndrome to plaquettes: <a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricCode.syndrome_to_plaquette_indices" title="qecsim.models.rotatedtoric.RotatedToricCode.syndrome_to_plaquette_indices"><code class="xref py py-meth docutils literal notranslate"><span class="pre">syndrome_to_plaquette_indices()</span></code></a>.</p></li>
+<li><p>Find shortest translation between plaquettes: <a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricCode.translation" title="qecsim.models.rotatedtoric.RotatedToricCode.translation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">translation()</span></code></a>.</p></li>
+<li><p>Construct a Pauli operator on the lattice: <a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricCode.new_pauli" title="qecsim.models.rotatedtoric.RotatedToricCode.new_pauli"><code class="xref py py-meth docutils literal notranslate"><span class="pre">new_pauli()</span></code></a>.</p></li>
+</ul>
+<p>Indices:</p>
+<ul class="simple">
+<li><p>Indices are in the format (x, y).</p></li>
+<li><p>Qubit sites (vertices) are indexed by (x, y) coordinates with the origin at the lower left qubit.</p></li>
+<li><p>Stabilizer plaquettes are indexed by (x, y) coordinates such that the lower left corner of the plaquette is on the
+qubit site at (x, y).</p></li>
+<li><p>X-type stabilizer plaquette indices satisfy (x-y) % 2 == 1.</p></li>
+<li><p>Z-type stabilizer plaquette indices satisfy (x-y) % 2 == 0.</p></li>
+</ul>
+<p>For example, qubit site indices on a 4 x 4 lattice:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>
+  <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>
+  <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>
+<span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">-----</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">-----</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">-----</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">-----</span>
+  <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>
+  <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>
+  <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>
+<span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-----</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-----</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-----</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-----</span>
+  <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>
+  <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>
+  <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>
+<span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-----</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-----</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-----</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-----</span>
+  <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>
+  <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>
+  <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>
+<span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-----</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-----</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-----</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-----</span>
+</pre></div>
+</div>
+<p>For example, stabilizer plaquette types and indices on a 4 x 4 lattice:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span>    <span class="n">X</span>    <span class="o">|</span>    <span class="n">Z</span>    <span class="o">|</span>    <span class="n">X</span>    <span class="o">|</span>    <span class="n">Z</span>
+<span class="o">|</span>  <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>  <span class="o">|</span>  <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>  <span class="o">|</span>  <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>  <span class="o">|</span>  <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>
+<span class="o">+---------+---------+---------+-------</span>
+<span class="o">|</span>    <span class="n">Z</span>    <span class="o">|</span>    <span class="n">X</span>    <span class="o">|</span>    <span class="n">Z</span>    <span class="o">|</span>    <span class="n">X</span>
+<span class="o">|</span>  <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="o">|</span>  <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="o">|</span>  <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="o">|</span>  <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>
+<span class="o">+---------+---------+---------+-------</span>
+<span class="o">|</span>    <span class="n">X</span>    <span class="o">|</span>    <span class="n">Z</span>    <span class="o">|</span>    <span class="n">X</span>    <span class="o">|</span>    <span class="n">Z</span>
+<span class="o">|</span>  <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>  <span class="o">|</span>  <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>  <span class="o">|</span>  <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>  <span class="o">|</span>  <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>
+<span class="o">+---------+---------+---------+-------</span>
+<span class="o">|</span>    <span class="n">Z</span>    <span class="o">|</span>    <span class="n">X</span>    <span class="o">|</span>    <span class="n">Z</span>    <span class="o">|</span>    <span class="n">X</span>
+<span class="o">|</span>  <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>  <span class="o">|</span>  <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>  <span class="o">|</span>  <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>  <span class="o">|</span>  <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>         <span class="o">|</span>
+<span class="o">+---------+---------+---------+-------</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricCode.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rows</span></em>, <em class="sig-param"><span class="n">columns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricCode.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise new rotated toric code.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rows</strong> (<em>int</em>) – Number of rows in lattice.</p></li>
+<li><p><strong>columns</strong> (<em>int</em>) – Number of columns in lattice.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – if (rows, columns) smaller than (2, 2) in either dimension.</p></li>
+<li><p><strong>ValueError</strong> – if rows or columns are odd.</p></li>
+<li><p><strong>TypeError</strong> – if any parameter is of an invalid type.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricCode.ascii_art">
+<code class="sig-name descname">ascii_art</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">syndrome</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">pauli</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">plaquette_labels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">site_labels</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricCode.ascii_art" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return ASCII art style lattice showing primal lattice lines with syndrome bits and Pauli operators as given.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Optional plaquette_labels override syndrome. (Out of bound indices are ignored.)</p></li>
+<li><p>Optional site_labels override pauli. (Out of bound indices are ignored.)</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>syndrome</strong> (<em>numpy.array</em><em> (</em><em>1d</em><em>)</em>) – Syndrome (optional) as binary vector.</p></li>
+<li><p><strong>pauli</strong> (<a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricPauli" title="qecsim.models.rotatedtoric.RotatedToricPauli"><em>RotatedToricPauli</em></a>) – Rotated toric Pauli (optional)</p></li>
+<li><p><strong>plaquette_labels</strong> (<em>dict of</em><em> (</em><em>int</em><em>, </em><em>int</em><em>) </em><em>to char</em>) – Dictionary of plaquette indices as (x, y) to single-character labels (optional).</p></li>
+<li><p><strong>site_labels</strong> (<em>dict of</em><em> (</em><em>int</em><em>, </em><em>int</em><em>) </em><em>to char</em>) – Dictionary of site indices as (x, y) to single-character labels (optional).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>ASCII art style lattice.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricCode.bounds">
+<em class="property">property </em><code class="sig-name descname">bounds</code><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricCode.bounds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum x and y value that an index coordinate can take.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>2-tuple of int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricCode.is_in_bounds">
+<code class="sig-name descname">is_in_bounds</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricCode.is_in_bounds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the index is within lattice bounds inclusive.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>index</strong> (<em>2-tuple of int</em>) – Index in the format (x, y).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If the index is within lattice bounds inclusive.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricCode.is_x_plaquette">
+<em class="property">classmethod </em><code class="sig-name descname">is_x_plaquette</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricCode.is_x_plaquette" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the plaquette index specifies an X-type plaquette, irrespective of lattice bounds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>index</strong> (<em>2-tuple of int</em>) – Index in the format (x, y).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If the index specifies an X-type plaquette.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricCode.is_z_plaquette">
+<em class="property">classmethod </em><code class="sig-name descname">is_z_plaquette</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricCode.is_z_plaquette" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the plaquette index specifies an Z-type plaquette, irrespective of lattice bounds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>index</strong> (<em>2-tuple of int</em>) – Index in the format (x, y).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If the index specifies an Z-type plaquette.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricCode.label">
+<em class="property">property </em><code class="sig-name descname">label</code><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricCode.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.StabilizerCode.label" title="qecsim.model.StabilizerCode.label"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.StabilizerCode.label()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricCode.logical_xs">
+<em class="property">property </em><code class="sig-name descname">logical_xs</code><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricCode.logical_xs" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.StabilizerCode.logical_xs" title="qecsim.model.StabilizerCode.logical_xs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.StabilizerCode.logical_xs()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricCode.logical_zs">
+<em class="property">property </em><code class="sig-name descname">logical_zs</code><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricCode.logical_zs" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.StabilizerCode.logical_zs" title="qecsim.model.StabilizerCode.logical_zs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.StabilizerCode.logical_zs()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricCode.logicals">
+<em class="property">property </em><code class="sig-name descname">logicals</code><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricCode.logicals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logical operators as binary symplectic matrix.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Each row is a logical operator.</p></li>
+<li><p>All logical X operators are stacked above all logical Z operators, in the order given by <a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricCode.logical_xs" title="qecsim.models.rotatedtoric.RotatedToricCode.logical_xs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logical_xs()</span></code></a>
+and <a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricCode.logical_zs" title="qecsim.models.rotatedtoric.RotatedToricCode.logical_zs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logical_zs()</span></code></a>.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array (2d)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricCode.n_k_d">
+<em class="property">property </em><code class="sig-name descname">n_k_d</code><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricCode.n_k_d" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.StabilizerCode.n_k_d" title="qecsim.model.StabilizerCode.n_k_d"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.StabilizerCode.n_k_d()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricCode.new_pauli">
+<code class="sig-name descname">new_pauli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bsf</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricCode.new_pauli" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience constructor of rotated toric Pauli for this code.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>For performance reasons, the new Pauli is a view of the given bsf. Modifying one will modify the other.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>bsf</strong> (<em>numpy.array</em><em> (</em><em>1d</em><em>)</em>) – Binary symplectic representation of Pauli. (Optional. Defaults to identity.)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Rotated toric Pauli</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricPauli" title="qecsim.models.rotatedtoric.RotatedToricPauli">RotatedToricPauli</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricCode.size">
+<em class="property">property </em><code class="sig-name descname">size</code><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricCode.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Size of the lattice in format (rows, columns), e.g. (4, 4).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>2-tuple of int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricCode.stabilizers">
+<em class="property">property </em><code class="sig-name descname">stabilizers</code><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricCode.stabilizers" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.StabilizerCode.stabilizers" title="qecsim.model.StabilizerCode.stabilizers"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.StabilizerCode.stabilizers()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricCode.syndrome_to_plaquette_indices">
+<code class="sig-name descname">syndrome_to_plaquette_indices</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">syndrome</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricCode.syndrome_to_plaquette_indices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the indices of the plaquettes associated with the non-commuting stabilizers identified by the syndrome.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>syndrome</strong> (<em>numpy.array</em><em> (</em><em>1d</em><em>)</em>) – Binary vector identifying commuting and non-commuting stabilizers by 0 and 1 respectively.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Set of plaquette indices.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>set of 2-tuple of int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricCode.translation">
+<code class="sig-name descname">translation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a_index</span></em>, <em class="sig-param"><span class="n">b_index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricCode.translation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate the shortest taxi-cab translation from plaquette A to plaquette B in format (x_steps, y_steps).</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Indices are in the format (x, y).</p></li>
+<li><p>Indices are modulo lattice dimensions, i.e. on a (2, 2) lattice, (2, -1) indexes the same site as (0, 1).</p></li>
+<li><p>Both plaquettes must be of the same type, i.e. X or Z.</p></li>
+<li><p>Negative x_steps / y_steps indicate steps in the direction of decreasing index.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a_index</strong> (<em>(</em><em>int</em><em>, </em><em>int</em><em>)</em>) – Plaquette index as (x, y).</p></li>
+<li><p><strong>b_index</strong> (<em>(</em><em>int</em><em>, </em><em>int</em><em>)</em>) – Plaquette index as (x, y).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Taxi-cab translation between plaquettes.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>2-tuple of int</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>IndexError</strong> – If plaquettes are not of the same type (i.e. X or Z).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricCode.validate">
+<code class="sig-name descname">validate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricCode.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform various sanity checks.</p>
+<p>Sanity checks:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(stabilizers \odot stabilisers^T = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(stabilizers \odot logicals^T = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(logicals \odot logicals^T = \Lambda\)</span></p></li>
+</ul>
+<p>See <a class="reference internal" href="../paulitools.html#qecsim.paulitools.bsp" title="qecsim.paulitools.bsp"><code class="xref py py-func docutils literal notranslate"><span class="pre">qecsim.paulitools.bsp()</span></code></a> for definition of <span class="math notranslate nohighlight">\(\odot\)</span> and <span class="math notranslate nohighlight">\(\Lambda\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../error.html#qecsim.error.QecsimError" title="qecsim.error.QecsimError"><strong>QecsimError</strong></a> – if the stabilizers or logicals fail the sanity checks.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="qecsim-models-rotatedtoric-rotatedtoricpauli">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.models.rotatedtoric.RotatedToricPauli</span></code><a class="headerlink" href="#qecsim-models-rotatedtoric-rotatedtoricpauli" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.models.rotatedtoric.RotatedToricPauli">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.models.rotatedtoric.</code><code class="sig-name descname">RotatedToricPauli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">bsf</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricPauli" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines a Pauli operator on a rotated toric lattice.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>This is a utility class used by rotated toric implementations of the core models.</p></li>
+<li><p>It is typically instantiated using <a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricCode.new_pauli" title="qecsim.models.rotatedtoric.RotatedToricCode.new_pauli"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.models.rotatedtoric.RotatedToricCode.new_pauli()</span></code></a></p></li>
+</ul>
+<p>Use cases:</p>
+<ul class="simple">
+<li><p>Construct a rotated toric Pauli operator by applying site, plaquette, path and logical operators: <a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricPauli.site" title="qecsim.models.rotatedtoric.RotatedToricPauli.site"><code class="xref py py-meth docutils literal notranslate"><span class="pre">site()</span></code></a>,
+<a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricPauli.plaquette" title="qecsim.models.rotatedtoric.RotatedToricPauli.plaquette"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plaquette()</span></code></a>, <a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricPauli.path" title="qecsim.models.rotatedtoric.RotatedToricPauli.path"><code class="xref py py-meth docutils literal notranslate"><span class="pre">path()</span></code></a>, <a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricPauli.logical_x1" title="qecsim.models.rotatedtoric.RotatedToricPauli.logical_x1"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logical_x1()</span></code></a>, <a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricPauli.logical_x2" title="qecsim.models.rotatedtoric.RotatedToricPauli.logical_x2"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logical_x2()</span></code></a>, <a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricPauli.logical_z1" title="qecsim.models.rotatedtoric.RotatedToricPauli.logical_z1"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logical_z1()</span></code></a>, <a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricPauli.logical_z2" title="qecsim.models.rotatedtoric.RotatedToricPauli.logical_z2"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logical_z2()</span></code></a>.</p></li>
+<li><p>Get the single Pauli operator applied to a given site: <a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricPauli.operator" title="qecsim.models.rotatedtoric.RotatedToricPauli.operator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">operator()</span></code></a></p></li>
+<li><p>Convert to binary symplectic form: <a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricPauli.to_bsf" title="qecsim.models.rotatedtoric.RotatedToricPauli.to_bsf"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_bsf()</span></code></a>.</p></li>
+<li><p>Copy a rotated toric Pauli operator: <a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricPauli.copy" title="qecsim.models.rotatedtoric.RotatedToricPauli.copy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">copy()</span></code></a>.</p></li>
+</ul>
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricPauli.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">bsf</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricPauli.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise new rotated toric Pauli.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>For performance reasons, the new Pauli is a view of the given bsf. Modifying one will modify the other.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricCode" title="qecsim.models.rotatedtoric.RotatedToricCode"><em>RotatedToricCode</em></a>) – The rotated toric code.</p></li>
+<li><p><strong>bsf</strong> (<em>numpy.array</em><em> (</em><em>1d</em><em>)</em>) – Binary symplectic representation of Pauli. (Optional. Defaults to identity.)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricPauli.code">
+<em class="property">property </em><code class="sig-name descname">code</code><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricPauli.code" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rotated toric code.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricCode" title="qecsim.models.rotatedtoric.RotatedToricCode">RotatedToricCode</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricPauli.copy">
+<code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricPauli.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a copy of this Pauli that references the same code but is backed by a copy of the bsf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A copy of this Pauli.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricPauli" title="qecsim.models.rotatedtoric.RotatedToricPauli">RotatedToricPauli</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricPauli.logical_x1">
+<code class="sig-name descname">logical_x1</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricPauli.logical_x1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply a logical X1 operator, i.e. column of X at sizes with x = 0.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>self (to allow chaining)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricPauli" title="qecsim.models.rotatedtoric.RotatedToricPauli">RotatedToricPauli</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricPauli.logical_x2">
+<code class="sig-name descname">logical_x2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricPauli.logical_x2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply a logical X2 operator, i.e. row of X at sites with y = 0.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>self (to allow chaining)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricPauli" title="qecsim.models.rotatedtoric.RotatedToricPauli">RotatedToricPauli</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricPauli.logical_z1">
+<code class="sig-name descname">logical_z1</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricPauli.logical_z1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply a logical Z1 operator, i.e. row of Z at sites with y = 0.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>self (to allow chaining)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricPauli" title="qecsim.models.rotatedtoric.RotatedToricPauli">RotatedToricPauli</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricPauli.logical_z2">
+<code class="sig-name descname">logical_z2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricPauli.logical_z2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply a logical Z2 operator, i.e. column of Z at sizes with x = 0.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>self (to allow chaining)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricPauli" title="qecsim.models.rotatedtoric.RotatedToricPauli">RotatedToricPauli</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricPauli.operator">
+<code class="sig-name descname">operator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricPauli.operator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the operator on the site identified by the index.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Index is in the format (x, y).</p></li>
+<li><p>Index is modulo lattice dimensions, i.e. on a (2, 2) lattice, (2, -1) indexes the same site as (0, 1).</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>index</strong> (<em>2-tuple of int</em>) – Index identifying a site in the format (x, y).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Pauli operator. One of ‘I’, ‘X’, ‘Y’, ‘Z’.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricPauli.path">
+<code class="sig-name descname">path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a_index</span></em>, <em class="sig-param"><span class="n">b_index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricPauli.path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply the shortest taxi-cab path of operators between the plaquettes indexed by A and B.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Indices are in the format (x, y).</p></li>
+<li><p>Indices are modulo lattice dimensions, i.e. on a (2, 2) lattice, (2, -1) indexes the same site as (0, 1).</p></li>
+<li><p>Both plaquettes must be of the same type, i.e. X or Z.</p></li>
+<li><p>If X plaquettes are indexed then Z operators are applied.</p></li>
+<li><p>If Z plaquettes are indexed then X operators are applied.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a_index</strong> (<em>(</em><em>int</em><em>, </em><em>int</em><em>)</em>) – Plaquette index as (x, y).</p></li>
+<li><p><strong>b_index</strong> (<em>(</em><em>int</em><em>, </em><em>int</em><em>)</em>) – Plaquette index as (x, y).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>self (to allow chaining)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="toric.html#qecsim.models.toric.ToricPauli" title="qecsim.models.toric.ToricPauli">ToricPauli</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>IndexError</strong> – If plaquettes are not of the same type (i.e. X or Z).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricPauli.plaquette">
+<code class="sig-name descname">plaquette</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricPauli.plaquette" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply a plaquette operator at the given index.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Index is in the format (x, y).</p></li>
+<li><p>Index is modulo lattice dimensions, i.e. on a (2, 2) lattice, (2, -1) indexes the same plaquette as (0, 1).</p></li>
+<li><p>If an Z-type plaquette is indexed (i.e. (x - y) % 2 == 0), then Z operators are applied around the plaquette.</p></li>
+<li><p>If an X-type plaquette is indexed (i.e. (x - y) % 2 == 1), then X operators are applied around the plaquette.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>index</strong> (<em>2-tuple of int</em>) – Index identifying the plaquette in the format (x, y).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>self (to allow chaining)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricPauli" title="qecsim.models.rotatedtoric.RotatedToricPauli">RotatedToricPauli</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricPauli.site">
+<code class="sig-name descname">site</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">operator</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">indices</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricPauli.site" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply the operator to site identified by the index.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Index is in the format (x, y).</p></li>
+<li><p>Index is modulo lattice dimensions, i.e. on a (2, 2) lattice, (2, -1) indexes the same site as (0, 1).</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>operator</strong> (<em>str</em>) – Pauli operator. One of ‘I’, ‘X’, ‘Y’, ‘Z’.</p></li>
+<li><p><strong>indices</strong> (<em>Any number of 2-tuple of int</em>) – Any number of indices identifying sites in the format (x, y).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>self (to allow chaining)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricPauli" title="qecsim.models.rotatedtoric.RotatedToricPauli">RotatedToricPauli</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricPauli.to_bsf">
+<code class="sig-name descname">to_bsf</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricPauli.to_bsf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Binary symplectic representation of Pauli.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>For performance reasons, the returned bsf is a view of this Pauli. Modifying one will modify the other.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Binary symplectic representation of Pauli.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>numpy.array (1d)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="qecsim-models-rotatedtoric-rotatedtoricsmwpmdecoder">
+<h2><code class="docutils literal notranslate"><span class="pre">qecsim.models.rotatedtoric.RotatedToricSMWPMDecoder</span></code><a class="headerlink" href="#qecsim-models-rotatedtoric-rotatedtoricsmwpmdecoder" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="qecsim.models.rotatedtoric.RotatedToricSMWPMDecoder">
+<em class="property">class </em><code class="sig-prename descclassname">qecsim.models.rotatedtoric.</code><code class="sig-name descname">RotatedToricSMWPMDecoder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">itp</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">eta</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricSMWPMDecoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../model.html#qecsim.model.Decoder" title="qecsim.model.Decoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.Decoder</span></code></a>, <a class="reference internal" href="../model.html#qecsim.model.DecoderFTP" title="qecsim.model.DecoderFTP"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.model.DecoderFTP</span></code></a></p>
+<p>Implements a rotated toric Symmetry Minimum Weight Perfect Matching (SMWPM) decoder.</p>
+<p>A version of this decoder yielded results reported in <a class="reference external" href="https://arxiv.org/abs/1907.02554">https://arxiv.org/abs/1907.02554</a>.</p>
+<p>Note: This decoder handles decoding for both <a class="reference internal" href="../app.html#qecsim.app.run" title="qecsim.app.run"><code class="xref py py-func docutils literal notranslate"><span class="pre">qecsim.app.run()</span></code></a> and <a class="reference internal" href="../app.html#qecsim.app.run_ftp" title="qecsim.app.run_ftp"><code class="xref py py-func docutils literal notranslate"><span class="pre">qecsim.app.run_ftp()</span></code></a> simulations.</p>
+<p>This decoder is described conceptually in the aforementioned paper. We assume that the noise is highly biased
+towards Y errors. The decoding algorithm is the same as that of
+<a class="reference internal" href="rotatedplanar.html#qecsim.models.rotatedplanar.RotatedPlanarSMWPMDecoder" title="qecsim.models.rotatedplanar.RotatedPlanarSMWPMDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qecsim.models.rotatedplanar.RotatedPlanarSMWPMDecoder</span></code></a>, without the complication of virtual nodes on the
+boundary, but with a test for time-like logical failures.</p>
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricSMWPMDecoder.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">itp</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">eta</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricSMWPMDecoder.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise new rotated toric SMWPM decoder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>itp</strong> (<em>bool</em>) – Ignore time parity, i.e. decoder should not fail in case of time-like logical. (default=False)</p></li>
+<li><p><strong>eta</strong> (<em>float</em><em> or </em><em>None</em>) – Bias (default=None, take-from-error-model=None)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – if eta is not None or &gt; 0.0.</p></li>
+<li><p><strong>TypeError</strong> – if any parameter is of an invalid type.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricSMWPMDecoder.decode">
+<code class="sig-name descname">decode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">syndrome</span></em>, <em class="sig-param"><span class="n">error_model</span><span class="o">=</span><span class="default_value">BitPhaseFlipErrorModel()</span></em>, <em class="sig-param"><span class="n">error_probability</span><span class="o">=</span><span class="default_value">0.1</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricSMWPMDecoder.decode" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.Decoder.decode" title="qecsim.model.Decoder.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.Decoder.decode()</span></code></a></p>
+<p>Note: The optional keyword parameters <code class="docutils literal notranslate"><span class="pre">error_model</span></code> and <code class="docutils literal notranslate"><span class="pre">error_probability</span></code> are used to determine the prior
+probability distribution for use in the decoding algorithm. Any provided error model must implement
+<a class="reference internal" href="../model.html#qecsim.model.ErrorModel.probability_distribution" title="qecsim.model.ErrorModel.probability_distribution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">probability_distribution()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricCode" title="qecsim.models.rotatedtoric.RotatedToricCode"><em>RotatedToricCode</em></a>) – Rotated toric code.</p></li>
+<li><p><strong>syndrome</strong> (<em>numpy.array</em><em> (</em><em>1d</em><em>)</em>) – Syndrome as binary vector.</p></li>
+<li><p><strong>error_model</strong> (<a class="reference internal" href="../model.html#qecsim.model.ErrorModel" title="qecsim.model.ErrorModel"><em>ErrorModel</em></a>) – Error model. (default=BitPhaseFlipErrorModel())</p></li>
+<li><p><strong>error_probability</strong> (<em>float</em>) – Overall probability of an error on a single qubit. (default=0.1)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Recovery operation as binary symplectic vector.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array (1d)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricSMWPMDecoder.decode_ftp">
+<code class="sig-name descname">decode_ftp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">time_steps</span></em>, <em class="sig-param"><span class="n">syndrome</span></em>, <em class="sig-param"><span class="n">error_model</span><span class="o">=</span><span class="default_value">BitPhaseFlipErrorModel()</span></em>, <em class="sig-param"><span class="n">error_probability</span><span class="o">=</span><span class="default_value">0.1</span></em>, <em class="sig-param"><span class="n">measurement_error_probability</span><span class="o">=</span><span class="default_value">0.1</span></em>, <em class="sig-param"><span class="n">step_measurement_errors</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricSMWPMDecoder.decode_ftp" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.DecoderFTP.decode_ftp" title="qecsim.model.DecoderFTP.decode_ftp"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.DecoderFTP.decode_ftp()</span></code></a></p>
+<p>Note:</p>
+<ul>
+<li><p>The optional keyword parameters <code class="docutils literal notranslate"><span class="pre">error_model</span></code> and <code class="docutils literal notranslate"><span class="pre">error_probability</span></code> are used to determine the prior
+probability distribution for use in the decoding algorithm. Any provided error model must implement
+<a class="reference internal" href="../model.html#qecsim.model.ErrorModel.probability_distribution" title="qecsim.model.ErrorModel.probability_distribution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">probability_distribution()</span></code></a>.</p></li>
+<li><p>This method always returns a <code class="docutils literal notranslate"><span class="pre">DecodeResult</span></code> with the following parameters:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DecodeResult</span><span class="p">(</span>
+    <span class="n">success</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># None indicates to be evaluated by app</span>
+                   <span class="c1"># False indicates time-like logical failure (overrides evaluation by app)</span>
+    <span class="n">logical_commutations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># None indicates to be evaluated by app</span>
+    <span class="n">recovery</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="o">...</span><span class="p">),</span>  <span class="c1"># recovery operation (used by app to evaluate success and logical_commutations)</span>
+    <span class="n">custom_values</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>  <span class="c1"># [0, 0] no time-like logical failure</span>
+                                     <span class="c1"># [1, 0] time-like logical failure through X plaquettes</span>
+                                     <span class="c1"># [0, 1] time-like logical failure through Z plaquettes</span>
+                                     <span class="c1"># [1, 1] time-like logical failure through both X and Z plaquettes</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<a class="reference internal" href="#qecsim.models.rotatedtoric.RotatedToricCode" title="qecsim.models.rotatedtoric.RotatedToricCode"><em>RotatedToricCode</em></a>) – Rotated toric code.</p></li>
+<li><p><strong>time_steps</strong> (<em>int</em>) – Number of time steps.</p></li>
+<li><p><strong>syndrome</strong> (<em>numpy.array</em><em> (</em><em>2d</em><em>)</em>) – Syndrome as binary array.</p></li>
+<li><p><strong>error_model</strong> (<a class="reference internal" href="../model.html#qecsim.model.ErrorModel" title="qecsim.model.ErrorModel"><em>ErrorModel</em></a>) – Error model. (default=BitPhaseFlipErrorModel())</p></li>
+<li><p><strong>error_probability</strong> (<em>float</em>) – Overall probability of an error on a single qubit. (default=0.1)</p></li>
+<li><p><strong>measurement_error_probability</strong> (<em>float</em>) – Overall probability of an error on a single measurement. (default=0.1)</p></li>
+<li><p><strong>step_measurement_errors</strong> (<em>list of numpy.array</em><em> (</em><em>1d</em><em>)</em>) – list of measurement error bits applied to step-syndromes index by time-step.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Decode result.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../model.html#qecsim.model.DecodeResult" title="qecsim.model.DecodeResult">DecodeResult</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qecsim.models.rotatedtoric.RotatedToricSMWPMDecoder.label">
+<em class="property">property </em><code class="sig-name descname">label</code><a class="headerlink" href="#qecsim.models.rotatedtoric.RotatedToricSMWPMDecoder.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../model.html#qecsim.model.Decoder.label" title="qecsim.model.Decoder.label"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.Decoder.label()</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="toric.html" class="btn btn-neutral float-right" title="models.toric: toric stabilizer codes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="rotatedplanar.html" class="btn btn-neutral float-left" title="models.rotatedplanar: rotated planar stabilizer codes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2016 - 2021, David K. Tuckett.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
