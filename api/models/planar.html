@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>models.planar: planar stabilizer codes &mdash; qecsim 1.0b8 documentation</title>
+  <title>models.planar: planar stabilizer codes &mdash; qecsim 1.0b9 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                1.0b8
+                1.0b9
               </div>
             
           
@@ -1547,7 +1547,7 @@ bouncing just beyond the boundaries until a loop is completed or a corner is enc
 </ul>
 <dl class="py method">
 <dt id="qecsim.models.planar.PlanarYDecoder.decode">
-<code class="sig-name descname">decode</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarYDecoder.decode" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">decode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">code</span></em>, <em class="sig-param"><span class="n">syndrome</span></em>, <em class="sig-param"><span class="n">error_model</span><span class="o">=</span><span class="default_value">BitPhaseFlipErrorModel()</span></em>, <em class="sig-param"><span class="n">error_probability</span><span class="o">=</span><span class="default_value">0.1</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qecsim.models.planar.PlanarYDecoder.decode" title="Permalink to this definition">¶</a></dt>
 <dd><p>See <a class="reference internal" href="../model.html#qecsim.model.Decoder.decode" title="qecsim.model.Decoder.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qecsim.model.Decoder.decode()</span></code></a></p>
 <p>Note: The optional keyword parameters <code class="docutils literal notranslate"><span class="pre">error_model</span></code> and <code class="docutils literal notranslate"><span class="pre">error_probability</span></code> are used to determine the prior
 probability distribution for use in the decoding algorithm. Any provided error model must implement
